@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Discount Calculator — Sale Price & Savings | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<meta name="description" content="Calculate sale prices and total savings instantly. Supports single and stacked (double) discounts. Save money while shopping!">
+<meta name="keywords" content="discount calculator, sale price, savings calculator, retail math, shopping tools, clearance calculator">
+<link rel="canonical" href="https://calcora.com/daily/discount-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Discount Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/daily/discount-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a><ul class="nav-links" id="nav-links"><li><a href="../index.html" class="nav-link">🏠 Home</a></li><li><a href="discount-calculator.html" class="nav-link active">🏷️ Discount</a></li><li><a href="percentage-calculator.html" class="nav-link">% Percent</a></li></ul><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Discount Calculator</h1>
+            <p>Calculate final price, savings, and stacked (double) discounts.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> ₹2,000 item with 30% off = ₹1,400 (you save ₹600). With an
+            additional 10% off: ₹1,260 (effective 37% off, NOT 40%).</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>🏷️</i> Discount Details</div>
+                <div class="ig">
+                    <div class="il"><span>Original Price (₹)</span></div><input type="number" class="ti" id="price"
+                        value="2000" min="0">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Discount 1 (%)</span><span class="v" id="d1-v">30%</span></div><input
+                        type="range" id="d1" min="0" max="100" step="1" value="30">
+                    <div class="rl"><span>0%</span><span>100%</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Discount 2 (stacked, %)</span><span class="v" id="d2-v">0%</span></div><input
+                        type="range" id="d2" min="0" max="100" step="1" value="0">
+                    <div class="rl"><span>0%</span><span>100%</span></div>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>💰</i> Result</div>
+                <div class="bn-l">Final Price</div>
+                <div class="bn" id="final">—</div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--emerald)"></span>You Save</div>
+                        <div class="pv" style="color:var(--emerald)" id="save">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--amber)"></span>Effective %</div>
+                        <div class="pv" style="color:var(--amber)" id="eff">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['You Pay', 'Saved'], [1, 1], ['#a78bfa', '#34d399']);
+            function calc() {
+                const p = +document.getElementById('price').value || 0, d1 = +document.getElementById('d1').value, d2 = +document.getElementById('d2').value;
+                document.getElementById('d1-v').textContent = d1 + '%'; document.getElementById('d2-v').textContent = d2 + '%';
+                const after1 = p * (1 - d1 / 100), final = after1 * (1 - d2 / 100), saved = p - final, eff = p > 0 ? ((saved / p) * 100) : 0;
+                document.getElementById('final').textContent = C.F(final); document.getElementById('save').textContent = C.F(saved);
+                document.getElementById('eff').textContent = eff.toFixed(1) + '%';
+                C.uChart('ch', [Math.max(1, final), Math.max(1, saved)]);
+            }
+            ['price'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            ['d1', 'd2'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+</body>
+
+</html>

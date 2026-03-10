@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>JSON Formatter & Validator — Beautify, Minify, Validate | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Free JSON formatter and validator. Beautify, minify, and validate JSON with syntax highlighting and error detection.">
+<meta name="keywords" content="json formatter, json validator, beautify json, minify json, json editor, developer tools">
+<link rel="canonical" href="https://calcora.com/tech/json-formatter.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Formatter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","url":"https://calcora.com/tech/json-formatter.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="json-formatter.html" class="nav-link active">{ } JSON</a></li>
+                <li><a href="base64-encoder.html" class="nav-link">🔤 Base64</a></li>
+                <li><a href="password-generator.html" class="nav-link">🔐 Password</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>JSON Formatter & Validator</h1>
+            <p>Paste JSON to beautify, minify, or validate. Instant formatting.</p>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+            <button class="btn btn-accent" onclick="beautify()">✨ Beautify</button>
+            <button class="btn btn-outline" onclick="minify()">📦 Minify</button>
+            <button class="btn btn-outline" onclick="validate()">✅ Validate</button>
+            <button class="copy-btn" onclick="copyOut()">📋 Copy Output</button>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📝</i> Input JSON</div>
+                <textarea class="ti" id="input" rows="18" placeholder='Paste your JSON here...'
+                    style="min-height:350px">{"name":"Calcora","version":2,"tools":["SIP","EMI","Tax","GST"],"meta":{"author":"dev","premium":false,"tags":["finance","calculator"]}}</textarea>
+            </div>
+            <div class="glass">
+                <div class="ctitle"><i>✨</i> Output</div>
+                <div id="status" style="margin-bottom:8px;font-size:.78rem;font-weight:600"></div>
+                <pre class="out-box" id="output" style="min-height:350px"></pre>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        const inp = () => document.getElementById('input').value, out = document.getElementById('output'), st = document.getElementById('status');
+        function beautify() { try { const o = JSON.parse(inp()); out.textContent = JSON.stringify(o, null, 2); st.style.color = 'var(--emerald)'; st.textContent = '✅ Formatted with 2-space indent'; } catch (e) { st.style.color = 'var(--rose)'; st.textContent = '❌ ' + e.message; out.textContent = ''; } }
+        function minify() { try { const o = JSON.parse(inp()); out.textContent = JSON.stringify(o); st.style.color = 'var(--emerald)'; st.textContent = '✅ Minified (' + out.textContent.length + ' chars)'; } catch (e) { st.style.color = 'var(--rose)'; st.textContent = '❌ ' + e.message; out.textContent = ''; } }
+        function validate() { try { JSON.parse(inp()); st.style.color = 'var(--emerald)'; st.textContent = '✅ Valid JSON!'; out.textContent = 'JSON is valid.'; } catch (e) { st.style.color = 'var(--rose)'; st.textContent = '❌ Invalid: ' + e.message; out.textContent = e.message; } }
+        function copyOut() { navigator.clipboard.writeText(out.textContent).then(() => { st.textContent = '📋 Copied!'; }); }
+        beautify();
+    </script>
+</body>
+
+</html>

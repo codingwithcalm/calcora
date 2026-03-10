@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Profit & Loss Calculator — Margin & Markup | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Calculate profit/loss, margin, and markup easily. Ideal for small business owners and freelancers to price products.">
+    <meta name="keywords"
+        content="profit loss calculator, margin calculator, markup calculator, business math, retail math, sales profit">
+    <link rel="canonical" href="https://calcora.com/finance/profit-loss-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Profit & Loss Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.com/finance/profit-loss-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="profit-loss-calculator.html" class="nav-link active">📊 P&L</a></li>
+                <li><a href="gst-calculator.html" class="nav-link">💰 GST</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Profit & Loss Calculator</h1>
+            <p>Calculate profit/loss amount, percentage, markup, and margin.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> Buy at ₹500, sell at ₹750 = ₹250 profit (50% markup, 33.3%
+            margin).</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📊</i> Enter Prices</div>
+                <div class="ig">
+                    <div class="il"><span>Cost Price (₹)</span></div><input type="number" class="ti" id="cp" value="500"
+                        min="0">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Selling Price (₹)</span></div><input type="number" class="ti" id="sp"
+                        value="750" min="0">
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>💰</i> Result</div>
+                <div class="bn-l" id="status-label">Profit</div>
+                <div class="bn" id="amount">—</div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--amber)"></span>Markup %</div>
+                        <div class="pv" style="color:var(--amber)" id="markup">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--cyan)"></span>Margin %</div>
+                        <div class="pv" style="color:var(--cyan)" id="margin">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Cost', 'Profit'], [1, 1], ['#fb7185', '#34d399']);
+            function calc() {
+                const cp = +document.getElementById('cp').value || 0, sp = +document.getElementById('sp').value || 0;
+                const pl = sp - cp, isProfit = pl >= 0;
+                const markup = cp > 0 ? (pl / cp * 100) : 0, margin = sp > 0 ? (pl / sp * 100) : 0;
+                document.getElementById('status-label').textContent = isProfit ? 'Profit' : 'Loss';
+                document.getElementById('amount').textContent = C.F(Math.abs(pl));
+                document.getElementById('amount').style.background = isProfit ? 'linear-gradient(135deg,var(--emerald),var(--cyan))' : 'linear-gradient(135deg,var(--rose),var(--amber))';
+                document.getElementById('markup').textContent = markup.toFixed(1) + '%';
+                document.getElementById('margin').textContent = margin.toFixed(1) + '%';
+                C.uChart('ch', [Math.max(1, cp), Math.max(1, Math.abs(pl))]);
+            }
+            ['cp', 'sp'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            calc();
+        });
+    </script>
+</body>
+
+</html>

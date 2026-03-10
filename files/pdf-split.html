@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>PDF Split — Extract Pages from PDF | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description" content="Split a PDF file into individual pages or extract specific page ranges easily. Fast, free, and secure in-browser PDF splitting.">
+    <meta name="keywords" content="pdf split, extract pdf pages, split pdf free, pdf tools, separate pdf pages, secure pdf split">
+    <link rel="canonical" href="https://calcora.com/files/pdf-split.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Split","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/files/pdf-split.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a><ul class="nav-links" id="nav-links"><li><a href="../index.html" class="nav-link">🏠 Home</a></li><li><a href="pdf-split.html" class="nav-link active">✂️ Split</a></li><li><a href="pdf-merge.html" class="nav-link">📑 Merge</a></li><li><a href="file-compressor.html" class="nav-link">📦 Archive</a></li></ul><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>PDF Split</h1>
+            <p>Extract specific pages or split a PDF into parts. 100% client-side.</p>
+        </div>
+        <div class="glass">
+            <div class="ctitle"><i>📤</i> Upload PDF</div>
+            <label
+                style="display:flex;flex-direction:column;align-items:center;padding:40px 20px;border:2px dashed var(--gbdr);border-radius:14px;cursor:pointer;text-align:center">
+                <span style="font-size:2rem;margin-bottom:8px">📁</span>
+                <span style="font-size:.85rem;color:var(--dim)">Click to select a PDF file</span>
+                <input type="file" id="file" accept=".pdf" style="display:none">
+            </label>
+            <div id="info" style="margin-top:12px;font-size:.82rem;color:var(--dim)"></div>
+            <div class="ig" style="margin-top:14px">
+                <div class="il"><span>Pages to Extract</span></div>
+                <input class="ti" id="pages" placeholder="e.g. 1,3,5-8 or leave blank for all"
+                    style="font-family:monospace">
+            </div>
+            <button class="btn btn-accent" style="width:100%;margin-top:12px" onclick="splitPDF()" id="split-btn"
+                disabled>✂️ Extract Pages</button>
+            <div id="status" style="margin-top:12px;font-size:.82rem;font-weight:600;text-align:center"></div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        let pdfBytes = null, totalPages = 0;
+        document.getElementById('file').addEventListener('change', async e => {
+            const f = e.target.files[0]; if (!f) return;
+            pdfBytes = await f.arrayBuffer();
+            const doc = await PDFLib.PDFDocument.load(pdfBytes);
+            totalPages = doc.getPageCount();
+            document.getElementById('info').textContent = `📄 ${f.name} — ${totalPages} page(s), ${(f.size / 1024).toFixed(0)} KB`;
+            document.getElementById('split-btn').disabled = false;
+            document.getElementById('pages').placeholder = `1-${totalPages} (e.g. 1,3,5-${totalPages})`;
+        });
+        function parsePages(str, max) {
+            if (!str.trim()) { return Array.from({ length: max }, (_, i) => i); }
+            const set = new Set(); str.split(',').forEach(part => {
+                part = part.trim();
+                if (part.includes('-')) { const [a, b] = part.split('-').map(Number); for (let i = a; i <= Math.min(b, max); i++)set.add(i - 1); }
+                else { const n = parseInt(part); if (n >= 1 && n <= max) set.add(n - 1); }
+            }); return [...set].sort((a, b) => a - b);
+        }
+        async function splitPDF() {
+            if (!pdfBytes) return;
+            const st = document.getElementById('status'); st.style.color = 'var(--amber)'; st.textContent = '⏳ Extracting...';
+            try {
+                const src = await PDFLib.PDFDocument.load(pdfBytes);
+                const indices = parsePages(document.getElementById('pages').value, totalPages);
+                if (!indices.length) { st.style.color = 'var(--rose)'; st.textContent = '❌ No valid pages specified'; return; }
+                const out = await PDFLib.PDFDocument.create();
+                const pages = await out.copyPages(src, indices);
+                pages.forEach(p => out.addPage(p));
+                const bytes = await out.save();
+                const blob = new Blob([bytes], { type: 'application/pdf' });
+                const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'split.pdf'; a.click();
+                st.style.color = 'var(--emerald)'; st.textContent = `✅ Extracted ${indices.length} page(s)!`;
+            } catch (e) { st.style.color = 'var(--rose)'; st.textContent = '❌ ' + e.message; }
+        }
+    </script>
+</body>
+
+</html>

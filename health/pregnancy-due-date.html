@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Pregnancy Due Date Calculator — Trimester Timeline | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description" content="Estimate your baby's due date and view a detailed trimester timeline. Free pregnancy tool based on the Naegele's Rule.">
+    <meta name="keywords" content="pregnancy due date, due date calculator, trimester timeline, conception date, pregnancy tools, baby due date">
+    <link rel="canonical" href="https://calcora.com/health/pregnancy-due-date.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pregnancy Due Date Calculator","applicationCategory":"HealthApplication","operatingSystem":"Web","url":"https://calcora.com/health/pregnancy-due-date.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="pregnancy-due-date.html" class="nav-link active">🤰 Due Date</a></li>
+                <li><a href="bmi-calculator.html" class="nav-link">⚖️ BMI</a></li>
+                <li><a href="body-fat-calculator.html" class="nav-link">💪 Fat</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Pregnancy Due Date Calculator</h1>
+            <p>Estimate your due date from your last menstrual period (LMP) using Naegele's rule.</p>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📅</i> Enter Last Period Date</div>
+                <div class="ig">
+                    <div class="il"><span>Last Menstrual Period (LMP)</span></div><input type="date" class="ti"
+                        id="lmp">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Average Cycle Length (days)</span></div><select class="ti" id="cycle">
+                        <option value="26">26 days</option>
+                        <option value="28" selected>28 days (average)</option>
+                        <option value="30">30 days</option>
+                        <option value="32">32 days</option>
+                        <option value="35">35 days</option>
+                    </select>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>🤰</i> Estimated Due Date</div>
+                <div class="bn-l">Your Due Date</div>
+                <div class="bn" id="due">—</div>
+                <div class="pills" style="margin-top:18px">
+                    <div class="pill">
+                        <div class="pl">Current Week</div>
+                        <div class="pv" style="color:var(--accent2)" id="week">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Trimester</div>
+                        <div class="pv" style="color:var(--cyan)" id="tri">—</div>
+                    </div>
+                </div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl">Days Remaining</div>
+                        <div class="pv" style="color:var(--emerald)" id="remain">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Conception ~</div>
+                        <div class="pv" style="color:var(--amber)" id="concept">—</div>
+                    </div>
+                </div>
+                <div style="font-size:.78rem;color:var(--dim);text-align:center;margin-top:12px" id="range"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date(); const lmpInput = document.getElementById('lmp');
+            const d3 = new Date(today); d3.setDate(d3.getDate() - 60); lmpInput.value = d3.toISOString().split('T')[0];
+            function fmt(d) { return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }); }
+            function calc() {
+                const lmp = new Date(document.getElementById('lmp').value), cycle = +document.getElementById('cycle').value;
+                if (isNaN(lmp)) return;
+                const adj = cycle - 28, due = new Date(lmp); due.setDate(due.getDate() + 280 + adj);
+                const concept = new Date(lmp); concept.setDate(concept.getDate() + 14 + adj);
+                const now = new Date(), elapsed = Math.floor((now - lmp) / 864e5), week = Math.floor(elapsed / 7), remain = Math.max(0, Math.ceil((due - now) / 864e5));
+                let tri = '—'; if (week <= 12) tri = '1st'; else if (week <= 26) tri = '2nd'; else tri = '3rd';
+                document.getElementById('due').textContent = fmt(due);
+                document.getElementById('week').textContent = 'Week ' + Math.max(0, week);
+                document.getElementById('tri').textContent = tri + ' Trimester';
+                document.getElementById('remain').textContent = remain + ' days';
+                document.getElementById('concept').textContent = fmt(concept);
+                const early = new Date(due); early.setDate(early.getDate() - 21); const late = new Date(due); late.setDate(late.getDate() + 14);
+                document.getElementById('range').textContent = 'Full-term window: ' + fmt(early) + ' – ' + fmt(late);
+            }
+            lmpInput.addEventListener('input', calc); document.getElementById('cycle').addEventListener('change', calc);
+            calc();
+        });
+    </script>
+</body>
+
+</html>

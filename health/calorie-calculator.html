@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Calorie Calculator — Daily Energy Needs | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description" content="Estimate your daily calorie needs for weight loss, maintenance, or gain. Free calculator based on the Mifflin-St Jeor Equation.">
+    <meta name="keywords" content="calorie calculator, daily calories, weight loss calculator, bmr calculator, tdee, fitness tools">
+    <link rel="canonical" href="https://calcora.com/health/calorie-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Calorie Calculator","applicationCategory":"HealthApplication","operatingSystem":"Web","url":"https://calcora.com/health/calorie-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a><ul class="nav-links" id="nav-links"><li><a href="../index.html" class="nav-link">🏠 Home</a></li><li><a href="calorie-calculator.html" class="nav-link active">🍎 Calorie</a></li><li><a href="bmi-calculator.html" class="nav-link">⚖️ BMI</a></li><li><a href="body-fat-calculator.html" class="nav-link">💪 Fat</a></li></ul><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Calorie Calculator</h1>
+            <p>Estimate daily calorie needs using the Mifflin-St Jeor equation.</p>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📋</i> Your Details</div>
+                <div class="ig">
+                    <div class="il"><span>Gender</span></div><select class="ti" id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Age</span><span class="v" id="age-v">25</span></div><input type="range"
+                        id="age" min="15" max="80" value="25">
+                    <div class="rl"><span>15</span><span>80</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Weight (kg)</span><span class="v" id="w-v">70</span></div><input type="range"
+                        id="w" min="30" max="200" step="0.5" value="70">
+                    <div class="rl"><span>30</span><span>200</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Height (cm)</span><span class="v" id="h-v">170</span></div><input type="range"
+                        id="h" min="100" max="220" value="170">
+                    <div class="rl"><span>100</span><span>220</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Activity Level</span></div><select class="ti" id="act">
+                        <option value="1.2">Sedentary (desk job)</option>
+                        <option value="1.375">Lightly Active (1-3 days/wk)</option>
+                        <option value="1.55" selected>Moderately Active (3-5 days/wk)</option>
+                        <option value="1.725">Very Active (6-7 days/wk)</option>
+                        <option value="1.9">Extra Active (athlete)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>🍎</i> Daily Calories</div>
+                <div class="bn-l">Maintenance Calories</div>
+                <div class="bn" id="maintain">—</div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--emerald)"></span>Lose Weight</div>
+                        <div class="pv" style="color:var(--emerald)" id="lose">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--rose)"></span>Gain Weight</div>
+                        <div class="pv" style="color:var(--rose)" id="gain">—</div>
+                    </div>
+                </div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl">BMR (Base)</div>
+                        <div class="pv" style="color:var(--cyan)" id="bmr">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Protein (g/day)</div>
+                        <div class="pv" style="color:var(--amber)" id="protein">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Lose', 'Maintain', 'Gain'], [1, 1, 1], ['#34d399', '#a78bfa', '#fb7185']);
+            function calc() {
+                const g = document.getElementById('gender').value, a = +document.getElementById('age').value, w = +document.getElementById('w').value, h = +document.getElementById('h').value, act = +document.getElementById('act').value;
+                document.getElementById('age-v').textContent = a; document.getElementById('w-v').textContent = w; document.getElementById('h-v').textContent = h;
+                let bmr = 10 * w + 6.25 * h - 5 * a; bmr += g === 'male' ? 5 : -161;
+                const tdee = Math.round(bmr * act), lose = tdee - 500, gain = tdee + 500;
+                document.getElementById('maintain').textContent = tdee + ' kcal';
+                document.getElementById('lose').textContent = Math.max(1200, lose) + ' kcal';
+                document.getElementById('gain').textContent = gain + ' kcal';
+                document.getElementById('bmr').textContent = Math.round(bmr) + ' kcal';
+                document.getElementById('protein').textContent = Math.round(w * 1.6) + 'g';
+                C.uChart('ch', [Math.max(1200, lose), tdee, gain]);
+            }
+            ['age', 'w', 'h'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            ['gender', 'act'].forEach(id => document.getElementById(id).addEventListener('change', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+</body>
+
+</html>

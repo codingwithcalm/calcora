@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>EMI Calculator — Loan & Home Loan EMI | Calcora</title>
+    <meta name="description"
+        content="Calculate your loan EMI instantly. Free EMI calculator for home loans, car loans, and personal loans with amortization schedule.">
+    <meta name="keywords"
+        content="emi calculator, loan calculator, home loan emi, car loan emi, monthly installments, repayment schedule">
+    <link rel="canonical" href="https://calcora.com/finance/emi-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EMI Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.com/finance/emi-calculator.html","description":"Calculate monthly EMI, total interest payable, and view complete amortization schedule."}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in">
+            <a href="../index.html" class="logo">
+                <div class="logo-m">C</div><span class="logo-t">Calcora</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="sip-calculator.html" class="nav-link">📈 SIP</a></li>
+                <li><a href="emi-calculator.html" class="nav-link active">🏦 EMI</a></li>
+                <li><a href="tax-calculator.html" class="nav-link">🧾 Tax</a></li>
+                <li><a href="gst-calculator.html" class="nav-link">💰 GST</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in">
+        <a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>EMI Calculator</h1>
+            <p>Calculate monthly EMI, total interest, and view a complete amortization schedule.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> A ₹10,00,000 loan at 8.5% for 15 years = ₹9,847/month EMI
+            with ₹7,72,496 total interest payable.</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>🏦</i> Loan Details</div>
+                <div class="ig">
+                    <div class="il"><span>Loan Amount</span><span class="v" id="p-v">₹10,00,000</span></div><input
+                        type="range" id="p" min="50000" max="10000000" step="50000" value="1000000">
+                    <div class="rl"><span>₹50K</span><span>₹1 Cr</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Interest Rate (p.a.)</span><span class="v" id="r-v">8.5%</span></div><input
+                        type="range" id="r" min="1" max="20" step="0.1" value="8.5">
+                    <div class="rl"><span>1%</span><span>20%</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Tenure</span><span class="v" id="y-v">15 Years</span></div><input type="range"
+                        id="y" min="1" max="30" step="1" value="15">
+                    <div class="rl"><span>1 Yr</span><span>30 Yrs</span></div>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>💳</i> EMI Result</div>
+                <div class="bn-l">Monthly EMI</div>
+                <div class="bn" id="emi">—</div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--emerald)"></span>Principal</div>
+                        <div class="pv" style="color:var(--emerald)" id="pr">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--rose)"></span>Interest</div>
+                        <div class="pv" style="color:var(--rose)" id="int">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="glass" style="margin-top:22px">
+            <div class="ctitle"><i>📅</i> Amortization Schedule</div>
+            <div class="tbl-wrap">
+                <table id="amort">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Principal</th>
+                            <th>Interest</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="amort-body"></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- AD_SLOT -->
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Principal', 'Interest'], [1, 1], ['#34d399', '#fb7185']);
+            function calc() {
+                const P = +document.getElementById('p').value, r = +document.getElementById('r').value, y = +document.getElementById('y').value;
+                document.getElementById('p-v').textContent = C.F(P);
+                document.getElementById('r-v').textContent = (r % 1 === 0 ? r : r.toFixed(1)) + '%';
+                document.getElementById('y-v').textContent = y + (y === 1 ? ' Year' : ' Years');
+                const mi = r / 100 / 12, n = y * 12;
+                const emi = mi === 0 ? P / n : P * mi * (1 + mi) ** n / ((1 + mi) ** n - 1);
+                const total = emi * n, interest = total - P;
+                document.getElementById('emi').textContent = C.F(emi);
+                document.getElementById('pr').textContent = C.F(P);
+                document.getElementById('int').textContent = C.F(interest);
+                C.uChart('ch', [P, Math.max(0, interest)]);
+                // Amortization
+                let bal = P, tbody = '';
+                for (let yr = 1; yr <= y; yr++) {
+                    let yp = 0, yi = 0; for (let m = 0; m < 12 && bal > 0; m++) { const intM = bal * mi; const prinM = emi - intM; bal = Math.max(0, bal - prinM); yp += prinM; yi += intM; }
+                    tbody += `<tr><td>${yr}</td><td>${C.F(yp)}</td><td>${C.F(yi)}</td><td>${C.F(bal)}</td></tr>`;
+                }
+                document.getElementById('amort-body').innerHTML = tbody;
+            }
+            ['p', 'r', 'y'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+</body>
+
+</html>

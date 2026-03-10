@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Income Tax Calculator 2026-27 — New vs Old Regime | Calcora</title>
+    <meta name="description"
+        content="Compare Old vs New tax regimes for FY 2026-27. Calculate your income tax liability and maximize your savings.">
+    <meta name="keywords"
+        content="income tax calculator, tax regime 2026, old vs new regime, income tax india, tax planning, tax slabs 2026">
+    <link rel="canonical" href="https://calcora.com/finance/tax-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Income Tax Calculator 2026-27","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.com/finance/tax-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo">
+                <div class="logo-m">C</div><span class="logo-t">Calcora</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="sip-calculator.html" class="nav-link">📈 SIP</a></li>
+                <li><a href="tax-calculator.html" class="nav-link active">🧾 Tax</a></li>
+                <li><a href="gst-calculator.html" class="nav-link">💰 GST</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Income Tax Calculator — FY 2026-27</h1>
+            <p>Compare Old vs New regime side-by-side with 2026-27 slabs.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> Under the New Regime, income up to ₹12L is effectively
+            tax-free (₹75K std deduction + ₹12L rebate u/s 87A). Most salaried individuals benefit from the New Regime.
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>🧾</i> Income Details</div>
+                <div class="ig">
+                    <div class="il"><span>Annual Income</span><span class="v" id="inc-v">₹12,00,000</span></div><input
+                        type="range" id="inc" min="0" max="10000000" step="25000" value="1200000">
+                    <div class="rl"><span>₹0</span><span>₹1 Cr</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Deductions (Old: 80C, 80D, etc.)</span><span class="v"
+                            id="ded-v">₹1,50,000</span></div><input type="range" id="ded" min="0" max="500000"
+                        step="5000" value="150000">
+                    <div class="rl"><span>₹0</span><span>₹5L</span></div>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>📋</i> Tax Comparison</div>
+                <div class="pills" style="margin-top:0">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--cyan)"></span>New Regime</div>
+                        <div class="pv" style="color:var(--cyan)" id="t-new">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--rose)"></span>Old Regime</div>
+                        <div class="pv" style="color:var(--rose)" id="t-old">—</div>
+                    </div>
+                </div>
+                <div class="bn-l" style="margin-top:16px">You Save</div>
+                <div class="bn" id="save">—</div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div id="rec"
+                    style="text-align:center;margin-top:12px;font-size:.82rem;font-weight:600;color:var(--emerald)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['New Tax', 'Old Tax'], [1, 1], ['#22d3ee', '#fb7185']);
+            function taxN(inc) { let t = Math.max(0, inc - 75000), tax = 0; const s = [[4e5, 0], [4e5, .05], [4e5, .10], [4e5, .15], [4e5, .20], [4e5, .25], [Infinity, .30]]; let r = t; for (const [l, rt] of s) { if (r <= 0) break; tax += Math.min(r, l) * rt; r -= l; } if (t <= 12e5) tax = 0; return tax * 1.04; }
+            function taxO(inc, ded) { let t = Math.max(0, inc - 50000 - ded), tax = 0; const s = [[25e4, 0], [25e4, .05], [5e5, .20], [Infinity, .30]]; let r = t; for (const [l, rt] of s) { if (r <= 0) break; tax += Math.min(r, l) * rt; r -= l; } if (t <= 5e5) tax = Math.max(0, tax - 12500); return tax * 1.04; }
+            function calc() {
+                const inc = +document.getElementById('inc').value, ded = +document.getElementById('ded').value;
+                document.getElementById('inc-v').textContent = C.F(inc); document.getElementById('ded-v').textContent = C.F(ded);
+                const nt = taxN(inc), ot = taxO(inc, ded), diff = Math.abs(nt - ot);
+                document.getElementById('t-new').textContent = C.F(nt); document.getElementById('t-old').textContent = C.F(ot);
+                document.getElementById('save').textContent = C.F(diff);
+                document.getElementById('rec').textContent = nt <= ot ? '✅ New Regime saves you more' : '✅ Old Regime saves you more';
+                C.uChart('ch', [Math.max(1, nt), Math.max(1, ot)]);
+            }
+            ['inc', 'ded'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+</body>
+
+</html>

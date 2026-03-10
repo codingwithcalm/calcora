@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Time Calculator — Add & Subtract Time | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Free time calculator to add or subtract hours, minutes, and seconds. Convert between time formats.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Time Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/daily/time-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="age-calculator.html" class="nav-link">🎂 Age</a></li>
+                <li><a href="time-calculator.html" class="nav-link active">⏱️ Time</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Time Calculator</h1>
+            <p>Add or subtract time values (hours, minutes, seconds).</p>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>⏱️</i> Time 1</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+                    <div class="ig">
+                        <div class="il"><span>Hours</span></div><input type="number" class="ti" id="h1" value="2"
+                            min="0">
+                    </div>
+                    <div class="ig">
+                        <div class="il"><span>Minutes</span></div><input type="number" class="ti" id="m1" value="30"
+                            min="0" max="59">
+                    </div>
+                    <div class="ig">
+                        <div class="il"><span>Seconds</span></div><input type="number" class="ti" id="s1" value="0"
+                            min="0" max="59">
+                    </div>
+                </div>
+                <div class="ig" style="margin-top:14px">
+                    <div class="il"><span>Operation</span></div>
+                    <select class="ti" id="op">
+                        <option value="add">➕ Add</option>
+                        <option value="sub">➖ Subtract</option>
+                    </select>
+                </div>
+                <div class="ctitle" style="margin-top:18px"><i>⏱️</i> Time 2</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+                    <div class="ig">
+                        <div class="il"><span>Hours</span></div><input type="number" class="ti" id="h2" value="1"
+                            min="0">
+                    </div>
+                    <div class="ig">
+                        <div class="il"><span>Minutes</span></div><input type="number" class="ti" id="m2" value="45"
+                            min="0" max="59">
+                    </div>
+                    <div class="ig">
+                        <div class="il"><span>Seconds</span></div><input type="number" class="ti" id="s2" value="30"
+                            min="0" max="59">
+                    </div>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>📊</i> Result</div>
+                <div class="bn-l">Result Time</div>
+                <div class="bn" id="result">—</div>
+                <div class="pills" style="margin-top:20px">
+                    <div class="pill">
+                        <div class="pl">Total Seconds</div>
+                        <div class="pv" style="color:var(--cyan)" id="ts">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Total Minutes</div>
+                        <div class="pv" style="color:var(--amber)" id="tm">—</div>
+                    </div>
+                </div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl">Decimal Hours</div>
+                        <div class="pv" style="color:var(--emerald)" id="dh">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Total Hours</div>
+                        <div class="pv" style="color:var(--accent2)" id="th">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="meth"><b>📐 Expert Methodology</b>Both times are converted to total seconds. For addition, seconds
+            are summed. For subtraction, the second time is subtracted from the first (result can be negative). The
+            total seconds are then converted back to hours:minutes:seconds format using integer division and modulo
+            operations.</div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function calc() {
+                const s1 = (+document.getElementById('h1').value || 0) * 3600 + (+document.getElementById('m1').value || 0) * 60 + (+document.getElementById('s1').value || 0);
+                const s2 = (+document.getElementById('h2').value || 0) * 3600 + (+document.getElementById('m2').value || 0) * 60 + (+document.getElementById('s2').value || 0);
+                const op = document.getElementById('op').value;
+                const total = op === 'add' ? s1 + s2 : s1 - s2;
+                const abs = Math.abs(total), h = Math.floor(abs / 3600), m = Math.floor((abs % 3600) / 60), s = abs % 60;
+                const sign = total < 0 ? '-' : '';
+                document.getElementById('result').textContent = `${sign}${h}h ${m}m ${s}s`;
+                document.getElementById('ts').textContent = total.toLocaleString();
+                document.getElementById('tm').textContent = (total / 60).toFixed(1);
+                document.getElementById('dh').textContent = (total / 3600).toFixed(2);
+                document.getElementById('th').textContent = Math.floor(Math.abs(total) / 3600);
+            }
+            ['h1', 'm1', 's1', 'h2', 'm2', 's2', 'op'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            document.getElementById('op').addEventListener('change', calc);
+            calc();
+        });
+    </script>
+</body>
+
+</html>

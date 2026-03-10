@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>GST Calculator — Online GST Multi-Rate | Calcora</title>
+    <meta name="description"
+        content="Calculate GST (Add/Remove) instantly for 5%, 12%, 18%, and 28% slabs. Includes CGST and SGST breakdown.">
+    <meta name="keywords" content="gst calculator, gst online, add gst, remove gst, tax calculator, igst, cgst, sgst">
+    <link rel="canonical" href="https://calcora.com/finance/gst-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"GST Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.com/finance/gst-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo">
+                <div class="logo-m">C</div><span class="logo-t">Calcora</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="sip-calculator.html" class="nav-link">📈 SIP</a></li>
+                <li><a href="gst-calculator.html" class="nav-link active">💰 GST</a></li>
+                <li><a href="tax-calculator.html" class="nav-link">🧾 Tax</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>GST Calculator</h1>
+            <p>Add or remove GST at standard Indian rates with CGST/SGST breakdown.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> An item priced ₹1,000 with 18% GST = ₹1,180 (₹90 CGST + ₹90
+            SGST). To find pre-GST price from ₹1,180: ₹1,180 / 1.18 = ₹1,000.</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>🧾</i> GST Details</div>
+                <div class="ig">
+                    <div class="il"><span>Amount (₹)</span></div><input type="number" class="ti" id="amt" value="1000"
+                        min="0" placeholder="Enter amount">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>GST Rate</span></div><select class="ti" id="rate">
+                        <option value="5">5%</option>
+                        <option value="12">12%</option>
+                        <option value="18" selected>18%</option>
+                        <option value="28">28%</option>
+                    </select>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Calculation Type</span></div><select class="ti" id="mode">
+                        <option value="add">Add GST (Exclusive)</option>
+                        <option value="remove">Remove GST (Inclusive)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>📊</i> GST Breakdown</div>
+                <div class="bn-l">Total Amount</div>
+                <div class="bn" id="total">—</div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--cyan)"></span>Base Price</div>
+                        <div class="pv" style="color:var(--cyan)" id="base">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--amber)"></span>GST Amount</div>
+                        <div class="pv" style="color:var(--amber)" id="gst">—</div>
+                    </div>
+                </div>
+                <div class="pills" style="margin-top:8px">
+                    <div class="pill">
+                        <div class="pl">CGST</div>
+                        <div class="pv" style="color:var(--emerald)" id="cgst">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">SGST</div>
+                        <div class="pv" style="color:var(--emerald)" id="sgst">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Base', 'GST'], [1, 1], ['#22d3ee', '#fbbf24']);
+            function calc() {
+                const amt = +document.getElementById('amt').value || 0, rate = +document.getElementById('rate').value, mode = document.getElementById('mode').value;
+                let base, gstAmt, total;
+                if (mode === 'add') { base = amt; gstAmt = amt * rate / 100; total = amt + gstAmt; }
+                else { total = amt; base = amt / (1 + rate / 100); gstAmt = total - base; }
+                document.getElementById('total').textContent = C.F(total); document.getElementById('base').textContent = C.F(base);
+                document.getElementById('gst').textContent = C.F(gstAmt);
+                document.getElementById('cgst').textContent = C.F(gstAmt / 2); document.getElementById('sgst').textContent = C.F(gstAmt / 2);
+                C.uChart('ch', [Math.max(1, base), Math.max(1, gstAmt)]);
+            }
+            ['amt', 'rate', 'mode'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            document.getElementById('mode').addEventListener('change', calc);
+            document.getElementById('rate').addEventListener('change', calc);
+            calc();
+        });
+    </script>
+</body>
+
+</html>

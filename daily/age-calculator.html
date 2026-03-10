@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Age Calculator — Find Your Exact Age | Calcora</title>
+    <meta name="description"
+        content="Calculate your exact age in years, months, and days. Includes total days lived and countdown to your next birthday.">
+    <meta name="keywords" content="age calculator, birthdays, chronology, date of birth, how old am i, exact age">
+    <link rel="canonical" href="https://calcora.com/daily/age-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Age Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/daily/age-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo">
+                <div class="logo-m">C</div><span class="logo-t">Calcora</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="age-calculator.html" class="nav-link active">🎂 Age</a></li>
+                <li><a href="date-difference.html" class="nav-link">📅 Date</a></li>
+                <li><a href="percentage-calculator.html" class="nav-link">% Percent</a></li>
+                <li><a href="scientific-calculator.html" class="nav-link">🔬 Scientific</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Age Calculator</h1>
+            <p>Calculate your exact age in years, months, days, and more.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> Born on Jan 1, 2000? As of March 2026, you are 26 years, 2
+            months, and 10 days old — that's over 9,566 days!</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>🎂</i> Enter Your Birthday</div>
+                <div class="ig">
+                    <div class="il"><span>Date of Birth</span></div><input type="date" class="ti" id="dob"
+                        value="2000-01-01">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Calculate Age As Of</span></div><input type="date" class="ti" id="ason">
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>📊</i> Your Age</div>
+                <div class="bn-l">Age</div>
+                <div class="bn" id="age">—</div>
+                <div class="pills" style="margin-top:20px">
+                    <div class="pill">
+                        <div class="pl">Total Days</div>
+                        <div class="pv" style="color:var(--cyan)" id="days">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Total Months</div>
+                        <div class="pv" style="color:var(--amber)" id="months">—</div>
+                    </div>
+                </div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl">Total Hours</div>
+                        <div class="pv" style="color:var(--emerald)" id="hours">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Total Minutes</div>
+                        <div class="pv" style="color:var(--rose)" id="mins">—</div>
+                    </div>
+                </div>
+                <div id="next-bday" style="text-align:center;margin-top:14px;font-size:.82rem;color:var(--accent2)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const now = new Date(); document.getElementById('ason').value = now.toISOString().split('T')[0];
+            function calc() {
+                const dob = new Date(document.getElementById('dob').value), ason = new Date(document.getElementById('ason').value);
+                if (isNaN(dob) || isNaN(ason) || dob > ason) { document.getElementById('age').textContent = 'Invalid'; return; }
+                let y = ason.getFullYear() - dob.getFullYear(), m = ason.getMonth() - dob.getMonth(), d = ason.getDate() - dob.getDate();
+                if (d < 0) { m--; const prev = new Date(ason.getFullYear(), ason.getMonth(), 0).getDate(); d += prev; }
+                if (m < 0) { y--; m += 12; }
+                document.getElementById('age').textContent = `${y} yrs, ${m} mo, ${d} days`;
+                const diffMs = ason - dob, totalDays = Math.floor(diffMs / 864e5);
+                document.getElementById('days').textContent = totalDays.toLocaleString();
+                document.getElementById('months').textContent = (y * 12 + m).toLocaleString();
+                document.getElementById('hours').textContent = (totalDays * 24).toLocaleString();
+                document.getElementById('mins').textContent = (totalDays * 1440).toLocaleString();
+                let nextBday = new Date(ason.getFullYear(), dob.getMonth(), dob.getDate());
+                if (nextBday <= ason) nextBday.setFullYear(nextBday.getFullYear() + 1);
+                const daysToNext = Math.ceil((nextBday - ason) / 864e5);
+                document.getElementById('next-bday').textContent = `🎉 Next birthday in ${daysToNext} days`;
+            }
+            document.getElementById('dob').addEventListener('input', calc);
+            document.getElementById('ason').addEventListener('input', calc);
+            calc();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Currency Converter — Online Exchange Rates | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Convert between major world currencies instantly with our free currency converter. Fast, beautiful, and easy to use.">
+    <meta name="keywords"
+        content="currency converter, exchange rates, usd to inr, euro to usd, foreign exchange, forex converter">
+    <link rel="canonical" href="https://calcora.com/finance/currency-converter.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Currency Converter","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.com/finance/currency-converter.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a><ul class="nav-links" id="nav-links"><li><a href="../index.html" class="nav-link">🏠 Home</a></li><li><a href="currency-converter.html" class="nav-link active">💱 Currency</a></li><li><a href="sip-calculator.html" class="nav-link">📈 SIP</a></li></ul><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Currency Converter</h1>
+            <p>Convert between 10+ world currencies with swap button and rate display.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> 1 USD ≈ 84.05 INR (approx.). Conversion uses approximate
+            market rates for quick estimation.</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>💱</i> Conversion</div>
+                <div class="ig">
+                    <div class="il"><span>Amount</span></div><input type="number" class="ti" id="amt" value="1000"
+                        min="0">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>From</span></div><select class="ti" id="from">
+                        <option value="INR" selected>🇮🇳 INR</option>
+                        <option value="USD">🇺🇸 USD</option>
+                        <option value="EUR">🇪🇺 EUR</option>
+                        <option value="GBP">🇬🇧 GBP</option>
+                        <option value="JPY">🇯🇵 JPY</option>
+                        <option value="AED">🇦🇪 AED</option>
+                        <option value="CAD">🇨🇦 CAD</option>
+                        <option value="AUD">🇦🇺 AUD</option>
+                        <option value="SGD">🇸🇬 SGD</option>
+                        <option value="CHF">🇨🇭 CHF</option>
+                    </select>
+                </div>
+                <div style="text-align:center"><button class="btn btn-outline" id="swap"
+                        style="border-radius:50%;width:40px;height:40px;padding:0;font-size:1.1rem">⇅</button></div>
+                <div class="ig">
+                    <div class="il"><span>To</span></div><select class="ti" id="to">
+                        <option value="INR">🇮🇳 INR</option>
+                        <option value="USD" selected>🇺🇸 USD</option>
+                        <option value="EUR">🇪🇺 EUR</option>
+                        <option value="GBP">🇬🇧 GBP</option>
+                        <option value="JPY">🇯🇵 JPY</option>
+                        <option value="AED">🇦🇪 AED</option>
+                        <option value="CAD">🇨🇦 CAD</option>
+                        <option value="AUD">🇦🇺 AUD</option>
+                        <option value="SGD">🇸🇬 SGD</option>
+                        <option value="CHF">🇨🇭 CHF</option>
+                    </select>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>🌍</i> Result</div>
+                <div class="bn-l">Converted Amount</div>
+                <div class="bn" id="result">—</div>
+                <div style="text-align:center;margin-top:12px;font-size:.8rem;color:var(--dim)">Rate: 1 <span
+                        id="rf">INR</span> = <span id="rv">0.0119</span> <span id="rt">USD</span></div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const R = { USD: 1, INR: 84.05, EUR: 0.92, GBP: 0.79, JPY: 149.5, AED: 3.67, CAD: 1.36, AUD: 1.53, SGD: 1.34, CHF: 0.88 };
+            function fmt(n, c) { return (['JPY'].includes(c) ? n.toLocaleString('en-IN', { maximumFractionDigits: 0 }) : n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })) + ' ' + c; }
+            function calc() {
+                const amt = +document.getElementById('amt').value || 0, f = document.getElementById('from').value, t = document.getElementById('to').value;
+                const res = (amt / R[f]) * R[t], rate = R[t] / R[f];
+                document.getElementById('result').textContent = fmt(res, t);
+                document.getElementById('rf').textContent = f; document.getElementById('rt').textContent = t;
+                document.getElementById('rv').textContent = rate < 0.01 ? rate.toFixed(5) : rate.toFixed(4);
+            }
+            document.getElementById('amt').addEventListener('input', calc);
+            document.getElementById('from').addEventListener('change', calc);
+            document.getElementById('to').addEventListener('change', calc);
+            document.getElementById('swap').addEventListener('click', () => { const f = document.getElementById('from'), t = document.getElementById('to');[f.value, t.value] = [t.value, f.value]; calc(); });
+            calc();
+        });
+    </script>
+</body>
+
+</html>

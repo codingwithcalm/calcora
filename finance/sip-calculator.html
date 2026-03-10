@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>SIP Calculator — Systematic Investment Plan & Step-Up | Calcora</title>
+    <meta name="description"
+        content="Calculate wealth growth with our free SIP calculator. Supports annual step-up and provides detailed compounding projections.">
+    <meta name="keywords"
+        content="sip calculator, systematic investment plan, mutual fund calculator, investment growth, step-up sip, wealth calculator">
+    <link rel="canonical" href="https://calcora.com/finance/sip-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SIP Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.com/finance/sip-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo">
+                <div class="logo-m">C</div><span class="logo-t">Calcora</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="sip-calculator.html" class="nav-link active">📈 SIP</a></li>
+                <li><a href="emi-calculator.html" class="nav-link">🏦 EMI</a></li>
+                <li><a href="tax-calculator.html" class="nav-link">🧾 Tax</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>SIP Calculator</h1>
+            <p>Plan wealth creation with systematic monthly investments and optional annual step-up.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> ₹10,000/month at 12% for 20 years builds ₹99.9L in wealth —
+            that's compounding turning ₹24L invested into nearly ₹1 Cr.</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>💰</i> Investment Parameters</div>
+                <div class="ig">
+                    <div class="il"><span>Monthly Investment</span><span class="v" id="p-v">₹5,000</span></div><input
+                        type="range" id="p" min="500" max="200000" step="500" value="5000">
+                    <div class="rl"><span>₹500</span><span>₹2L</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Expected Return (p.a.)</span><span class="v" id="r-v">12%</span></div><input
+                        type="range" id="r" min="1" max="30" step="0.5" value="12">
+                    <div class="rl"><span>1%</span><span>30%</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Time Period</span><span class="v" id="y-v">10 Years</span></div><input
+                        type="range" id="y" min="1" max="40" step="1" value="10">
+                    <div class="rl"><span>1 Yr</span><span>40 Yrs</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Annual Step-Up</span><span class="v" id="su-v">0%</span></div><input
+                        type="range" id="su" min="0" max="50" step="1" value="0">
+                    <div class="rl"><span>0%</span><span>50%</span></div>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>📊</i> Your Returns</div>
+                <div class="bn-l">Total Wealth</div>
+                <div class="bn" id="total">—</div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--cyan)"></span>Invested</div>
+                        <div class="pv" style="color:var(--cyan)" id="inv">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--accent)"></span>Gained</div>
+                        <div class="pv" style="color:var(--accent)" id="gain">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Invested', 'Gained'], [1, 1], ['#22d3ee', '#a78bfa']);
+            function calc() {
+                const P = +document.getElementById('p').value, r = +document.getElementById('r').value, y = +document.getElementById('y').value, su = +document.getElementById('su').value;
+                document.getElementById('p-v').textContent = C.F(P); document.getElementById('r-v').textContent = (r % 1 === 0 ? r : r.toFixed(1)) + '%';
+                document.getElementById('y-v').textContent = y + (y === 1 ? ' Yr' : ' Yrs'); document.getElementById('su-v').textContent = su + '%';
+                const i = r / 100 / 12; let total = 0, invested = 0;
+                if (su === 0) { const n = y * 12; invested = P * n; total = i === 0 ? invested : P * (((1 + i) ** n - 1) / i) * (1 + i); }
+                else { for (let yr = 0; yr < y; yr++) { const mp = P * ((1 + su / 100) ** yr); invested += mp * 12; const fv = i === 0 ? mp * 12 : mp * (((1 + i) ** 12 - 1) / i) * (1 + i); total += fv * ((1 + i) ** (12 * (y - yr - 1))); } }
+                const gain = total - invested;
+                document.getElementById('total').textContent = C.F(total); document.getElementById('inv').textContent = C.F(invested); document.getElementById('gain').textContent = C.F(gain);
+                C.uChart('ch', [invested, Math.max(0, gain)]);
+            }
+            ['p', 'r', 'y', 'su'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+</body>
+
+</html>

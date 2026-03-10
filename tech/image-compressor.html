@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Image Compressor — Shrink JPEG & PNG Online | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<meta name="description" content="Free online image compressor. Shrink JPEG and PNG file size while maintaining quality. 100% browser-based—files never leave your computer.">
+<meta name="keywords" content="image compressor, shrink image, reduce photo size, jpeg compressor, png compressor, image optimizer">
+<link rel="canonical" href="https://calcora.com/tech/image-compressor.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Compressor","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/tech/image-compressor.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="image-compressor.html" class="nav-link active">🗜️ Image</a></li>
+                <li><a href="color-converter.html" class="nav-link">🎨 Color</a></li>
+                <li><a href="../files/jpg-png-converter.html" class="nav-link">🖼️ JPG/PNG</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Image Compressor</h1>
+            <p>Compress JPEG and PNG images entirely in your browser — nothing is uploaded.</p>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📤</i> Upload Image</div>
+                <div class="ig">
+                    <label
+                        style="display:flex;flex-direction:column;align-items:center;padding:40px 20px;border:2px dashed var(--gbdr);border-radius:14px;cursor:pointer;transition:border-color .3s;text-align:center"
+                        id="drop-zone">
+                        <span style="font-size:2rem;margin-bottom:8px">📁</span>
+                        <span style="font-size:.85rem;color:var(--dim)">Click or drag image here</span>
+                        <span style="font-size:.7rem;color:var(--muted);margin-top:4px">JPEG, PNG, WebP</span>
+                        <input type="file" id="file" accept="image/*" style="display:none">
+                    </label>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Quality</span><span class="v" id="q-v">80%</span></div><input type="range"
+                        id="quality" min="10" max="100" step="5" value="80">
+                    <div class="rl"><span>10%</span><span>100%</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Output Format</span></div><select class="ti" id="fmt">
+                        <option value="image/jpeg">JPEG</option>
+                        <option value="image/png">PNG</option>
+                        <option value="image/webp">WebP</option>
+                    </select>
+                </div>
+                <button class="btn btn-accent" style="width:100%;margin-top:10px" onclick="compress()" id="compress-btn"
+                    disabled>🗜️ Compress Image</button>
+            </div>
+            <div class="glass">
+                <div class="ctitle"><i>📊</i> Result</div>
+                <div id="preview" style="text-align:center">
+                    <img id="img-preview" style="max-width:100%;max-height:250px;border-radius:12px;display:none">
+                </div>
+                <div class="pills" style="margin-top:14px">
+                    <div class="pill">
+                        <div class="pl">Original Size</div>
+                        <div class="pv" style="color:var(--rose)" id="orig-size">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Compressed</div>
+                        <div class="pv" style="color:var(--emerald)" id="comp-size">—</div>
+                    </div>
+                </div>
+                <div class="pills" style="margin-top:8px">
+                    <div class="pill">
+                        <div class="pl">Savings</div>
+                        <div class="pv" style="color:var(--cyan)" id="savings">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Reduction</div>
+                        <div class="pv" style="color:var(--accent2)" id="reduction">—</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline" style="width:100%;margin-top:12px" id="dl-btn" onclick="download()"
+                    disabled>⬇️ Download Compressed</button>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        let origFile = null, compBlob = null;
+        const fmtSize = (b) => b < 1024 ? b + 'B' : b < 1048576 ? (b / 1024).toFixed(1) + 'KB' : (b / 1048576).toFixed(1) + 'MB';
+        const fileInput = document.getElementById('file'), dropZone = document.getElementById('drop-zone');
+        fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--accent)'; });
+        dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'var(--gbdr)'; });
+        dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--gbdr)'; if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]); });
+        function loadFile(f) {
+            origFile = f; document.getElementById('compress-btn').disabled = false; document.getElementById('orig-size').textContent = fmtSize(f.size);
+            const r = new FileReader(); r.onload = e => { const img = document.getElementById('img-preview'); img.src = e.target.result; img.style.display = 'block'; }; r.readAsDataURL(f);
+        }
+        document.getElementById('quality').addEventListener('input', e => { document.getElementById('q-v').textContent = e.target.value + '%'; });
+        function compress() {
+            if (!origFile) return;
+            const q = +document.getElementById('quality').value / 100, fmt = document.getElementById('fmt').value;
+            const img = new Image(); const r = new FileReader();
+            r.onload = e => {
+                img.onload = () => {
+                    const cv = document.createElement('canvas'); cv.width = img.naturalWidth; cv.height = img.naturalHeight;
+                    cv.getContext('2d').drawImage(img, 0, 0);
+                    cv.toBlob(blob => {
+                        compBlob = blob;
+                        document.getElementById('comp-size').textContent = fmtSize(blob.size);
+                        const saved = origFile.size - blob.size, pct = ((saved / origFile.size) * 100);
+                        document.getElementById('savings').textContent = fmtSize(Math.max(0, saved));
+                        document.getElementById('reduction').textContent = pct.toFixed(1) + '%';
+                        document.getElementById('dl-btn').disabled = false;
+                        const preview = document.getElementById('img-preview'); preview.src = URL.createObjectURL(blob);
+                    }, fmt, q);
+                }; img.src = e.target.result;
+            }; r.readAsDataURL(origFile);
+        }
+        function download() { if (!compBlob) return; const a = document.createElement('a'); a.href = URL.createObjectURL(compBlob); a.download = 'compressed.' + document.getElementById('fmt').value.split('/')[1]; a.click(); }
+        document.addEventListener('DOMContentLoaded', () => C.initSliders());
+    </script>
+</body>
+
+</html>

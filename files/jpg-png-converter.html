@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>JPG to PNG Converter — Free Image Conversion | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<meta name="description" content="Convert JPG to PNG or PNG to JPG instantly in your browser. Free, secure, and preserves image quality. No uploads required.">
+<meta name="keywords" content="jpg to png, png to jpg, image converter, convert images online, free image tool, secure converter">
+<link rel="canonical" href="https://calcora.com/files/jpg-png-converter.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JPG PNG Converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/files/jpg-png-converter.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a><ul class="nav-links" id="nav-links"><li><a href="../index.html" class="nav-link">🏠 Home</a></li><li><a href="jpg-png-converter.html" class="nav-link active">🖼️ JPG/PNG</a></li><li><a href="image-resizer.html" class="nav-link">📏 Resize</a></li><li><a href="../tech/image-compressor.html" class="nav-link">🗜️ Image</a></li></ul><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>JPG ↔ PNG Converter</h1>
+            <p>Convert between JPG and PNG formats instantly in your browser.</p>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📤</i> Upload Image</div>
+                <label
+                    style="display:flex;flex-direction:column;align-items:center;padding:40px 20px;border:2px dashed var(--gbdr);border-radius:14px;cursor:pointer;text-align:center">
+                    <span style="font-size:2rem;margin-bottom:8px">🖼️</span>
+                    <span style="font-size:.85rem;color:var(--dim)">Click to select an image</span>
+                    <input type="file" id="file" accept="image/jpeg,image/png,image/webp" style="display:none">
+                </label>
+                <div class="ig" style="margin-top:14px">
+                    <div class="il"><span>Convert To</span></div><select class="ti" id="fmt">
+                        <option value="image/png">PNG</option>
+                        <option value="image/jpeg">JPEG</option>
+                        <option value="image/webp">WebP</option>
+                    </select>
+                </div>
+                <div class="ig" id="quality-group" style="display:none">
+                    <div class="il"><span>JPEG Quality</span><span class="v" id="q-v">90%</span></div><input
+                        type="range" id="quality" min="10" max="100" step="5" value="90">
+                    <div class="rl"><span>10%</span><span>100%</span></div>
+                </div>
+                <button class="btn btn-accent" style="width:100%;margin-top:12px" onclick="convert()" id="conv-btn"
+                    disabled>🔄 Convert</button>
+            </div>
+            <div class="glass" style="text-align:center">
+                <div class="ctitle"><i>✨</i> Result</div>
+                <img id="preview"
+                    style="max-width:100%;max-height:250px;border-radius:12px;display:none;margin:12px auto">
+                <div class="pills" style="margin-top:14px">
+                    <div class="pill">
+                        <div class="pl">Original</div>
+                        <div class="pv" style="color:var(--rose)" id="orig">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Converted</div>
+                        <div class="pv" style="color:var(--emerald)" id="conv">—</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline" style="width:100%;margin-top:12px" id="dl-btn" onclick="dl()"
+                    disabled>⬇️ Download</button>
+                <div id="status" style="margin-top:10px;font-size:.78rem;font-weight:600"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        let origFile = null, outBlob = null; const fmtS = b => b < 1024 ? b + 'B' : b < 1048576 ? (b / 1024).toFixed(1) + 'KB' : (b / 1048576).toFixed(1) + 'MB';
+        document.getElementById('file').addEventListener('change', e => { origFile = e.target.files[0]; if (origFile) { document.getElementById('conv-btn').disabled = false; document.getElementById('orig').textContent = fmtS(origFile.size); } });
+        document.getElementById('fmt').addEventListener('change', e => { document.getElementById('quality-group').style.display = e.target.value === 'image/jpeg' ? '' : 'none'; });
+        document.getElementById('quality').addEventListener('input', e => { document.getElementById('q-v').textContent = e.target.value + '%'; });
+        function convert() {
+            if (!origFile) return; const fmt = document.getElementById('fmt').value, q = +document.getElementById('quality').value / 100;
+            const img = new Image(), r = new FileReader();
+            r.onload = ev => {
+                img.onload = () => {
+                    const cv = document.createElement('canvas'); cv.width = img.naturalWidth; cv.height = img.naturalHeight;
+                    cv.getContext('2d').drawImage(img, 0, 0);
+                    cv.toBlob(blob => {
+                        outBlob = blob; const p = document.getElementById('preview'); p.src = URL.createObjectURL(blob); p.style.display = 'block';
+                        document.getElementById('conv').textContent = fmtS(blob.size); document.getElementById('dl-btn').disabled = false;
+                        document.getElementById('status').style.color = 'var(--emerald)'; document.getElementById('status').textContent = '✅ Converted!';
+                    }, fmt, fmt === 'image/jpeg' ? q : undefined);
+                }; img.src = ev.target.result;
+            }; r.readAsDataURL(origFile);
+        }
+        function dl() { if (!outBlob) return; const ext = document.getElementById('fmt').value.split('/')[1]; const a = document.createElement('a'); a.href = URL.createObjectURL(outBlob); a.download = 'converted.' + ext; a.click(); }
+        document.addEventListener('DOMContentLoaded', () => C.initSliders());
+    </script>
+</body>
+
+</html>

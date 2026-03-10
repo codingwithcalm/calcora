@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Body Fat Calculator — Navy Method Estimator | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<meta name="description" content="Estimate your body fat percentage using the U.S. Navy method. Free calculator for men and women with fitness classification.">
+<meta name="keywords" content="body fat calculator, navy method, body fat percentage, fitness level, health tools, body composition">
+<link rel="canonical" href="https://calcora.com/health/body-fat-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Body Fat Calculator","applicationCategory":"HealthApplication","operatingSystem":"Web","url":"https://calcora.com/health/body-fat-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a><ul class="nav-links" id="nav-links"><li><a href="../index.html" class="nav-link">🏠 Home</a></li><li><a href="body-fat-calculator.html" class="nav-link active">💪 Body Fat</a></li><li><a href="bmi-calculator.html" class="nav-link">⚖️ BMI</a></li><li><a href="calorie-calculator.html" class="nav-link">🍎 Calorie</a></li></ul><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Body Fat Calculator</h1>
+            <p>Estimate body fat percentage using the U.S. Navy method.</p>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📏</i> Measurements (cm)</div>
+                <div class="ig">
+                    <div class="il"><span>Gender</span></div><select class="ti" id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Height</span><span class="v" id="ht-v">170</span></div><input type="range"
+                        id="ht" min="130" max="220" value="170">
+                    <div class="rl"><span>130</span><span>220</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Waist (at navel)</span><span class="v" id="wa-v">82</span></div><input
+                        type="range" id="wa" min="50" max="160" value="82">
+                    <div class="rl"><span>50</span><span>160</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Neck</span><span class="v" id="nk-v">38</span></div><input type="range"
+                        id="nk" min="20" max="60" value="38">
+                    <div class="rl"><span>20</span><span>60</span></div>
+                </div>
+                <div class="ig" id="hip-group">
+                    <div class="il"><span>Hip (females only)</span><span class="v" id="hp-v">95</span></div><input
+                        type="range" id="hp" min="60" max="160" value="95">
+                    <div class="rl"><span>60</span><span>160</span></div>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>💪</i> Body Fat Result</div>
+                <div class="bn-l">Body Fat Percentage</div>
+                <div class="bn" id="bf">—</div>
+                <div id="cat"
+                    style="text-align:center;margin-top:8px;font-size:.9rem;font-weight:700;padding:6px 16px;border-radius:8px;display:inline-block">
+                </div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--cyan)"></span>Fat Mass</div>
+                        <div class="pv" style="color:var(--cyan)" id="fat-mass">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--emerald)"></span>Lean Mass</div>
+                        <div class="pv" style="color:var(--emerald)" id="lean">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Fat', 'Lean'], [1, 3], ['#fb7185', '#34d399']);
+            const hipG = document.getElementById('hip-group');
+            document.getElementById('gender').addEventListener('change', e => { hipG.style.display = e.target.value === 'female' ? '' : 'none'; calc(); });
+            hipG.style.display = 'none';
+            function calc() {
+                const g = document.getElementById('gender').value, ht = +document.getElementById('ht').value, wa = +document.getElementById('wa').value, nk = +document.getElementById('nk').value, hp = +document.getElementById('hp').value;
+                document.getElementById('ht-v').textContent = ht; document.getElementById('wa-v').textContent = wa;
+                document.getElementById('nk-v').textContent = nk; document.getElementById('hp-v').textContent = hp;
+                let bf;
+                if (g === 'male') bf = 495 / (1.0324 - 0.19077 * Math.log10(wa - nk) + 0.15456 * Math.log10(ht)) - 450;
+                else bf = 495 / (1.29579 - 0.35004 * Math.log10(wa + hp - nk) + 0.22100 * Math.log10(ht)) - 450;
+                bf = Math.max(0, Math.min(bf, 60));
+                document.getElementById('bf').textContent = bf.toFixed(1) + '%';
+                const w = 70; const fatM = (bf / 100 * w), leanM = (w - fatM);
+                document.getElementById('fat-mass').textContent = fatM.toFixed(1) + ' kg*';
+                document.getElementById('lean').textContent = leanM.toFixed(1) + ' kg*';
+                const el = document.getElementById('cat');
+                if (g === 'male') {
+                    if (bf < 6) { el.textContent = 'Essential'; el.style.background = 'rgba(34,211,238,.15)'; el.style.color = '#22d3ee'; }
+                    else if (bf < 14) { el.textContent = 'Athletic'; el.style.background = 'rgba(52,211,153,.15)'; el.style.color = '#34d399'; }
+                    else if (bf < 18) { el.textContent = 'Fitness'; el.style.background = 'rgba(167,139,250,.15)'; el.style.color = '#a78bfa'; }
+                    else if (bf < 25) { el.textContent = 'Average'; el.style.background = 'rgba(251,191,36,.15)'; el.style.color = '#fbbf24'; }
+                    else { el.textContent = 'Obese'; el.style.background = 'rgba(251,113,133,.15)'; el.style.color = '#fb7185'; }
+                }
+                else {
+                    if (bf < 14) { el.textContent = 'Essential'; el.style.background = 'rgba(34,211,238,.15)'; el.style.color = '#22d3ee'; }
+                    else if (bf < 21) { el.textContent = 'Athletic'; el.style.background = 'rgba(52,211,153,.15)'; el.style.color = '#34d399'; }
+                    else if (bf < 25) { el.textContent = 'Fitness'; el.style.background = 'rgba(167,139,250,.15)'; el.style.color = '#a78bfa'; }
+                    else if (bf < 32) { el.textContent = 'Average'; el.style.background = 'rgba(251,191,36,.15)'; el.style.color = '#fbbf24'; }
+                    else { el.textContent = 'Obese'; el.style.background = 'rgba(251,113,133,.15)'; el.style.color = '#fb7185'; }
+                }
+                C.uChart('ch', [Math.max(1, bf), Math.max(1, 100 - bf)]);
+            }
+            ['ht', 'wa', 'nk', 'hp'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+</body>
+
+</html>

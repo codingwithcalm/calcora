@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Loan Calculator — EMI & Prepayment Savings | Calcora</title>
+    <meta name="description"
+        content="Professional loan calculator with prepayment support. See how much interest you can save by making extra payments.">
+    <meta name="keywords"
+        content="loan calculator, prepayment savings, emi, interest saver, debt payoff, mortgage calculator">
+    <link rel="canonical" href="https://calcora.com/finance/loan-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Loan Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.com/finance/loan-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo">
+                <div class="logo-m">C</div><span class="logo-t">Calcora</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="emi-calculator.html" class="nav-link">🏦 EMI</a></li>
+                <li><a href="loan-calculator.html" class="nav-link active">💳 Loan</a></li>
+                <li><a href="sip-calculator.html" class="nav-link">📈 SIP</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Loan Calculator</h1>
+            <p>Compare loan options and see how prepayments reduce total cost.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> Adding ₹5,000 extra per month on a ₹30L, 20-year 9% home
+            loan saves ₹12L+ in interest and closes the loan ~7 years early.</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>💳</i> Loan Parameters</div>
+                <div class="ig">
+                    <div class="il"><span>Principal Amount</span><span class="v" id="p-v">₹30,00,000</span></div><input
+                        type="range" id="p" min="100000" max="20000000" step="100000" value="3000000">
+                    <div class="rl"><span>₹1L</span><span>₹2 Cr</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Interest Rate</span><span class="v" id="r-v">9%</span></div><input
+                        type="range" id="r" min="1" max="20" step="0.1" value="9">
+                    <div class="rl"><span>1%</span><span>20%</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Tenure</span><span class="v" id="y-v">20 Years</span></div><input type="range"
+                        id="y" min="1" max="30" step="1" value="20">
+                    <div class="rl"><span>1 Yr</span><span>30 Yrs</span></div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Extra Monthly Payment</span><span class="v" id="ex-v">₹0</span></div><input
+                        type="range" id="ex" min="0" max="100000" step="1000" value="0">
+                    <div class="rl"><span>₹0</span><span>₹1L</span></div>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>📊</i> Loan Summary</div>
+                <div class="bn-l">Monthly EMI</div>
+                <div class="bn" id="emi">—</div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--emerald)"></span>Total Paid</div>
+                        <div class="pv" style="color:var(--emerald)" id="total">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl"><span class="dot" style="background:var(--rose)"></span>Total Interest</div>
+                        <div class="pv" style="color:var(--rose)" id="int">—</div>
+                    </div>
+                </div>
+                <div id="save" style="text-align:center;margin-top:12px;font-size:.78rem;color:var(--emerald)"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Principal', 'Interest'], [1, 1], ['#34d399', '#fb7185']);
+            function calc() {
+                const P = +document.getElementById('p').value, r = +document.getElementById('r').value, y = +document.getElementById('y').value, ex = +document.getElementById('ex').value;
+                document.getElementById('p-v').textContent = C.F(P); document.getElementById('r-v').textContent = (r % 1 === 0 ? r : r.toFixed(1)) + '%';
+                document.getElementById('y-v').textContent = y + (y === 1 ? ' Yr' : ' Yrs'); document.getElementById('ex-v').textContent = C.F(ex);
+                const mi = r / 100 / 12, n = y * 12, emi = mi === 0 ? P / n : P * mi * (1 + mi) ** n / ((1 + mi) ** n - 1);
+                const totalStd = emi * n, intStd = totalStd - P;
+                let bal = P, intEx = 0, months = 0;
+                for (let m = 0; m < n && bal > 0; m++) { const i = bal * mi; intEx += i; bal = Math.max(0, bal - (emi - i + ex)); months++; }
+                const saved = intStd - intEx;
+                document.getElementById('emi').textContent = C.F(emi); document.getElementById('total').textContent = C.F(P + intEx);
+                document.getElementById('int').textContent = C.F(intEx);
+                document.getElementById('save').textContent = ex > 0 ? `💡 Prepaying ${C.F(ex)}/mo saves ${C.F(saved)} in interest & closes loan in ${Math.ceil(months / 12)} yrs` : '';
+                C.uChart('ch', [P, Math.max(0, intEx)]);
+            }
+            ['p', 'r', 'y', 'ex'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+</body>
+
+</html>

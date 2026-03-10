@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Date Difference — Count Days Between Dates | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Calculate the exact time between two dates in days, weeks, months, and years. Free and instant date calculator.">
+    <meta name="keywords"
+        content="date calculator, days between dates, date difference, duration calculator, weeks between dates">
+    <link rel="canonical" href="https://calcora.com/daily/date-difference.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Date Difference Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/daily/date-difference.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="age-calculator.html" class="nav-link">🎂 Age</a></li>
+                <li><a href="date-difference.html" class="nav-link active">📅 Date</a></li>
+                <li><a href="percentage-calculator.html" class="nav-link">% Percent</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Date Difference Calculator</h1>
+            <p>Find the exact duration between any two dates.</p>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📅</i> Select Dates</div>
+                <div class="ig">
+                    <div class="il"><span>Start Date</span></div><input type="date" class="ti" id="d1"
+                        value="2025-01-01">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>End Date</span></div><input type="date" class="ti" id="d2">
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>📊</i> Duration</div>
+                <div class="bn-l">Total Days</div>
+                <div class="bn" id="days">—</div>
+                <div class="pills" style="margin-top:18px">
+                    <div class="pill">
+                        <div class="pl">Years</div>
+                        <div class="pv" style="color:var(--accent2)" id="yrs">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Months</div>
+                        <div class="pv" style="color:var(--cyan)" id="mos">—</div>
+                    </div>
+                </div>
+                <div class="pills">
+                    <div class="pill">
+                        <div class="pl">Weeks</div>
+                        <div class="pv" style="color:var(--emerald)" id="wks">—</div>
+                    </div>
+                    <div class="pill">
+                        <div class="pl">Weekdays</div>
+                        <div class="pv" style="color:var(--amber)" id="wd">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('d2').value = new Date().toISOString().split('T')[0];
+            function calc() {
+                const d1 = new Date(document.getElementById('d1').value), d2 = new Date(document.getElementById('d2').value);
+                if (isNaN(d1) || isNaN(d2)) { return; }
+                const start = d1 < d2 ? d1 : d2, end = d1 < d2 ? d2 : d1;
+                const diffMs = end - start, totalDays = Math.floor(diffMs / 864e5);
+                let y = end.getFullYear() - start.getFullYear(), m = end.getMonth() - start.getMonth(), d = end.getDate() - start.getDate();
+                if (d < 0) { m--; d += new Date(end.getFullYear(), end.getMonth(), 0).getDate(); }
+                if (m < 0) { y--; m += 12; }
+                let weekdays = 0; const tmp = new Date(start);
+                for (let i = 0; i < totalDays; i++) { const day = tmp.getDay(); if (day !== 0 && day !== 6) weekdays++; tmp.setDate(tmp.getDate() + 1); }
+                document.getElementById('days').textContent = totalDays.toLocaleString();
+                document.getElementById('yrs').textContent = y; document.getElementById('mos').textContent = y * 12 + m;
+                document.getElementById('wks').textContent = Math.floor(totalDays / 7); document.getElementById('wd').textContent = weekdays.toLocaleString();
+            }
+            document.getElementById('d1').addEventListener('input', calc); document.getElementById('d2').addEventListener('input', calc);
+            calc();
+        });
+    </script>
+</body>
+
+</html>

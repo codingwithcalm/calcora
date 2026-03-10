@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>File Compressor — Create ZIP Archives | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description" content="Compress multiple files into a single ZIP archive. Fast, free, and secure. Your files never leave your browser.">
+    <meta name="keywords" content="file compressor, create zip, zip files online, file archive, zip tool, secure compression">
+    <link rel="canonical" href="https://calcora.com/files/file-compressor.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"File Compressor","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/files/file-compressor.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="file-compressor.html" class="nav-link active">📦 ZIP</a></li>
+                <li><a href="pdf-merge.html" class="nav-link">📑 PDF</a></li>
+                <li><a href="pdf-split.html" class="nav-link">✂️ Split</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>File Compressor</h1>
+            <p>Create ZIP archives from multiple files or extract ZIP contents — all in-browser.</p>
+        </div>
+        <div class="tool-grid">
+            <!-- CREATE ZIP -->
+            <div class="glass">
+                <div class="ctitle"><i>📦</i> Create ZIP</div>
+                <label
+                    style="display:flex;flex-direction:column;align-items:center;padding:30px 20px;border:2px dashed var(--gbdr);border-radius:14px;cursor:pointer;text-align:center">
+                    <span style="font-size:2rem;margin-bottom:8px">📁</span>
+                    <span style="font-size:.85rem;color:var(--dim)">Select files to compress</span>
+                    <input type="file" id="zip-files" multiple style="display:none">
+                </label>
+                <div id="zip-list" style="margin-top:12px;font-size:.78rem"></div>
+                <button class="btn btn-accent" style="width:100%;margin-top:12px" onclick="createZip()" id="zip-btn"
+                    disabled>📦 Create ZIP</button>
+                <div id="zip-status" style="margin-top:10px;font-size:.78rem;font-weight:600;text-align:center"></div>
+            </div>
+            <!-- EXTRACT ZIP -->
+            <div class="glass">
+                <div class="ctitle"><i>📂</i> Extract ZIP</div>
+                <label
+                    style="display:flex;flex-direction:column;align-items:center;padding:30px 20px;border:2px dashed var(--gbdr);border-radius:14px;cursor:pointer;text-align:center">
+                    <span style="font-size:2rem;margin-bottom:8px">📂</span>
+                    <span style="font-size:.85rem;color:var(--dim)">Select a .zip file</span>
+                    <input type="file" id="extract-file" accept=".zip" style="display:none">
+                </label>
+                <div id="extract-list" style="margin-top:12px;max-height:300px;overflow-y:auto"></div>
+                <div id="extract-status" style="margin-top:10px;font-size:.78rem;font-weight:600;text-align:center">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        let zipFiles = []; const fmtS = b => b < 1024 ? b + 'B' : b < 1048576 ? (b / 1024).toFixed(1) + 'KB' : (b / 1048576).toFixed(1) + 'MB';
+        document.getElementById('zip-files').addEventListener('change', e => {
+            zipFiles = [...e.target.files];
+            document.getElementById('zip-list').innerHTML = zipFiles.map(f => `<div style="padding:4px 0;border-bottom:1px solid var(--gbdr)">📄 ${f.name} <span style="color:var(--dim)">(${fmtS(f.size)})</span></div>`).join('');
+            document.getElementById('zip-btn').disabled = zipFiles.length === 0;
+        });
+        async function createZip() {
+            const st = document.getElementById('zip-status'); st.style.color = 'var(--amber)'; st.textContent = '⏳ Compressing...';
+            try {
+                const zip = new JSZip(); let totalIn = 0;
+                for (const f of zipFiles) { zip.file(f.name, f); totalIn += f.size; }
+                const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
+                const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'archive.zip'; a.click();
+                st.style.color = 'var(--emerald)'; st.textContent = `✅ Created ZIP: ${fmtS(blob.size)} (from ${fmtS(totalIn)})`;
+            } catch (e) { st.style.color = 'var(--rose)'; st.textContent = '❌ ' + e.message; }
+        }
+        document.getElementById('extract-file').addEventListener('change', async e => {
+            const f = e.target.files[0]; if (!f) return;
+            const st = document.getElementById('extract-status'); st.style.color = 'var(--amber)'; st.textContent = '⏳ Reading...';
+            try {
+                const zip = await JSZip.loadAsync(f); const list = document.getElementById('extract-list'); list.innerHTML = '';
+                let count = 0;
+                zip.forEach((path, entry) => {
+                    if (entry.dir) return; count++;
+                    const div = document.createElement('div'); div.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid var(--gbdr);font-size:.78rem;';
+                    div.innerHTML = `<span>📄 ${path}</span><button class="copy-btn" style="font-size:.68rem" onclick="dlFile(this,'${path}')">⬇️</button>`;
+                    list.appendChild(div);
+                });
+                st.style.color = 'var(--emerald)'; st.textContent = `✅ Found ${count} file(s) in ZIP`;
+                window._zipRef = zip;
+            } catch (e) { st.style.color = 'var(--rose)'; st.textContent = '❌ ' + e.message; }
+        });
+        async function dlFile(btn, path) {
+            if (!window._zipRef) return;
+            const blob = await window._zipRef.file(path).async('blob');
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = path.split('/').pop(); a.click();
+            btn.textContent = '✅'; setTimeout(() => btn.textContent = '⬇️', 1000);
+        }
+    </script>
+</body>
+
+</html>

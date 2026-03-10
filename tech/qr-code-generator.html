@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>QR Code Generator — Create Free QR Codes | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description" content="Generate high-quality QR codes for URLs, WiFi, text, and vCards. Download as PNG or SVG instantly. No sign-up required.">
+    <meta name="keywords" content="qr code generator, create qr code, free qr codes, qr generator, wifi qr code, qr code maker">
+    <link rel="canonical" href="https://calcora.com/tech/qr-code-generator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"QR Code Generator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/tech/qr-code-generator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="qr-code-generator.html" class="nav-link active">📱 QR</a></li>
+                <li><a href="password-generator.html" class="nav-link">🔐 Password</a></li>
+                <li><a href="unit-converter.html" class="nav-link">📐 Unit</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>QR Code Generator</h1>
+            <p>Generate QR codes for URLs, text, WiFi credentials, or any string. Download as PNG.</p>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📝</i> Content</div>
+                <div class="ig">
+                    <div class="il"><span>Type</span></div><select class="ti" id="type">
+                        <option value="text">Text / URL</option>
+                        <option value="wifi">WiFi</option>
+                    </select>
+                </div>
+                <div id="text-fields">
+                    <div class="ig">
+                        <div class="il"><span>Text or URL</span></div><textarea class="ti" id="text" rows="4"
+                            placeholder="https://calcora.com" style="min-height:80px">https://calcora.com</textarea>
+                    </div>
+                </div>
+                <div id="wifi-fields" style="display:none">
+                    <div class="ig">
+                        <div class="il"><span>Network Name (SSID)</span></div><input class="ti" id="ssid"
+                            placeholder="MyWiFi">
+                    </div>
+                    <div class="ig">
+                        <div class="il"><span>Password</span></div><input class="ti" id="wpass" type="text"
+                            placeholder="password123">
+                    </div>
+                    <div class="ig">
+                        <div class="il"><span>Encryption</span></div><select class="ti" id="enc">
+                            <option value="WPA">WPA/WPA2</option>
+                            <option value="WEP">WEP</option>
+                            <option value="nopass">None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Size</span><span class="v" id="sz-v">6</span></div><input type="range" id="sz"
+                        min="2" max="12" value="6">
+                    <div class="rl"><span>Small</span><span>Large</span></div>
+                </div>
+                <button class="btn btn-accent" style="width:100%;margin-top:10px" onclick="gen()">Generate QR
+                    Code</button>
+            </div>
+            <div class="glass" style="text-align:center">
+                <div class="ctitle"><i>📱</i> QR Code</div>
+                <div id="qr-out"
+                    style="display:inline-block;padding:16px;background:#fff;border-radius:12px;margin:12px 0"></div>
+                <br><button class="btn btn-outline" style="margin-top:12px" onclick="download()">⬇️ Download
+                    PNG</button>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.getElementById('type').addEventListener('change', function () {
+            document.getElementById('text-fields').style.display = this.value === 'text' ? '' : 'none';
+            document.getElementById('wifi-fields').style.display = this.value === 'wifi' ? '' : 'none';
+        });
+        document.getElementById('sz').addEventListener('input', function () { document.getElementById('sz-v').textContent = this.value; });
+        function getData() {
+            const t = document.getElementById('type').value;
+            if (t === 'wifi') { const s = document.getElementById('ssid').value, p = document.getElementById('wpass').value, e = document.getElementById('enc').value; return `WIFI:T:${e};S:${s};P:${p};;`; }
+            return document.getElementById('text').value || 'https://calcora.com';
+        }
+        function gen() {
+            const data = getData(), sz = +document.getElementById('sz').value;
+            const qr = qrcode(0, 'L'); qr.addData(data); qr.make();
+            document.getElementById('qr-out').innerHTML = qr.createImgTag(sz, 0);
+        }
+        function download() {
+            const img = document.querySelector('#qr-out img'); if (!img) return;
+            const a = document.createElement('a'); a.href = img.src; a.download = 'calcora-qr.png'; a.click();
+        }
+        gen();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Percentage Calculator — Quick Percent Math | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Solve all your percentage problems: percentage of, percent change, and ratios. Simple, fast, and beautiful percentage tool.">
+    <meta name="keywords"
+        content="percentage calculator, percent change, percent of, math tools, online calculator, ratios">
+    <link rel="canonical" href="https://calcora.com/daily/percentage-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Percentage Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.com/daily/percentage-calculator.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="age-calculator.html" class="nav-link">🎂 Age</a></li>
+                <li><a href="percentage-calculator.html" class="nav-link active">% Percent</a></li>
+                <li><a href="discount-calculator.html" class="nav-link">🏷️ Discount</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Percentage Calculator</h1>
+            <p>Three modes: % of a number, % change, and ratio to %.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+            <!-- Mode 1 -->
+            <div class="glass">
+                <div class="ctitle"><i>🔢</i> What is X% of Y?</div>
+                <div class="ig">
+                    <div class="il"><span>Percentage</span></div><input type="number" class="ti" id="p1" value="25"
+                        min="0">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Of Number</span></div><input type="number" class="ti" id="n1" value="200"
+                        min="0">
+                </div>
+                <div class="bn-l" style="margin-top:14px">Answer</div>
+                <div class="bn" id="r1">50</div>
+            </div>
+            <!-- Mode 2 -->
+            <div class="glass">
+                <div class="ctitle"><i>📈</i> % Change</div>
+                <div class="ig">
+                    <div class="il"><span>Original Value</span></div><input type="number" class="ti" id="o2" value="80"
+                        min="0">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>New Value</span></div><input type="number" class="ti" id="n2" value="100"
+                        min="0">
+                </div>
+                <div class="bn-l" style="margin-top:14px">Change</div>
+                <div class="bn" id="r2">+25%</div>
+            </div>
+            <!-- Mode 3 -->
+            <div class="glass">
+                <div class="ctitle"><i>📐</i> X is what % of Y?</div>
+                <div class="ig">
+                    <div class="il"><span>Value</span></div><input type="number" class="ti" id="v3" value="45" min="0">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Total</span></div><input type="number" class="ti" id="t3" value="200" min="0">
+                </div>
+                <div class="bn-l" style="margin-top:14px">Percentage</div>
+                <div class="bn" id="r3">22.5%</div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function u1() { const p = +document.getElementById('p1').value, n = +document.getElementById('n1').value; document.getElementById('r1').textContent = (p / 100 * n).toFixed(2); }
+            function u2() { const o = +document.getElementById('o2').value, n = +document.getElementById('n2').value; const ch = o !== 0 ? ((n - o) / o * 100) : 0; document.getElementById('r2').textContent = (ch >= 0 ? '+' : '') + ch.toFixed(1) + '%'; }
+            function u3() { const v = +document.getElementById('v3').value, t = +document.getElementById('t3').value; document.getElementById('r3').textContent = (t !== 0 ? (v / t * 100) : 0).toFixed(2) + '%'; }
+            ['p1', 'n1'].forEach(id => document.getElementById(id).addEventListener('input', u1));
+            ['o2', 'n2'].forEach(id => document.getElementById(id).addEventListener('input', u2));
+            ['v3', 't3'].forEach(id => document.getElementById(id).addEventListener('input', u3));
+            u1(); u2(); u3();
+        });
+    </script>
+</body>
+
+</html>

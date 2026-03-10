@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Base64 Encoder/Decoder — Convert Text & Files | Calcora</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<meta name="description" content="Free online Base64 encoder and decoder. Convert text and files to Base64 and back. Secure and 100% browser-based.">
+<meta name="keywords" content="base64 encoder, base64 decoder, base64 to text, text to base64, binary to base64, encoding tools">
+<link rel="canonical" href="https://calcora.com/tech/base64-encoder.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base64 Encoder/Decoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web","url":"https://calcora.com/tech/base64-encoder.html"}</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo"><span class="logo-t">Calcora</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="base64-encoder.html" class="nav-link active">🔤 Base64</a></li>
+                <li><a href="json-formatter.html" class="nav-link">💻 JSON</a></li>
+                <li><a href="qr-code-generator.html" class="nav-link">📱 QR</a></li>
+            </ul>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Base64 Encoder / Decoder</h1>
+            <p>Encode text to Base64 or decode Base64 strings.</p>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+            <button class="btn btn-accent" onclick="encode()">🔒 Encode</button>
+            <button class="btn btn-outline" onclick="decode()">🔓 Decode</button>
+            <button class="copy-btn" onclick="copyR()">📋 Copy Result</button>
+        </div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📝</i> Input</div>
+                <textarea class="ti" id="input" rows="14" placeholder="Type or paste text here..."
+                    style="min-height:280px">Hello, Calcora!</textarea>
+            </div>
+            <div class="glass">
+                <div class="ctitle"><i>✨</i> Result</div>
+                <div id="st" style="margin-bottom:8px;font-size:.78rem;font-weight:600"></div>
+                <pre class="out-box" id="output" style="min-height:280px"></pre>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        const I = () => document.getElementById('input').value, O = document.getElementById('output'), S = document.getElementById('st');
+        function encode() { try { const r = btoa(unescape(encodeURIComponent(I()))); O.textContent = r; S.style.color = 'var(--emerald)'; S.textContent = `✅ Encoded (${r.length} chars)`; } catch (e) { S.style.color = 'var(--rose)'; S.textContent = '❌ ' + e.message; } }
+        function decode() { try { const r = decodeURIComponent(escape(atob(I()))); O.textContent = r; S.style.color = 'var(--emerald)'; S.textContent = '✅ Decoded successfully'; } catch (e) { S.style.color = 'var(--rose)'; S.textContent = '❌ Invalid Base64: ' + e.message; } }
+        function copyR() { navigator.clipboard.writeText(O.textContent).then(() => { S.textContent = '📋 Copied!' }); }
+        encode();
+    </script>
+</body>
+
+</html>
