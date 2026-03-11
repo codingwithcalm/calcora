@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Page Not Found — Calcora</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.png">
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Calcora's homepage to explore 60+ free online tools.">
+    <link rel="canonical" href="https://calcora.site/404.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <style>
+        .error-page { text-align: center; padding: 80px 24px; min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .error-code { font-size: 8rem; font-weight: 900; background: linear-gradient(135deg, var(--accent), var(--cyan), var(--emerald)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 16px; }
+        .error-msg { font-size: 1.4rem; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+        .error-desc { font-size: 0.95rem; color: var(--dim); max-width: 480px; line-height: 1.6; margin-bottom: 32px; }
+        .error-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: linear-gradient(135deg, var(--accent), var(--cyan)); color: #fff; font-size: 0.9rem; font-weight: 700; border-radius: 12px; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 20px rgba(167,139,250,0.3); }
+        .error-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(167,139,250,0.4); }
+        .error-tools { margin-top: 40px; font-size: 0.78rem; color: var(--muted); }
+        .error-tools a { color: var(--accent); font-weight: 600; margin: 0 8px; }
+    </style>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in">
+            <a href="index.html" class="logo"><img src="assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme" tabindex="0">
+                <span class="t-icon ic-sun">☀️</span>
+                <div class="t-track"><div class="t-knob"></div></div>
+                <span class="t-icon ic-moon">🌙</span>
+            </div>
+        </div>
+    </nav>
+    <div class="page">
+        <div class="error-page">
+            <div class="error-code">404</div>
+            <div class="error-msg">Page Not Found</div>
+            <p class="error-desc">The page you're looking for doesn't exist or has been moved. Don't worry — our 60+ free tools are just one click away.</p>
+            <a href="index.html" class="error-btn">← Back to All Tools</a>
+            <div class="error-tools">
+                Popular: <a href="finance/emi-calculator.html">EMI Calculator</a>
+                <a href="tech/json-formatter.html">JSON Formatter</a>
+                <a href="health/bmi-calculator.html">BMI Calculator</a>
+                <a href="tech/password-generator.html">Password Generator</a>
+            </div>
+        </div>
+    </div>
+    <footer class="site-ft">
+        <p>© 2026 <a href="index.html">Calcora</a> — 60+ Free Online Calculators & Tools</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

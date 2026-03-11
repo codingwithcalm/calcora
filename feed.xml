@@ -1,23 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>Calcora — Free Online Tools Hub</title>
   <link>https://calcora.site/</link>
-  <description>60+ free specialized online calculators for Finance, Health, Tech, and more.</description>
-  <item>
-    <title>EMI Calculator</title>
-    <link>https://calcora.site/finance/emi-calculator.html</link>
-    <description>Professional-grade EMI calculator with amortization schedule.</description>
-  </item>
-  <item>
-    <title>SIP Calculator</title>
-    <link>https://calcora.site/finance/sip-calculator.html</link>
-    <description>Wealth growth calculator with annual step-up projections.</description>
-  </item>
-  <item>
-    <title>Tech Stack Detector</title>
-    <link>https://calcora.site/tech/tech-stack-detector.html</link>
-    <description>Identify frameworks, CDNs, and APIs used by any website.</description>
-  </item>
+  <description>60+ free specialized online calculators and developer tools for Finance, Health, Tech, and more.</description>
+  <language>en</language>
+  <atom:link href="https://calcora.site/feed.xml" rel="self" type="application/rss+xml" />
+
+  <!-- Finance Tools -->
+  <item><title>EMI Calculator</title><link>https://calcora.site/finance/emi-calculator.html</link><description>Calculate monthly EMI, total interest, and view amortization schedule for home, car, and personal loans.</description></item>
+  <item><title>Loan Calculator</title><link>https://calcora.site/finance/loan-calculator.html</link><description>Compare loan options with different tenures, rates, and prepayment scenarios.</description></item>
+  <item><title>SIP Calculator</title><link>https://calcora.site/finance/sip-calculator.html</link><description>Plan wealth creation with systematic monthly investments and optional annual step-up.</description></item>
+  <item><title>GST Calculator</title><link>https://calcora.site/finance/gst-calculator.html</link><description>Add or remove GST at 5%, 12%, 18%, or 28% with reverse calculation.</description></item>
+  <item><title>Tax Calculator</title><link>https://calcora.site/finance/tax-calculator.html</link><description>2026-27 Income Tax estimator with Old vs New regime comparison.</description></item>
+  <item><title>Currency Converter</title><link>https://calcora.site/finance/currency-converter.html</link><description>Convert between 10+ major world currencies with live-feel rates.</description></item>
+  <item><title>Profit &amp; Loss Calculator</title><link>https://calcora.site/finance/profit-loss-calculator.html</link><description>Calculate profit/loss percentage, markup, and margin.</description></item>
+  <item><title>Website Cost Estimator</title><link>https://calcora.site/finance/website-cost-estimator.html</link><description>Estimate development costs based on features, complexity, and tech stack.</description></item>
+
+  <!-- Daily Tools -->
+  <item><title>Age Calculator</title><link>https://calcora.site/daily/age-calculator.html</link><description>Calculate exact age in years, months, and days from your birthday.</description></item>
+  <item><title>Aspect Ratio Calculator</title><link>https://calcora.site/daily/aspect-ratio-calculator.html</link><description>Resize while maintaining ratio or convert between 16:9, 4:3, and more.</description></item>
+  <item><title>Date Difference</title><link>https://calcora.site/daily/date-difference.html</link><description>Calculate the exact difference between two dates in days, weeks, and months.</description></item>
+  <item><title>Discount Calculator</title><link>https://calcora.site/daily/discount-calculator.html</link><description>Quickly calculate final price after discount percentage.</description></item>
+  <item><title>Percentage Calculator</title><link>https://calcora.site/daily/percentage-calculator.html</link><description>Calculate percentages, increases, decreases, and ratios instantly.</description></item>
+  <item><title>Scientific Calculator</title><link>https://calcora.site/daily/scientific-calculator.html</link><description>Advanced scientific calculator with trigonometry, logarithms, and more.</description></item>
+  <item><title>Time Calculator</title><link>https://calcora.site/daily/time-calculator.html</link><description>Add, subtract, and convert time in hours, minutes, and seconds.</description></item>
+
+  <!-- Tech Tools -->
+  <item><title>JSON Formatter</title><link>https://calcora.site/tech/json-formatter.html</link><description>Beautify, minify, and validate JSON with syntax highlighting.</description></item>
+  <item><title>Base64 Encoder/Decoder</title><link>https://calcora.site/tech/base64-encoder.html</link><description>Encode and decode Base64 strings and files instantly.</description></item>
+  <item><title>QR Code Generator</title><link>https://calcora.site/tech/qr-code-generator.html</link><description>Generate QR codes for URLs, text, WiFi, and vCards.</description></item>
+  <item><title>Password Generator</title><link>https://calcora.site/tech/password-generator.html</link><description>Generate cryptographically secure passwords with entropy scoring.</description></item>
+  <item><title>Unit Converter</title><link>https://calcora.site/tech/unit-converter.html</link><description>Convert length, weight, temperature, volume, speed, and data units.</description></item>
+  <item><title>Color Code Converter</title><link>https://calcora.site/tech/color-converter.html</link><description>Convert between HEX, RGB, HSL, and CMYK color formats.</description></item>
+  <item><title>CSS Clamp Generator</title><link>https://calcora.site/tech/css-clamp-generator.html</link><description>Design responsive typography with fluid clamp() CSS values.</description></item>
+  <item><title>Website Font Detector</title><link>https://calcora.site/tech/website-font-detector.html</link><description>Enter a URL to detect fonts, weights, and Google Fonts links.</description></item>
+  <item><title>JSON to TypeScript</title><link>https://calcora.site/tech/json-to-typescript.html</link><description>Instantly generate TypeScript interfaces from JSON objects.</description></item>
+  <item><title>Markdown Table Generator</title><link>https://calcora.site/tech/markdown-table-generator.html</link><description>Paste CSV or text to generate clean Markdown tables.</description></item>
+  <item><title>Color Accessibility</title><link>https://calcora.site/tech/color-accessibility.html</link><description>Check text/background contrast based on WCAG accessibility rules.</description></item>
+  <item><title>Password Strength</title><link>https://calcora.site/tech/password-strength.html</link><description>Visualize password entropy, crack time, and security score.</description></item>
+  <item><title>Code Screenshot</title><link>https://calcora.site/tech/code-screenshot.html</link><description>Create beautiful code snippet images for social media.</description></item>
+  <item><title>SERP Snippet Preview</title><link>https://calcora.site/tech/serp-snippet-preview.html</link><description>Preview how your page title and meta description appear in Google Search.</description></item>
+  <item><title>Open Graph Preview</title><link>https://calcora.site/tech/open-graph-preview.html</link><description>Preview social media cards for Facebook, X, and LinkedIn.</description></item>
+  <item><title>Domain Readability</title><link>https://calcora.site/tech/domain-readability.html</link><description>Check domain pronunciation, memorability, and SEO friendliness.</description></item>
+  <item><title>Screenshot to Tailwind</title><link>https://calcora.site/tech/screenshot-tailwind.html</link><description>Upload UI screenshot to suggest matching Tailwind CSS classes.</description></item>
+  <item><title>Image Compressor</title><link>https://calcora.site/tech/image-compressor.html</link><description>Compress images without quality loss using browser-side processing.</description></item>
+  <item><title>Tech Stack Detector</title><link>https://calcora.site/tech/tech-stack-detector.html</link><description>Identify frameworks, CDNs, analytics, and APIs used by any website.</description></item>
+  <item><title>API Request Builder</title><link>https://calcora.site/tech/api-request-builder.html</link><description>Test API endpoints and generate code for Fetch, Python, and cURL.</description></item>
+  <item><title>Privacy Policy Scanner</title><link>https://calcora.site/tech/privacy-scanner.html</link><description>Scan websites for trackers and generate privacy policy suggestions.</description></item>
+  <item><title>Color Palette Extractor</title><link>https://calcora.site/tech/color-palette-extractor.html</link><description>Extract beautiful color palettes from any image.</description></item>
+  <item><title>Prompt Structure Analyzer</title><link>https://calcora.site/tech/prompt-analyzer.html</link><description>Analyze AI prompts for clarity, context, and token optimization.</description></item>
+  <item><title>README Optimizer</title><link>https://calcora.site/tech/readme-optimizer.html</link><description>Preview and optimize GitHub READMEs with badges and formatting.</description></item>
+  <item><title>Browser Storage Inspector</title><link>https://calcora.site/tech/browser-storage-inspector.html</link><description>Inspect and decode LocalStorage, Cookies, and SessionStorage data.</description></item>
+  <item><title>UI Spacing Inspector</title><link>https://calcora.site/tech/ui-spacing-inspector.html</link><description>Measure margins and padding from any UI screenshot or mockup.</description></item>
+  <item><title>Error Explainer</title><link>https://calcora.site/tech/error-explainer.html</link><description>Paste dev errors to get instant explanations and fixes.</description></item>
+  <item><title>YouTube Text Extractor</title><link>https://calcora.site/tech/yt-thumbnail-text.html</link><description>Extract text from YouTube thumbnails using AI OCR.</description></item>
+
+  <!-- Health Tools -->
+  <item><title>BMI Calculator</title><link>https://calcora.site/health/bmi-calculator.html</link><description>Calculate Body Mass Index with WHO category classification.</description></item>
+  <item><title>Calorie Calculator</title><link>https://calcora.site/health/calorie-calculator.html</link><description>Estimate daily calorie needs based on age, weight, height, and activity.</description></item>
+  <item><title>Water Intake Calculator</title><link>https://calcora.site/health/water-intake.html</link><description>Find your ideal daily water intake based on weight and activity.</description></item>
+  <item><title>Pregnancy Due Date</title><link>https://calcora.site/health/pregnancy-due-date.html</link><description>Estimate due date and trimester timeline from last menstrual period.</description></item>
+  <item><title>Body Fat Calculator</title><link>https://calcora.site/health/body-fat-calculator.html</link><description>Estimate body fat percentage using the U.S. Navy method.</description></item>
+
+  <!-- File Tools -->
+  <item><title>PDF Merge</title><link>https://calcora.site/files/pdf-merge.html</link><description>Combine multiple PDF files into a single document.</description></item>
+  <item><title>PDF Split</title><link>https://calcora.site/files/pdf-split.html</link><description>Extract specific pages or split a PDF into individual files.</description></item>
+  <item><title>JPG PNG Converter</title><link>https://calcora.site/files/jpg-png-converter.html</link><description>Convert images between JPG and PNG formats instantly.</description></item>
+  <item><title>Image Resizer</title><link>https://calcora.site/files/image-resizer.html</link><description>Resize images to exact dimensions with aspect ratio lock.</description></item>
+  <item><title>Favicon Generator</title><link>https://calcora.site/files/favicon-generator.html</link><description>Generate .ico, PWA, and Apple icons from a single logo image.</description></item>
+  <item><title>File Compressor</title><link>https://calcora.site/files/file-compressor.html</link><description>Compress files in-browser without uploading to any server.</description></item>
+  <item><title>SVG Optimizer</title><link>https://calcora.site/files/svg-optimizer.html</link><description>Minify and clean SVG files by removing unnecessary metadata.</description></item>
 </channel>
 </rss>
