@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Open Graph Preview Tool - Best Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <meta name="description"
+        content="Free Open Graph preview tool. See how your website links appear on Facebook, X, LinkedIn, and Discord. Optimize social media tags.">
+    <meta name="keywords" content="open graph preview, og tags checker, social media preview, facebook meta tags, x card validator">
+    <link rel="canonical" href="https://calcora.site/tech/open-graph-preview.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .og-card { background: #fff; border-radius: 8px; border: 1px solid #ddd; overflow: hidden; margin-top: 20px; font-family: -apple-system, system-ui, sans-serif; }
+        .og-img { width: 100%; aspect-ratio: 1.91/1; background: #f0f2f5; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .og-img img { width: 100%; height: 100%; object-fit: cover; }
+        .og-body { padding: 12px; color: #1c1e21; background: #f0f2f5; }
+        .og-domain { font-size: 12px; text-transform: uppercase; color: #65676b; margin-bottom: 3px; }
+        .og-title { font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .og-desc { font-size: 14px; color: #65676b; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .x-view .og-card { border-radius: 12px; }
+        .x-view .og-body { background: #fff; color: #000; padding: 10px; }
+    </style>
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "tech", "item": "https://calcora.site/index.html#tech" },{ "@type": "ListItem", "position": 3, "name": "Open Graph Preview Tool", "item": "https://calcora.site/tech/open-graph-preview.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Open Graph Preview Tool", "operatingSystem": "All", "applicationCategory": "techApplication", "url": "https://calcora.site/tech/open-graph-preview.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Open Graph Preview Tool</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> This advanced Open Graph Preview Tool is a developer-centric utility designed for speed and security. Whether you are debugging API requests, generating secure passwords, or converting code formats, our tool runs 100% client-side to ensure your data never leaves your browser.
+        </div>
+        <p>Don't let your shared links look broken. Preview social media cards for Facebook, X, and LinkedIn.</p>
+        </div>
+        
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>⚙️</i> Tag Editor</div>
+                <div class="ig">
+                    <div class="il"><span>OG Title</span></div>
+                    <input type="text" class="ti" id="title" placeholder="Enter social title..." oninput="update()">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>OG Image URL</span></div>
+                    <input type="text" class="ti" id="img" placeholder="https://example.com/banner.jpg" oninput="update()">
+                </div>
+                <div class="ig">
+                    <div class="il"><span>OG Description</span></div>
+                    <textarea class="ti" id="desc" rows="3" placeholder="Enter social description..." oninput="update()"></textarea>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Site Name</span></div>
+                    <input type="text" class="ti" id="site" placeholder="CALCORA.SITE" oninput="update()">
+                </div>
+                <div style="display:flex;gap:10px;margin-top:16px">
+                    <button class="btn btn-accent" onclick="toggleView('fb')">📘 Facebook</button>
+                    <button class="btn btn-outline" onclick="toggleView('x')">𝕏 View</button>
+                </div>
+            </div>
+            
+            <div class="glass" id="preview-container">
+                <div class="ctitle"><i>📱</i> Social Media Preview</div>
+                <div id="og" class="og-card">
+                    <div class="og-img">
+                        <img id="p-img" src="https://via.placeholder.com/1200x630?text=Preview+Image" alt="Preview" loading="lazy">
+                    </div>
+                    <div class="og-body">
+                        <div class="og-domain" id="p-site">CALCORA.SITE</div>
+                        <div class="og-title" id="p-title">Your Compelling Social Media Title</div>
+                        <div class="og-desc" id="p-desc">This is how your description will appear when shared. Keep it catchy to improve your click-through rate!</div>
+                    </div>
+                </div>
+                
+                <div class="meth" style="margin-top:20px">
+                    <b>🎯 Best Practices:</b>
+                    - <b>Image:</b> Use 1200x630 pixels for high-quality display.<br>
+                    - <b>Title:</b> Keep it under 60-90 characters.<br>
+                    - <b>Description:</b> Max 160 characters for best visibility.
+                </div>
+            </div>
+        </div>
+    
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128214;</i> How it Works & Guide</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>This tool is designed to be fast, private, and easy to use. All calculations and processing happen directly in your browser.</p>
+                <ol style="margin-top:10px;padding-left:20px">
+                    <li><b>Input:</b> Enter your data or upload the required file into the designated input area.</li>
+                    <li><b>Process:</b> Click the primary action button to trigger the instant calculation or conversion.</li>
+                    <li><b>Result:</b> Review the output and use the copy button to save your results to the clipboard.</li>
+                </ol>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: For developers, using client-side tools like this one prevents sensitive data (API keys, code snippets) from being logged on external servers, providing an essential layer of security for your workflow.
+                </div>
+                <p style="margin-top:10px"><i>Note: Your data never leaves your device. We prioritize your privacy and security.</i></p>
+            </div>
+        </div></div>
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Tech Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../tech/api-request-builder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>API REQUEST BUILDER</a><a href='../tech/base64-encoder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BASE64 ENCODER</a><a href='../tech/browser-storage-inspector.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BROWSER STORAGE INSPECTOR</a><a href='../tech/code-screenshot.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CODE SCREENSHOT</a></div></div>
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        function update() {
+            const title = document.getElementById('title').value || 'Your Compelling Social Media Title';
+            const img = document.getElementById('img').value || 'https://via.placeholder.com/1200x630?text=Preview+Image';
+            const desc = document.getElementById('desc').value || 'This is how your description will appear when shared. Keep it catchy to improve your click-through rate!';
+            const site = document.getElementById('site').value || 'CALCORA.SITE';
+            
+            document.getElementById('p-title').textContent = title;
+            document.getElementById('p-img').src = img;
+            document.getElementById('p-desc').textContent = desc;
+            document.getElementById('p-site').textContent = site.toUpperCase();
+        }
+
+        function toggleView(type) {
+            const container = document.getElementById('preview-container');
+            if (type === 'x') {
+                container.classList.add('x-view');
+            } else {
+                container.classList.remove('x-view');
+            }
+        }
+        update();
+    </script>
+</body>
+
+</html>

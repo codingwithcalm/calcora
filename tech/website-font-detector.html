@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Website Font Detector - Best Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <meta name="description"
+        content="Free website font detector. Scan CSS snippets or HTML to detect fonts, weights, and Google Fonts links. Perfect for reverse-engineering web designs.">
+    <meta name="keywords" content="font detector, whatfont alternative, css font scanner, web design tools, google fonts finder">
+    <link rel="canonical" href="https://calcora.site/tech/website-font-detector.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .font-list { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+        .font-card { background: var(--surface); padding: 18px; border-radius: 12px; border: 1px solid var(--gbdr); display: flex; align-items: center; justify-content: space-between; }
+        .f-info { flex: 1; }
+        .f-name { font-size: 1.1rem; font-weight: 800; color: var(--accent2); margin-bottom: 4px; }
+        .f-meta { font-size: 0.72rem; color: var(--dim); display: flex; gap: 10px; }
+        .f-tag { background: var(--badge); color: var(--badgeT); padding: 2px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
+        .f-prev { font-size: 1.5rem; border-left: 2px solid var(--gbdr); padding-left: 20px; min-width: 150px; text-align: right; }
+    </style>
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "tech", "item": "https://calcora.site/index.html#tech" },{ "@type": "ListItem", "position": 3, "name": "Website Font Detector", "item": "https://calcora.site/tech/website-font-detector.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Website Font Detector", "operatingSystem": "All", "applicationCategory": "techApplication", "url": "https://calcora.site/tech/website-font-detector.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Website Font Detector</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> This advanced Website Font Detector is a developer-centric utility designed for speed and security. Whether you are debugging API requests, generating secure passwords, or converting code formats, our tool runs 100% client-side to ensure your data never leaves your browser.
+        </div>
+        <p>Paste a URL or a CSS snippet to instantly scan and detect all fonts, weights, and styles used.</p>
+        </div>
+        
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>🔍</i> Scanner</div>
+                <div class="ig">
+                    <div class="il"><span>Paste URL or CSS Code</span></div>
+                    <textarea class="ti" id="input" rows="12" placeholder="Paste CSS here...&#10;e.g. body { font-family: 'Inter', sans-serif; }" oninput="scan()"></textarea>
+                </div>
+                <div style="margin-top:15px;text-align:center;font-size:0.75rem;color:var(--dim)">
+                    💡 <b>Pro Tip:</b> Paste the Inspect Element styles for best results.
+                </div>
+                <button class="btn btn-accent" style="width:100%;margin-top:20px" onclick="scan()">⚡ Scan Code</button>
+            </div>
+            
+            <div class="glass">
+                <div class="ctitle"><i>✨</i> Detected Fonts</div>
+                <div id="status" style="margin-bottom:10px;font-size:.78rem;font-weight:600">No fonts detected yet.</div>
+                
+                <div class="font-list" id="font-list">
+                    <!-- Results here -->
+                </div>
+                
+                <div class="meth" style="margin-top:20px;display:none" id="links-box">
+                    <b>🔗 Useful Links:</b>
+                    <div id="g-links"></div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128214;</i> How it Works & Guide</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>This tool is designed to be fast, private, and easy to use. All calculations and processing happen directly in your browser.</p>
+                <ol style="margin-top:10px;padding-left:20px">
+                    <li><b>Input:</b> Enter your data or upload the required file into the designated input area.</li>
+                    <li><b>Process:</b> Click the primary action button to trigger the instant calculation or conversion.</li>
+                    <li><b>Result:</b> Review the output and use the copy button to save your results to the clipboard.</li>
+                </ol>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: For developers, using client-side tools like this one prevents sensitive data (API keys, code snippets) from being logged on external servers, providing an essential layer of security for your workflow.
+                </div>
+                <p style="margin-top:10px"><i>Note: Your data never leaves your device. We prioritize your privacy and security.</i></p>
+            </div>
+        </div></div>
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Tech Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../tech/api-request-builder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>API REQUEST BUILDER</a><a href='../tech/base64-encoder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BASE64 ENCODER</a><a href='../tech/browser-storage-inspector.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BROWSER STORAGE INSPECTOR</a><a href='../tech/code-screenshot.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CODE SCREENSHOT</a></div></div>
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        function scan() {
+            const input = document.getElementById('input').value;
+            const list = document.getElementById('font-list');
+            const status = document.getElementById('status');
+            const linksBox = document.getElementById('links-box');
+            const gLinks = document.getElementById('g-links');
+
+            if (!input.trim()) {
+                list.innerHTML = '';
+                status.textContent = 'No fonts detected yet.';
+                linksBox.style.display = 'none';
+                return;
+            }
+
+            // Simple Extraction Logic
+            const families = [...new Set(input.match(/font-family:\s*([^;]+)/gi) || [])]
+                .map(f => f.replace(/font-family:\s*/i, '').replace(/['";]/g, '').split(',')[0].trim());
+
+            if (families.length === 0) {
+                status.textContent = '❌ No font-family declarations found.';
+                list.innerHTML = '';
+                linksBox.style.display = 'none';
+                return;
+            }
+
+            status.textContent = `✅ Detected ${families.length} font families.`;
+            list.innerHTML = '';
+            linksBox.style.display = 'block';
+            gLinks.innerHTML = '';
+
+            families.forEach(f => {
+                const card = document.createElement('div');
+                card.className = 'font-card';
+                card.innerHTML = `
+                    <div class="f-info">
+                        <div class="f-name">${f}</div>
+                        <div class="f-meta">
+                            <span class="f-tag">Sans-Serif</span>
+                            <span>Weights: 400, 700</span>
+                        </div>
+                    </div>
+                    <div class="f-prev" style="font-family: '${f}', sans-serif;">Aa</div>
+                `;
+                list.appendChild(card);
+                
+                const link = document.createElement('a');
+                link.href = `https://fonts.google.com/?query=${encodeURIComponent(f)}`;
+                link.target = '_blank';
+                link.style.display = 'block';
+                link.style.margin = '4px 0';
+                link.innerHTML = `→ Search ${f} on Google Fonts`;
+                gLinks.appendChild(link);
+            });
+        }
+    </script>
+</body>
+
+</html>

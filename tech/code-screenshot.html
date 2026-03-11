@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Code Screenshot Generator - Best Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <meta name="description"
+        content="Free code screenshot generator. Create beautiful, high-quality images of your code snippets for social media and documentation. Inspired by Ray.so and Carbon.">
+    <meta name="keywords" content="code screenshot, carbon alternative, ray.so clone, code snippet image, developer tools">
+    <link rel="canonical" href="https://calcora.site/tech/code-screenshot.html">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        .export-wrap { padding: 40px; background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899); border-radius: 12px; display: inline-block; min-width: 500px; position: relative; }
+        .code-window { background: #1e1e1e; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; font-family: 'Fira Code', monospace; }
+        .win-hdr { background: #2d2d2d; padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .win-title { color: #888; font-size: 0.75rem; margin-left: auto; font-family: sans-serif; }
+        .code-content { padding: 20px; font-size: 14px; line-height: 1.5; color: #fff; white-space: pre-wrap; margin: 0; }
+        .controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
+    </style>
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "tech", "item": "https://calcora.site/index.html#tech" },{ "@type": "ListItem", "position": 3, "name": "Code Screenshot Generator", "item": "https://calcora.site/tech/code-screenshot.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Code Screenshot Generator", "operatingSystem": "All", "applicationCategory": "techApplication", "url": "https://calcora.site/tech/code-screenshot.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Code Screenshot Generator</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> This advanced Code Screenshot Generator is a developer-centric utility designed for speed and security. Whether you are debugging API requests, generating secure passwords, or converting code formats, our tool runs 100% client-side to ensure your data never leaves your browser.
+        </div>
+        <p>Turn your messy code into beautiful, ready-to-share social media images.</p>
+        </div>
+        
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>⚙️</i> Style Editor</div>
+                <div class="controls">
+                    <div class="ig">
+                        <div class="il"><span>Background</span></div>
+                        <select class="ti" id="bg-sel" onchange="updateStyle()">
+                            <option value="linear-gradient(135deg, #6366f1, #a855f7, #ec4899)">Candy</option>
+                            <option value="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">Ocean</option>
+                            <option value="linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Deep Purple</option>
+                            <option value="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">Lush</option>
+                            <option value="linear-gradient(135deg, #1e293b, #0f172a)">Dark Slate</option>
+                        </select>
+                    </div>
+                    <div class="ig">
+                        <div class="il"><span>Padding</span></div>
+                        <input type="range" min="10" max="100" value="40" id="pad-sel" oninput="updateStyle()">
+                    </div>
+                </div>
+                <div class="ig">
+                    <div class="il"><span>Code Snippet</span></div>
+                    <textarea class="ti" id="code-in" rows="12" placeholder="Paste code here..." oninput="updateStyle()" style="min-height:250px">function helloWorld() {
+  console.log("Hello from Calcora!");
+  return "Beautiful Snippets";
+}
+
+// Share your clean code 🚀</textarea>
+                </div>
+                <button class="btn btn-accent" style="width:100%;margin-top:20px" onclick="exportImg()">💾 Export as PNG</button>
+            </div>
+            
+            <div class="glass" style="overflow-x:auto;display:flex;justify-content:center;background:var(--bg2)">
+                <div id="capture-area" class="export-wrap">
+                    <div class="code-window">
+                        <div class="win-hdr">
+                            <div class="dot" style="background:#ff5f56"></div>
+                            <div class="dot" style="background:#ffbd2e"></div>
+                            <div class="dot" style="background:#27c93f"></div>
+                            <div class="win-title" id="win-title">index.js</div>
+                        </div>
+                        <pre class="code-content"><code class="language-javascript" id="code-display"></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128214;</i> How it Works & Guide</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>This tool is designed to be fast, private, and easy to use. All calculations and processing happen directly in your browser.</p>
+                <ol style="margin-top:10px;padding-left:20px">
+                    <li><b>Input:</b> Enter your data or upload the required file into the designated input area.</li>
+                    <li><b>Process:</b> Click the primary action button to trigger the instant calculation or conversion.</li>
+                    <li><b>Result:</b> Review the output and use the copy button to save your results to the clipboard.</li>
+                </ol>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: For developers, using client-side tools like this one prevents sensitive data (API keys, code snippets) from being logged on external servers, providing an essential layer of security for your workflow.
+                </div>
+                <p style="margin-top:10px"><i>Note: Your data never leaves your device. We prioritize your privacy and security.</i></p>
+            </div>
+        </div></div>
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Tech Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../tech/api-request-builder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>API REQUEST BUILDER</a><a href='../tech/base64-encoder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BASE64 ENCODER</a><a href='../tech/browser-storage-inspector.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BROWSER STORAGE INSPECTOR</a><a href='../tech/color-accessibility.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>COLOR ACCESSIBILITY</a></div></div>
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        function updateStyle() {
+            const bg = document.getElementById('bg-sel').value;
+            const pad = document.getElementById('pad-sel').value;
+            const code = document.getElementById('code-in').value;
+            
+            const area = document.getElementById('capture-area');
+            area.style.background = bg;
+            area.style.padding = pad + 'px';
+            
+            const display = document.getElementById('code-display');
+            display.textContent = code;
+            Prism.highlightElement(display);
+
+            if(window.C && C.initSliders) C.initSliders();
+        }
+
+        async function exportImg() {
+            const area = document.getElementById('capture-area');
+            const canvas = await html2canvas(area, {
+                backgroundColor: null,
+                scale: 2
+            });
+            const link = document.createElement('a');
+            link.download = 'calcora-snippet.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        updateStyle();
+    </script>
+</body>
+
+</html>

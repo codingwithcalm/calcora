@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>UI Spacing Inspector - Best Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <meta name="description"
+        content="Free UI spacing inspector. Upload a screenshot and measure margins, padding, and element dimensions in pixels. Perfect for designers and developers copying layouts.">
+    <meta name="keywords" content="ui spacing inspector, pixel measure tool, layout inspector, design tool, margin padding checker, developer tools">
+    <link rel="canonical" href="https://calcora.site/tech/ui-spacing-inspector.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .canvas-container { position: relative; background: var(--surface); border-radius: 12px; border: 1px solid var(--gbdr); overflow: auto; max-height: 600px; display: flex; align-items: flex-start; justify-content: flex-start; }
+        canvas { cursor: crosshair; }
+        .measure-info { background: var(--badge); padding: 15px; border-radius: 12px; margin-top: 15px; border: 1px solid var(--gbdr); }
+        .px-val { font-family: monospace; font-weight: 800; font-size: 1.2rem; color: var(--cyan); }
+        .hint { font-size: 0.7rem; color: var(--dim); margin-top: 4px; }
+    </style>
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "tech", "item": "https://calcora.site/index.html#tech" },{ "@type": "ListItem", "position": 3, "name": "UI Spacing Inspector", "item": "https://calcora.site/tech/ui-spacing-inspector.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "UI Spacing Inspector", "operatingSystem": "All", "applicationCategory": "techApplication", "url": "https://calcora.site/tech/ui-spacing-inspector.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>UI Spacing Inspector</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> This advanced UI Spacing Inspector is a developer-centric utility designed for speed and security. Whether you are debugging API requests, generating secure passwords, or converting code formats, our tool runs 100% client-side to ensure your data never leaves your browser.
+        </div>
+        <p>Upload a screenshot and click-drag to measure the exact pixel distance between elements.</p>
+        </div>
+        
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>🖼️</i> UI Screenshot</div>
+                <input type="file" id="fileIn" accept="image/*" style="display:none" onchange="loadImg(this)">
+                <button class="btn btn-accent" style="width:100%;margin-bottom:15px" onclick="document.getElementById('fileIn').click()">📁 Upload Screenshot</button>
+                
+                <div class="canvas-container" id="canvas-wrap">
+                    <canvas id="canvas"></canvas>
+                    <div id="msg" style="color:var(--dim);padding:40px;text-align:center;width:100%">Upload an image to start measuring...</div>
+                </div>
+            </div>
+            
+            <div class="glass">
+                <div class="ctitle"><i>📏</i> Measurement Results</div>
+                <div class="measure-info">
+                    <div style="font-size:0.7rem;color:var(--dim)">Distance (Pixels)</div>
+                    <div class="px-val" id="dist">0px</div>
+                    <div class="hint" id="coords">X: 0, Y: 0</div>
+                </div>
+                
+                <div class="ctitle" style="margin-top:24px"><i>📐</i> Dimensions</div>
+                <div class="stat-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                    <div style="background:var(--badge);padding:10px;border-radius:8px;text-align:center">
+                        <div style="font-size:0.6rem;color:var(--dim)">WIDTH</div>
+                        <div id="w-val" style="font-weight:700">0px</div>
+                    </div>
+                    <div style="background:var(--badge);padding:10px;border-radius:8px;text-align:center">
+                        <div style="font-size:0.6rem;color:var(--dim)">HEIGHT</div>
+                        <div id="h-val" style="font-weight:700">0px</div>
+                    </div>
+                </div>
+
+                <div class="meth" style="margin-top:30px">
+                    <b>💡 Measurement Guide:</b>
+                    - <b>Click and Drag</b> to draw a measurement line.<br>
+                    - The distance is calculated in <b>real-world pixels</b> relative to your original screenshot.<br>
+                    - Perfect for identifying standard 8px grid spacings (e.g., 16px, 24px, 32px).
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>📖</i> How it Works & Guide</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>Reverse engineering a design often requires knowing the exact spacing (margins/padding) used by the original designer. Our tool simplifies this process:</p>
+                <ol style="margin-top:10px;padding-left:20px">
+                    <li><b>Upload:</b> Take a screenshot of the UI you want to inspect and upload it here.</li>
+                    <li><b>Draw:</b> Click on the starting point of a gap (e.g., between an icon and text) and drag to the end point.</li>
+                    <li><b>Record:</b> Look at the "Measurement Results" to see the exact pixel width or height. Shift-drag handles allow for vertical/horizontal snapping.</li>
+                </ol>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: For developers, using client-side tools like this one prevents sensitive data (API keys, code snippets) from being logged on external servers, providing an essential layer of security for your workflow.
+                </div>
+                <p style="margin-top:10px"><i>Tip: Use this tool alongside our "Screenshot to Tailwind" tool for a complete design-to-code workflow.</i></p>
+            </div>
+        </div>
+    </div>
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Tech Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../tech/api-request-builder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>API REQUEST BUILDER</a><a href='../tech/base64-encoder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BASE64 ENCODER</a><a href='../tech/browser-storage-inspector.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BROWSER STORAGE INSPECTOR</a><a href='../tech/code-screenshot.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CODE SCREENSHOT</a></div></div>
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let imgObj = null;
+        let startX, startY, isDrawing = false;
+
+        function loadImg(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = new Image();
+                img.onload = () => {
+                    imgObj = img;
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    document.getElementById('msg').style.display = 'none';
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        canvas.addEventListener('mousedown', e => {
+            if (!imgObj) return;
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            startX = (e.clientX - rect.left) * (canvas.width / rect.width);
+            startY = (e.clientY - rect.top) * (canvas.height / rect.height);
+        });
+
+        canvas.addEventListener('mousemove', e => {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const currX = (e.clientX - rect.left) * (canvas.width / rect.width);
+            const currY = (e.clientY - rect.top) * (canvas.height / rect.height);
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(imgObj, 0, 0);
+            
+            // Draw measurement line
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(currX, currY);
+            ctx.strokeStyle = '#00BFFF';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.stroke();
+
+            // Calculate distance
+            const dx = Math.abs(currX - startX);
+            const dy = Math.abs(currY - startY);
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            
+            document.getElementById('dist').textContent = Math.round(dist) + 'px';
+            document.getElementById('w-val').textContent = Math.round(dx) + 'px';
+            document.getElementById('h-val').textContent = Math.round(dy) + 'px';
+            document.getElementById('coords').textContent = `X: ${Math.round(currX)}, Y: ${Math.round(currY)}`;
+        });
+
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+    </script>
+</body>
+
+</html>

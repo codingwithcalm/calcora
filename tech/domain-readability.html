@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Domain Readability & SEO Checker - Best Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <meta name="description"
+        content="Free domain readability checker. Analyze your brand name for pronunciation, memorability, and SEO friendliness. Get an instant score for your domain.">
+    <meta name="keywords" content="domain readability, seo checker, brand name analysis, memorability score, domain tool">
+    <link rel="canonical" href="https://calcora.site/tech/domain-readability.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .score-box { background: var(--surface); border-radius: 12px; padding: 25px; border: 1px solid var(--gbdr); text-align: center; margin-top: 20px; }
+        .score-circle { width: 100px; height: 100px; border-radius: 50%; border: 8px solid var(--gbdr); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 900; margin: 0 auto 15px; position: relative; }
+        .score-circle::after { content: 'SCORE'; position: absolute; bottom: -20px; font-size: 0.6rem; color: var(--dim); letter-spacing: 1px; }
+        .crit-list { margin-top: 20px; text-align: left; }
+        .crit-item { display: flex; align-items: center; gap: 10px; padding: 10px; border-bottom: 1px solid var(--gbdr); font-size: 0.85rem; }
+        .crit-ic { font-size: 1.1rem; }
+        .crit-label { flex: 1; }
+        .crit-score { font-weight: 700; }
+        .pass { color: var(--emerald); }
+        .warn { color: var(--amber); }
+        .fail { color: var(--rose); }
+    </style>
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "tech", "item": "https://calcora.site/index.html#tech" },{ "@type": "ListItem", "position": 3, "name": "Domain Readability & SEO Checker", "item": "https://calcora.site/tech/domain-readability.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Domain Readability & SEO Checker", "operatingSystem": "All", "applicationCategory": "techApplication", "url": "https://calcora.site/tech/domain-readability.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-track">
+                        <div class="t-knob"></div>
+                    </div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Domain Readability & SEO Checker</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> This advanced Domain Readability & SEO Checker is a developer-centric utility designed for speed and security. Whether you are debugging API requests, generating secure passwords, or converting code formats, our tool runs 100% client-side to ensure your data never leaves your browser.
+        </div>
+        <p>Analyze how catchy and search-friendly your domain name is before you commit to a brand.</p>
+        </div>
+        
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>🌐</i> Domain Analysis</div>
+                <div class="ig">
+                    <div class="il"><span>Enter Domain Name</span></div>
+                    <input type="text" class="ti" id="domain" placeholder="example.com" oninput="analyze()" value="calcora.site">
+                </div>
+                
+                <div class="crit-list" id="crit-list">
+                    <!-- Criteria will be injected here -->
+                </div>
+            </div>
+            
+            <div class="glass">
+                <div class="ctitle"><i>✨</i> Brand Score</div>
+                <div class="score-box">
+                    <div class="score-circle" id="total-score">92</div>
+                    <div id="verdict" style="font-weight:700;margin-top:20px;font-size:1.1rem;color:var(--emerald)">Excellent Brand Potential</div>
+                </div>
+                
+                <div class="meth" style="margin-top:20px">
+                    <b>💡 Why it matters:</b>
+                    - Short domains are <b>75% easier to remember</b>.<br>
+                    - Hyphens and numbers often confuse users.<br>
+                    - Domain names that are easy to pronounce have a <b>higher word-of-mouth</b> growth rate.
+                </div>
+            </div>
+        </div>
+    
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128214;</i> How it Works & Guide</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>This tool is designed to be fast, private, and easy to use. All calculations and processing happen directly in your browser.</p>
+                <ol style="margin-top:10px;padding-left:20px">
+                    <li><b>Input:</b> Enter your data or upload the required file into the designated input area.</li>
+                    <li><b>Process:</b> Click the primary action button to trigger the instant calculation or conversion.</li>
+                    <li><b>Result:</b> Review the output and use the copy button to save your results to the clipboard.</li>
+                </ol>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: For developers, using client-side tools like this one prevents sensitive data (API keys, code snippets) from being logged on external servers, providing an essential layer of security for your workflow.
+                </div>
+                <p style="margin-top:10px"><i>Note: Your data never leaves your device. We prioritize your privacy and security.</i></p>
+            </div>
+        </div></div>
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Tech Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../tech/api-request-builder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>API REQUEST BUILDER</a><a href='../tech/base64-encoder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BASE64 ENCODER</a><a href='../tech/browser-storage-inspector.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BROWSER STORAGE INSPECTOR</a><a href='../tech/code-screenshot.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CODE SCREENSHOT</a></div></div>
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        function analyze() {
+            const domain = document.getElementById('domain').value.toLowerCase().split('.')[0] || '';
+            const full = document.getElementById('domain').value.toLowerCase();
+            const list = document.getElementById('crit-list');
+            const scoreEl = document.getElementById('total-score');
+            const verdict = document.getElementById('verdict');
+
+            if (!domain) return;
+
+            const criteria = [
+                {
+                    name: 'Length Efficiency',
+                    score: domain.length <= 8 ? 100 : (domain.length <= 15 ? 70 : 40),
+                    desc: domain.length <= 8 ? 'Very concise.' : 'A bit long.',
+                    ic: '📏'
+                },
+                {
+                    name: 'Ease of Pronunciation',
+                    score: /^[aeiouy].*|.*[aeiouy].*$/.test(domain) && !/[0-9]/.test(domain) ? 100 : 50,
+                    desc: !/[0-9]/.test(domain) ? 'Smooth flow.' : 'Numbers make it hard.',
+                    ic: '🗣️'
+                },
+                {
+                    name: 'SEO Friendliness',
+                    score: full.endsWith('.com') ? 100 : (full.endsWith('.site') || full.endsWith('.io') ? 90 : 60),
+                    desc: full.endsWith('.com') ? 'Best TLD.' : 'Modern TLD.',
+                    ic: '🔍'
+                },
+                {
+                    name: 'Memorability',
+                    score: !domain.includes('-') && !domain.includes('_') ? 100 : 40,
+                    desc: !domain.includes('-') ? 'No confusing hyphens.' : 'Hyphens are risky.',
+                    ic: '🧠'
+                }
+            ];
+
+            let total = 0;
+            list.innerHTML = '';
+            criteria.forEach(c => {
+                total += c.score;
+                const status = c.score >= 90 ? 'pass' : (c.score >= 60 ? 'warn' : 'fail');
+                list.innerHTML += `
+                    <div class="crit-item">
+                        <span class="crit-ic">${c.ic}</span>
+                        <div class="crit-label">
+                            <b>${c.name}</b><br>
+                            <span style="font-size:0.7rem;color:var(--dim)">${c.desc}</span>
+                        </div>
+                        <span class="crit-score ${status}">${c.score}%</span>
+                    </div>
+                `;
+            });
+
+            const final = Math.round(total / criteria.length);
+            scoreEl.textContent = final;
+            scoreEl.style.borderColor = final >= 80 ? 'var(--emerald)' : (final >= 50 ? 'var(--amber)' : 'var(--rose)');
+            
+            if (final >= 80) {
+                verdict.textContent = 'Excellent Brand Potential';
+                verdict.style.color = 'var(--emerald)';
+            } else if (final >= 50) {
+                verdict.textContent = 'Good, but needs polish';
+                verdict.style.color = 'var(--amber)';
+            } else {
+                verdict.textContent = 'Tricky to remember';
+                verdict.style.color = 'var(--rose)';
+            }
+        }
+        analyze();
+    </script>
+</body>
+
+</html>

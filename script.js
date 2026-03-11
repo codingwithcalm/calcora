@@ -10,8 +10,6 @@ apply(getPref());
 document.addEventListener('DOMContentLoaded',()=>{
 const tog=document.getElementById('theme-toggle');
 if(tog)tog.addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme')||'dark';apply(c==='dark'?'light':'dark');});
-const burger=document.getElementById('hamburger'),nl=document.getElementById('nav-links');
-if(burger&&nl){burger.addEventListener('click',e=>{e.stopPropagation();nl.classList.toggle('open');});document.addEventListener('click',e=>{if(!e.target.closest('.navbar'))nl.classList.remove('open');});}
 window.C=window.C||{};
 C.fillSlider=function(el){const p=((el.value-el.min)/(el.max-el.min))*100;el.style.background=`linear-gradient(90deg,var(--accent) ${p}%,var(--inputBg) ${p}%)`;};
 C.initSliders=function(){document.querySelectorAll('input[type=range]').forEach(s=>{C.fillSlider(s);s.addEventListener('input',()=>C.fillSlider(s));});};

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>Calcora — Free Online Tools Hub</title>
+  <link>https://calcora.site/</link>
+  <description>60+ free specialized online calculators for Finance, Health, Tech, and more.</description>
+  <item>
+    <title>EMI Calculator</title>
+    <link>https://calcora.site/finance/emi-calculator.html</link>
+    <description>Professional-grade EMI calculator with amortization schedule.</description>
+  </item>
+  <item>
+    <title>SIP Calculator</title>
+    <link>https://calcora.site/finance/sip-calculator.html</link>
+    <description>Wealth growth calculator with annual step-up projections.</description>
+  </item>
+  <item>
+    <title>Tech Stack Detector</title>
+    <link>https://calcora.site/tech/tech-stack-detector.html</link>
+    <description>Identify frameworks, CDNs, and APIs used by any website.</description>
+  </item>
+</channel>
+</rss>
