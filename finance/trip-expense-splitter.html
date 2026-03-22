@@ -500,6 +500,10 @@
             Splitwise Simple
         </div>
         <div class="header-actions no-print">
+            <button class="btn-outline" onclick="exportToCSV()" title="Export data to CSV for Excel/Numbers">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Export CSV
+            </button>
             <button class="btn-outline" onclick="window.print()" title="Export or print as PDF">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Share as PDF
@@ -779,6 +783,49 @@
     }
 
     // --- Export / Copy to Clipboard ---
+    function exportToCSV() {
+        if (expenses.length === 0 && members.length === 0) {
+            alert("No data to export.");
+            return;
+        }
+        
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Trip Expense Splitter Export\n\n";
+        
+        csvContent += "Group Members\n";
+        members.forEach(m => csvContent += `${m}\n`);
+        
+        csvContent += "\nExpenses\n";
+        csvContent += "Date,Description,Paid By,Amount\n";
+        expenses.forEach(exp => {
+            // Escape quotes inside description just in case
+            const safeDesc = exp.desc.replace(/"/g, '""');
+            csvContent += `${exp.date},"${safeDesc}",${exp.payer},${exp.amount}\n`;
+        });
+        
+        const { settlements, balances } = calculateSettlements();
+        
+        csvContent += "\nIndividual Balances\n";
+        csvContent += "Member,Balance\n";
+        members.forEach(m => {
+            csvContent += `${m},${balances[m].toFixed(2)}\n`;
+        });
+
+        csvContent += "\nSettlement Plan\n";
+        csvContent += "Payer,Receiver,Amount\n";
+        settlements.forEach(s => {
+            csvContent += `${s.from},${s.to},${s.amount}\n`;
+        });
+        
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "trip_expenses_export.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     function copySettlementToClipboard() {
         const { total, perPerson, balances, settlements } = calculateSettlements();
         if (members.length === 0) {
@@ -791,6 +838,16 @@
         textToCopy += `💰 Total Group Expense: ${formatCurrency(total)}\n`;
         textToCopy += `🧍 Equal Share / Person: ${formatCurrency(perPerson)}\n\n`;
         
+        textToCopy += `📝 Expenses:\n`;
+        if (expenses.length === 0) {
+            textToCopy += `- No expenses logged yet.\n`;
+        } else {
+            expenses.forEach(exp => {
+                textToCopy += `- ${exp.desc} : ${formatCurrency(exp.amount)} (Paid by ${exp.payer})\n`;
+            });
+        }
+        textToCopy += `\n`;
+
         textToCopy += `📊 Individual Balances:\n`;
         members.forEach(m => {
             const bal = balances[m] || 0;
@@ -808,7 +865,7 @@
             });
         }
         
-        textToCopy += `\nGenerated via Calcora Trip Expense Splitter`;
+        textToCopy += `\nGenerated via: Trip Expense Splitter — Calcora\nhttps://calcora.site/finance/trip-expense-splitter.html`;
 
         // Modern clipboard API
         if (navigator.clipboard && window.isSecureContext) {
