@@ -626,6 +626,7 @@
     // State management
     let members = JSON.parse(localStorage.getItem('tripMembers')) || [];
     let expenses = JSON.parse(localStorage.getItem('tripExpenses')) || [];
+    let transfers = JSON.parse(localStorage.getItem('tripTransfers')) || [];
 
     // Helper functions
     const formatCurrency = (amount) => '₹' + parseFloat(amount).toFixed(2);
@@ -634,6 +635,7 @@
     function saveData() {
         localStorage.setItem('tripMembers', JSON.stringify(members));
         localStorage.setItem('tripExpenses', JSON.stringify(expenses));
+        localStorage.setItem('tripTransfers', JSON.stringify(transfers));
     }
 
     // --- Member Management ---
@@ -733,6 +735,12 @@
             if(balances[exp.payer] !== undefined) {
                 balances[exp.payer] += exp.amount;
             }
+        });
+
+        // 2b. Apply payments that have already been made
+        transfers.forEach(t => {
+            if(balances[t.from] !== undefined) balances[t.from] += t.amount;
+            if(balances[t.to] !== undefined) balances[t.to] -= t.amount;
         });
 
         // 3. Smart Settlement Algorithm (Minimize transactions)
@@ -948,36 +956,60 @@
 
     function renderExpenses() {
         const list = document.getElementById('expensesList');
-        if (expenses.length === 0) {
+        if (expenses.length === 0 && transfers.length === 0) {
             list.innerHTML = `<div class="empty-state">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
-                No expenses added yet.
+                No expenses or payments added yet.
             </div>`;
             return;
         }
 
-        // Show newest first
-        const sortedExpenses = [...expenses].reverse();
+        const combined = [
+            ...expenses.map(e => ({...e, type: 'expense'})), 
+            ...transfers.map(t => ({...t, type: 'transfer'}))
+        ].sort((a,b) => b.id - a.id);
         
-        list.innerHTML = sortedExpenses.map(exp => `
-            <div class="list-item" style="align-items: flex-start;">
-                <div class="expense-info">
-                    <div class="avatar" style="background:#E2E8F0; color:#475569; border-radius:8px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        list.innerHTML = combined.map(item => {
+            if (item.type === 'expense') {
+                return `
+                <div class="list-item" style="align-items: flex-start;">
+                    <div class="expense-info">
+                        <div class="avatar" style="background:#E2E8F0; color:#475569; border-radius:8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                        <div>
+                            <div class="expense-desc">${item.desc}</div>
+                            <div class="expense-meta">Paid by <strong>${item.payer}</strong> • ${item.date}</div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="expense-desc">${exp.desc}</div>
-                        <div class="expense-meta">Paid by <strong>${exp.payer}</strong> • ${exp.date}</div>
+                    <div style="display:flex; align-items:center; gap: 1rem;">
+                        <span class="amount">${formatCurrency(item.amount)}</span>
+                        <button class="btn-icon no-print" onclick="removeExpense('${item.id}')" title="Delete Expense">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        </button>
                     </div>
-                </div>
-                <div style="display:flex; align-items:center; gap: 1rem;">
-                    <span class="amount">${formatCurrency(exp.amount)}</span>
-                    <button class="btn-icon no-print" onclick="removeExpense('${exp.id}')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                    </button>
-                </div>
-            </div>
-        `).join('');
+                </div>`;
+            } else {
+                return `
+                <div class="list-item" style="align-items: flex-start; background: var(--success-bg); border: 1px dashed var(--success);">
+                    <div class="expense-info">
+                        <div class="avatar" style="background:var(--success); color:white; border-radius:8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <div class="expense-desc">Settlement Payment</div>
+                            <div class="expense-meta"><strong>${item.from}</strong> paid <strong>${item.to}</strong> • ${item.date}</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap: 1rem;">
+                        <span class="amount positive">${formatCurrency(item.amount)}</span>
+                        <button class="btn-icon no-print" onclick="removeTransfer('${item.id}')" title="Undo Payment">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        </button>
+                    </div>
+                </div>`;
+            }
+        }).join('');
     }
 
     function renderSummary() {
@@ -1032,17 +1064,48 @@
                     <span>${s.to}</span>
                 </div>
 
-                <div class="settlement-amount">
-                    ${formatCurrency(s.amount)}
+                <div style="display:flex; align-items:center; gap: 0.75rem;">
+                    <div class="settlement-amount">
+                        ${formatCurrency(s.amount)}
+                    </div>
+                    <button class="btn-primary no-print" style="padding: 0.35rem 0.5rem; font-size: 0.75rem; border-radius: 6px; display:flex; gap:0.25rem; align-items: center;" onclick="addTransfer('${s.from}', '${s.to}', ${s.amount})" title="Mark as Paid">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Settle
+                    </button>
                 </div>
             </div>
         `).join('');
     }
 
+    // --- Transfers (Mark as Paid) ---
+    function addTransfer(from, to, amount) {
+        if(confirm(`Mark ${formatCurrency(amount)} as paid from ${from} to ${to}?`)) {
+            transfers.push({
+                id: Date.now().toString(),
+                from: from,
+                to: to,
+                amount: amount,
+                date: new Date().toLocaleDateString()
+            });
+            saveData();
+            updateUI();
+        }
+    }
+
+    function removeTransfer(id) {
+        if(confirm('Undo this payment?')) {
+            transfers = transfers.filter(t => t.id !== id);
+            saveData();
+            updateUI();
+        }
+    }
+
+    // --- Export / Copy to Clipboard ---
     function resetData() {
-        if(confirm("Are you sure you want to clear all members and expenses? This cannot be undone.")) {
+        if(confirm("Are you sure you want to clear all members, expenses, and payments? This cannot be undone.")) {
             members = [];
             expenses = [];
+            transfers = [];
             saveData();
             updateUI();
         }
