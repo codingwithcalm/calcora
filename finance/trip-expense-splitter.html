@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trip Expense Splitter — Smart Group Expense Calculator | Calcora</title>
     <!-- Add SEO and styling tags -->
-    <meta name="description" content="A free, modern Trip Expense Splitter to split bills among friends with an intelligent settlement algorithm. Calculates who owes whom seamlessly.">
-    <meta name="keywords" content="trip expense splitter, split expenses, group expense calculator, split bills, who owes whom, splitwise alternative, calcora">
+    <meta name="description"
+        content="A free, modern Trip Expense Splitter to split bills among friends with an intelligent settlement algorithm. Calculates who owes whom seamlessly.">
+    <meta name="keywords"
+        content="trip expense splitter, split expenses, group expense calculator, split bills, who owes whom, splitwise alternative, calcora">
     <link rel="canonical" href="https://calcora.site/finance/trip-expense-splitter.html">
-    
+
     <!-- Open Graph / Social -->
     <meta property="og:site_name" content="Calcora">
     <meta property="og:title" content="Trip Expense Splitter — Smart Group Expense Calculator">
-    <meta property="og:description" content="Split group expenses easily with a smart algorithm to minimize transactions.">
+    <meta property="og:description"
+        content="Split group expenses easily with a smart algorithm to minimize transactions.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://calcora.site/finance/trip-expense-splitter.html">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Trip Expense Splitter — Split Bills Easily">
@@ -91,7 +95,7 @@
             align-items: center;
             gap: 0.75rem;
         }
-        
+
         .logo-title svg {
             color: var(--primary);
             width: 32px;
@@ -142,7 +146,7 @@
             color: var(--danger);
             background: transparent;
         }
-        
+
         .btn-danger-outline:hover {
             background: var(--danger-bg);
         }
@@ -172,7 +176,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .card-header svg {
             width: 20px;
             height: 20px;
@@ -191,7 +195,8 @@
             color: var(--text-main);
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid var(--border);
@@ -202,7 +207,8 @@
             background: #fff;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
@@ -224,15 +230,17 @@
             overflow-y: auto;
             padding-right: 0.5rem;
         }
-        
+
         /* Custom scrollbar */
         .list-container::-webkit-scrollbar {
             width: 6px;
         }
+
         .list-container::-webkit-scrollbar-track {
             background: var(--background);
             border-radius: 4px;
         }
+
         .list-container::-webkit-scrollbar-thumb {
             background: #CBD5E1;
             border-radius: 4px;
@@ -249,7 +257,7 @@
             border: 1px solid transparent;
             transition: border-color 0.2s;
         }
-        
+
         .list-item:hover {
             border-color: var(--border);
         }
@@ -284,7 +292,7 @@
             font-weight: 600;
             color: var(--text-main);
         }
-        
+
         .expense-meta {
             font-size: 0.75rem;
             color: var(--text-muted);
@@ -296,8 +304,13 @@
             font-size: 1rem;
         }
 
-        .amount.positive { color: var(--success); }
-        .amount.negative { color: var(--danger); }
+        .amount.positive {
+            color: var(--success);
+        }
+
+        .amount.negative {
+            color: var(--danger);
+        }
 
         .btn-icon {
             background: none;
@@ -310,7 +323,11 @@
             align-items: center;
             justify-content: center;
         }
-        .btn-icon:hover { color: var(--danger); background: var(--danger-bg); }
+
+        .btn-icon:hover {
+            color: var(--danger);
+            background: var(--danger-bg);
+        }
 
         .summary-stats {
             display: grid;
@@ -366,9 +383,14 @@
             gap: 0.75rem;
             font-weight: 600;
         }
-        
-        .settlement-person.payer .avatar { background: var(--danger); }
-        .settlement-person.receiver .avatar { background: var(--success); }
+
+        .settlement-person.payer .avatar {
+            background: var(--danger);
+        }
+
+        .settlement-person.receiver .avatar {
+            background: var(--success);
+        }
 
         .settlement-action {
             display: flex;
@@ -407,7 +429,7 @@
             align-items: center;
             gap: 1rem;
         }
-        
+
         .empty-state svg {
             width: 48px;
             height: 48px;
@@ -431,7 +453,7 @@
             flex-direction: column;
             gap: 0.5rem;
         }
-        
+
         .balance-item .name {
             font-weight: 600;
             font-size: 0.875rem;
@@ -446,31 +468,62 @@
 
         /* Print Specific Styles */
         @media print {
-            body { 
-                background: white; 
-                padding: 0; 
+            body {
+                background: white;
+                padding: 0;
                 color: black;
             }
-            .container { max-width: 100%; border: none; }
-            .no-print { display: none !important; }
-            .card { 
-                border: none; 
-                box-shadow: none; 
-                margin-bottom: 2rem; 
+
+            .container {
+                max-width: 100%;
+                border: none;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .card {
+                border: none;
+                box-shadow: none;
+                margin-bottom: 2rem;
                 padding: 0;
             }
-            .card-header { border-bottom: 2px solid #EEE; padding-bottom: 0.5rem; }
-            .grid-layout { display: block; }
-            .list-container { max-height: none; overflow: visible; }
-            .stat-box { border: 1px solid #CCC; background: #FAFAFA; }
-            .settlement-card { 
-                border: 1px solid #CCC; 
-                page-break-inside: avoid; 
+
+            .card-header {
+                border-bottom: 2px solid #EEE;
+                padding-bottom: 0.5rem;
+            }
+
+            .grid-layout {
+                display: block;
+            }
+
+            .list-container {
+                max-height: none;
+                overflow: visible;
+            }
+
+            .stat-box {
+                border: 1px solid #CCC;
+                background: #FAFAFA;
+            }
+
+            .settlement-card {
+                border: 1px solid #CCC;
+                page-break-inside: avoid;
                 box-shadow: none;
             }
-            .balance-item { border: 1px solid #CCC; background: #FAFAFA; }
-            .btn-icon { display: none; }
-            
+
+            .balance-item {
+                border: 1px solid #CCC;
+                background: #FAFAFA;
+            }
+
+            .btn-icon {
+                display: none;
+            }
+
             /* Give it a report-like header */
             header::after {
                 content: "Prepared by Calcora";
@@ -482,540 +535,735 @@
         }
 
         @media (max-width: 768px) {
-            .grid-layout { grid-template-columns: 1fr; }
-            header { flex-direction: column; align-items: flex-start; }
-            .header-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
-            .settlement-card { flex-wrap: wrap; gap: 1rem; justify-content: center; }
-            .settlement-action { flex-direction: row; gap: 1rem; width: 100%; justify-content: center; margin: 0.5rem 0;}
-            .settlement-action svg { transform: rotate(90deg); }
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-actions {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .settlement-card {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .settlement-action {
+                flex-direction: row;
+                gap: 1rem;
+                width: 100%;
+                justify-content: center;
+                margin: 0.5rem 0;
+            }
+
+            .settlement-action svg {
+                transform: rotate(90deg);
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <div class="logo-title">
-            <svg xmlns="http://www.w3.org/2000/width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="12" y1="4" x2="12" y2="20"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
-            Splitwise Simple
-        </div>
-        <div class="header-actions no-print">
-            <button class="btn-outline" onclick="exportToCSV()" title="Export data to CSV for Excel/Numbers">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Export CSV
-            </button>
-            <button class="btn-outline" onclick="window.print()" title="Export or print as PDF">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Share as PDF
-            </button>
-            <button class="btn-danger-outline" onclick="resetData()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                Reset All
-            </button>
-        </div>
-    </header>
-
-    <div class="grid-layout">
-        <!-- Members Column -->
-        <main class="card">
-            <div class="card-header" style="justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    Group Members
-                </div>
-                <span id="memberCountBadge" style="background: var(--background); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); border: 1px solid var(--border);">0</span>
+    <div class="container">
+        <header>
+            <div class="logo-title">
+                <svg xmlns="http://www.w3.org/2000/width=" 24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                    <line x1="12" y1="4" x2="12" y2="20"></line>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                </svg>
+                Splitwise Simple
             </div>
-            
-            <div class="form-group no-print">
-                <form id="addMemberForm" onsubmit="addMember(event)">
-                    <div class="flex-row">
-                        <input type="text" id="memberName" placeholder="Enter member name..." autocomplete="off">
-                        <button type="submit" class="btn-primary">Add</button>
-                    </div>
-                    <div id="memberError" class="error-msg">Name cannot be empty or duplicate</div>
-                </form>
-            </div>
-
-            <div class="list-container" id="membersList">
-                <!-- Members will be injected here -->
-            </div>
-        </main>
-
-        <!-- Expenses Column -->
-        <aside class="card">
-            <div class="card-header">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                Add New Expense
-            </div>
-            
-            <div class="form-group no-print">
-                <form id="addExpenseForm" onsubmit="addExpense(event)">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div>
-                            <label>Amount (₹)</label>
-                            <input type="number" id="expenseAmount" placeholder="0.00" min="0.01" step="0.01" required>
-                        </div>
-                        <div>
-                            <label>Paid By</label>
-                            <select id="expensePayer" required>
-                                <option value="" disabled selected>Select payer...</option>
-                                <!-- Members will be added here -->
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin-top: 1rem;">
-                        <label>Description (Optional)</label>
-                        <div class="flex-row">
-                            <input type="text" id="expenseDesc" placeholder="e.g. Dinner, Taxi...">
-                            <button type="submit" class="btn-primary">Add Expense</button>
-                        </div>
-                    </div>
-                    <div id="expenseError" class="error-msg">Please fill all required fields</div>
-                </form>
-            </div>
-
-            <div class="list-container" id="expensesList" style="margin-top: 1.5rem;">
-                <!-- Expenses will be injected here -->
-            </div>
-        </aside>
-    </div>
-
-    <!-- Settlement Section -->
-    <section class="card summary-section">
-        <div class="card-header">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="12" y1="4" x2="12" y2="20"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
-            Summary & Settlements
-        </div>
-        
-        <div class="summary-stats">
-            <div class="stat-box">
-                <div class="title">Total Group Expense</div>
-                <div class="value" id="totalExpense">₹0.00</div>
-            </div>
-            <div class="stat-box">
-                <div class="title">Equal Share / Person</div>
-                <div class="value" id="perPersonShare">₹0.00</div>
-            </div>
-        </div>
-
-        <div>
-            <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">Individual Balances</h3>
-            <div class="balances-grid" id="balancesList">
-                <!-- User balances injected here -->
-            </div>
-        </div>
-
-        <div class="settlements-wrapper">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h3 style="font-size: 1.125rem; font-weight: 600;">How to settle up</h3>
-                <button class="btn-outline no-print" onclick="copySettlementToClipboard()" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;" title="Copy all details to clipboard">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    Copy to Clipboard
+            <div class="header-actions no-print">
+                <button class="btn-outline" onclick="exportToCSV()" title="Export data to CSV for Excel/Numbers">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Export CSV
+                </button>
+                <button class="btn-outline" onclick="window.print()" title="Export or print as PDF">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Share as PDF
+                </button>
+                <button class="btn-danger-outline" onclick="resetData()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    Reset All
                 </button>
             </div>
-            <div id="settlementList">
-                <!-- Settlements injected here -->
+        </header>
+
+        <div class="grid-layout">
+            <!-- Members Column -->
+            <main class="card">
+                <div class="card-header" style="justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        Group Members
+                    </div>
+                    <span id="memberCountBadge"
+                        style="background: var(--background); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); border: 1px solid var(--border);">0</span>
+                </div>
+
+                <div class="form-group no-print">
+                    <form id="addMemberForm" onsubmit="addMember(event)">
+                        <div class="flex-row">
+                            <input type="text" id="memberName" placeholder="Enter member name..." autocomplete="off">
+                            <button type="submit" class="btn-primary">Add</button>
+                        </div>
+                        <div id="memberError" class="error-msg">Name cannot be empty or duplicate</div>
+                    </form>
+                </div>
+
+                <div class="list-container" id="membersList">
+                    <!-- Members will be injected here -->
+                </div>
+            </main>
+
+            <!-- Expenses Column -->
+            <aside class="card">
+                <div class="card-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    Add New Expense
+                </div>
+
+                <div class="form-group no-print">
+                    <form id="addExpenseForm" onsubmit="addExpense(event)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label>Amount (₹)</label>
+                                <input type="number" id="expenseAmount" placeholder="0.00" min="0.01" step="0.01"
+                                    required>
+                            </div>
+                            <div>
+                                <label>Paid By</label>
+                                <select id="expensePayer" required>
+                                    <option value="" disabled selected>Select payer...</option>
+                                    <!-- Members will be added here -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label>Description (Optional)</label>
+                            <div class="flex-row">
+                                <input type="text" id="expenseDesc" placeholder="e.g. Dinner, Taxi...">
+                                <button type="submit" class="btn-primary">Add Expense</button>
+                            </div>
+                        </div>
+                        <div id="expenseError" class="error-msg">Please fill all required fields</div>
+                    </form>
+                </div>
+
+                <div class="list-container" id="expensesList" style="margin-top: 1.5rem;">
+                <!-- Expenses will be injected here -->
             </div>
+            
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+                <div class="card-header" style="padding-bottom: 0.75rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span style="color: var(--success);">Record Payment / Transfer</span>
+                </div>
+                <div class="form-group no-print">
+                    <form id="addTransferForm" onsubmit="addTransfer(event)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <select id="transferFrom" required style="font-size: 0.85rem;" title="From (Who is paying)"><option value="" disabled selected>Payer...</option></select>
+                            <select id="transferTo" required style="font-size: 0.85rem;" title="To (Who is receiving)"><option value="" disabled selected>Receiver...</option></select>
+                        </div>
+                        <div class="flex-row">
+                            <input type="number" id="transferAmount" placeholder="Amount (₹)" min="0.01" step="0.01" required>
+                            <button type="submit" class="btn-primary" style="background: var(--success); border-color: var(--success);">Send</button>
+                        </div>
+                    </form>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">
+                        Use this if someone pays an individual directly, or to transfer debts.
+                    </div>
+                </div>
+            </div>
+        </aside>
         </div>
-    </section>
 
-</div>
+        <!-- Settlement Section -->
+        <section class="card summary-section">
+            <div class="card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                    <line x1="12" y1="4" x2="12" y2="20"></line>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                </svg>
+                Summary & Settlements
+            </div>
 
-<script>
-    // State management
-    let members = JSON.parse(localStorage.getItem('tripMembers')) || [];
-    let expenses = JSON.parse(localStorage.getItem('tripExpenses')) || [];
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div class="title">Total Group Expense</div>
+                    <div class="value" id="totalExpense">₹0.00</div>
+                </div>
+                <div class="stat-box">
+                    <div class="title">Equal Share / Person</div>
+                    <div class="value" id="perPersonShare">₹0.00</div>
+                </div>
+            </div>
 
-    // Helper functions
-    const formatCurrency = (amount) => '₹' + parseFloat(amount).toFixed(2);
-    const getInitials = (name) => name.substring(0, 2).toUpperCase();
-    
-    function saveData() {
-        localStorage.setItem('tripMembers', JSON.stringify(members));
-        localStorage.setItem('tripExpenses', JSON.stringify(expenses));
-    }
+            <div>
+                <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">Individual Balances</h3>
+                <div class="balances-grid" id="balancesList">
+                    <!-- User balances injected here -->
+                </div>
+            </div>
 
-    // --- Member Management ---
-    function addMember(e) {
-        e.preventDefault();
-        const input = document.getElementById('memberName');
-        const name = input.value.trim();
-        const errorEl = document.getElementById('memberError');
-        
-        if (!name) {
-            errorEl.innerText = "Name cannot be empty.";
-            errorEl.style.display = 'block';
-            return;
-        }
-        
-        if (members.some(m => m.toLowerCase() === name.toLowerCase())) {
-            errorEl.innerText = "Member already exists.";
-            errorEl.style.display = 'block';
-            return;
-        }
+            <div class="settlements-wrapper">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 style="font-size: 1.125rem; font-weight: 600;">How to settle up</h3>
+                    <button class="btn-outline no-print" onclick="copySettlementToClipboard()"
+                        style="padding: 0.35rem 0.75rem; font-size: 0.75rem;" title="Copy all details to clipboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy to Clipboard
+                    </button>
+                </div>
+                <div id="settlementList">
+                    <!-- Settlements injected here -->
+                </div>
+            </div>
+        </section>
 
-        errorEl.style.display = 'none';
-        members.push(name);
-        input.value = '';
-        saveData();
-        updateUI();
-    }
+    </div>
 
-    function removeMember(name) {
-        if(expenses.some(e => e.payer === name)) {
-            alert("Cannot remove a member who has paid an expense. Remove the expenses first.");
-            return;
-        }
-        members = members.filter(m => m !== name);
-        saveData();
-        updateUI();
-    }
+    <script>
+        // State management
+        let rawMembers = JSON.parse(localStorage.getItem('tripMembers')) || [];
+        let members = rawMembers.map(m => typeof m === 'string' ? {name: m, weight: 1} : m);
+        let expenses = JSON.parse(localStorage.getItem('tripExpenses')) || [];
+        let transfers = JSON.parse(localStorage.getItem('tripTransfers')) || [];
 
-    // --- Expense Management ---
-    function addExpense(e) {
-        e.preventDefault();
-        const amountInput = document.getElementById('expenseAmount');
-        const payerSelect = document.getElementById('expensePayer');
-        const descInput = document.getElementById('expenseDesc');
-        const errorEl = document.getElementById('expenseError');
+        // Helper functions
+        const formatCurrency = (amount) => '₹' + parseFloat(amount).toFixed(2);
+        const getInitials = (name) => name.substring(0, 2).toUpperCase();
 
-        const amount = parseFloat(amountInput.value);
-        const payer = payerSelect.value;
-        const desc = descInput.value.trim() || 'General Expense';
-
-        if (!amount || amount <= 0 || !payer) {
-            errorEl.style.display = 'block';
-            return;
+        function saveData() {
+            localStorage.setItem('tripMembers', JSON.stringify(members));
+            localStorage.setItem('tripExpenses', JSON.stringify(expenses));
+            localStorage.setItem('tripTransfers', JSON.stringify(transfers));
         }
 
-        if (members.length === 0) {
-            alert("Please add at least one member first.");
-            return;
-        }
+        // --- Member Management ---
+        function addMember(e) {
+            e.preventDefault();
+            const input = document.getElementById('memberName');
+            const name = input.value.trim();
+            const errorEl = document.getElementById('memberError');
 
-        errorEl.style.display = 'none';
-        
-        expenses.push({
-            id: Date.now().toString(),
-            amount: amount,
-            payer: payer,
-            desc: desc,
-            date: new Date().toLocaleDateString()
-        });
-
-        amountInput.value = '';
-        descInput.value = '';
-        payerSelect.value = '';
-        
-        saveData();
-        updateUI();
-    }
-
-    function removeExpense(id) {
-        expenses = expenses.filter(e => e.id !== id);
-        saveData();
-        updateUI();
-    }
-
-    // --- Core Logic & Algorithm ---
-    function calculateSettlements() {
-        if (members.length === 0) return { total: 0, perPerson: 0, balances: {}, settlements: [] };
-
-        // 1. Calculate Totals
-        const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
-        const perPerson = total / members.length;
-
-        // 2. Calculate balances (Paid - PerPerson)
-        const balances = {};
-        members.forEach(m => balances[m] = -perPerson); // Initialize everyone with debt of per-person
-        expenses.forEach(exp => {
-            if(balances[exp.payer] !== undefined) {
-                balances[exp.payer] += exp.amount;
+            if (!name) {
+                errorEl.innerText = "Name cannot be empty.";
+                errorEl.style.display = 'block';
+                return;
             }
-        });
 
-        // 3. Smart Settlement Algorithm (Minimize transactions)
-        // Separate into debtors (balance < 0) and creditors (balance > 0)
-        let debtors = [];
-        let creditors = [];
-        
-        for (let m of members) {
-            let balance = Number(balances[m].toFixed(2));
-            if (balance < 0) debtors.push({ name: m, amount: Math.abs(balance) });
-            else if (balance > 0) creditors.push({ name: m, amount: balance });
+            if (members.some(m => m.name.toLowerCase() === name.toLowerCase())) {
+                errorEl.innerText = "Member already exists.";
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            errorEl.style.display = 'none';
+            members.push({name: name, weight: 1});
+            input.value = '';
+            saveData();
+            updateUI();
         }
 
-        // Sort both descending by amount to settle the largest chunks first
-        debtors.sort((a, b) => b.amount - a.amount);
-        creditors.sort((a, b) => b.amount - a.amount);
+        function removeMember(name) {
+            if (expenses.some(e => e.payer === name)) {
+                alert("Cannot remove a member who has paid an expense. Remove the expenses first.");
+                return;
+            }
+            if (transfers.some(t => t.from === name || t.to === name)) {
+                alert("Cannot remove a member involved in a transfer. Remove the transfers first.");
+                return;
+            }
+            members = members.filter(m => m.name !== name);
+            saveData();
+            updateUI();
+        }
 
-        const settlements = [];
-        let d = 0, c = 0;
+        // --- Expense Management ---
+        function addExpense(e) {
+            e.preventDefault();
+            const amountInput = document.getElementById('expenseAmount');
+            const payerSelect = document.getElementById('expensePayer');
+            const descInput = document.getElementById('expenseDesc');
+            const errorEl = document.getElementById('expenseError');
 
-        while (d < debtors.length && c < creditors.length) {
-            let debtor = debtors[d];
-            let creditor = creditors[c];
-            
-            // Limit precision issues
-            if (debtor.amount < 0.01) { d++; continue; }
-            if (creditor.amount < 0.01) { c++; continue; }
+            const amount = parseFloat(amountInput.value);
+            const payer = payerSelect.value;
+            const desc = descInput.value.trim() || 'General Expense';
 
-            // Find minimum of what debtor owes and creditor needs
-            let settledAmount = Math.min(debtor.amount, creditor.amount);
-            
-            settlements.push({
-                from: debtor.name,
-                to: creditor.name,
-                amount: settledAmount
+            if (!amount || amount <= 0 || !payer) {
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (members.length === 0) {
+                alert("Please add at least one member first.");
+                return;
+            }
+
+            errorEl.style.display = 'none';
+
+            expenses.push({
+                id: Date.now().toString(),
+                amount: amount,
+                payer: payer,
+                desc: desc,
+                date: new Date().toLocaleDateString()
             });
 
-            // Adjust remaining amounts
-            debtor.amount -= settledAmount;
-            creditor.amount -= settledAmount;
+            amountInput.value = '';
+            descInput.value = '';
+            payerSelect.value = '';
 
-            // Move to next if fulfilled
-            if (debtor.amount < 0.01) d++;
-            if (creditor.amount < 0.01) c++;
+            saveData();
+            updateUI();
         }
 
-        return { total, perPerson, balances, settlements };
-    }
-
-    // --- Export / Copy to Clipboard ---
-    function exportToCSV() {
-        if (expenses.length === 0 && members.length === 0) {
-            alert("No data to export.");
-            return;
-        }
-        
-        let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "Trip Expense Splitter Export\n\n";
-        
-        csvContent += "Group Members\n";
-        members.forEach(m => csvContent += `${m}\n`);
-        
-        csvContent += "\nExpenses\n";
-        csvContent += "Date,Description,Paid By,Amount\n";
-        expenses.forEach(exp => {
-            // Escape quotes inside description just in case
-            const safeDesc = exp.desc.replace(/"/g, '""');
-            csvContent += `${exp.date},"${safeDesc}",${exp.payer},${exp.amount}\n`;
-        });
-        
-        const { settlements, balances } = calculateSettlements();
-        
-        csvContent += "\nIndividual Balances\n";
-        csvContent += "Member,Balance\n";
-        members.forEach(m => {
-            csvContent += `${m},${balances[m].toFixed(2)}\n`;
-        });
-
-        csvContent += "\nSettlement Plan\n";
-        csvContent += "Payer,Receiver,Amount\n";
-        settlements.forEach(s => {
-            csvContent += `${s.from},${s.to},${s.amount}\n`;
-        });
-        
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "trip_expenses_export.csv");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    function copySettlementToClipboard() {
-        const { total, perPerson, balances, settlements } = calculateSettlements();
-        if (members.length === 0) {
-            alert("No data to copy.");
-            return;
+        function removeExpense(id) {
+            expenses = expenses.filter(e => e.id !== id);
+            saveData();
+            updateUI();
         }
 
-        let textToCopy = `🛫 Trip Expense Summary:\n\n`;
-        textToCopy += `👥 Total Members: ${members.length}\n`;
-        textToCopy += `💰 Total Group Expense: ${formatCurrency(total)}\n`;
-        textToCopy += `🧍 Equal Share / Person: ${formatCurrency(perPerson)}\n\n`;
-        
-        textToCopy += `📝 Expenses:\n`;
-        if (expenses.length === 0) {
-            textToCopy += `- No expenses logged yet.\n`;
-        } else {
+        // --- Transfer / Direct Payment Management ---
+        function addTransfer(e) {
+            e.preventDefault();
+            const from = document.getElementById('transferFrom').value;
+            const to = document.getElementById('transferTo').value;
+            const amountEl = document.getElementById('transferAmount');
+            const amount = parseFloat(amountEl.value);
+
+            if(!from || !to || from === to || !amount || amount <= 0) {
+                alert("Please select two different members and enter a valid amount.");
+                return;
+            }
+
+            transfers.push({
+                id: Date.now().toString(),
+                from: from,
+                to: to,
+                amount: amount,
+                date: new Date().toLocaleDateString()
+            });
+
+            amountEl.value = '';
+            saveData();
+            updateUI();
+        }
+
+        function removeTransfer(id) {
+            transfers = transfers.filter(t => t.id !== id);
+            saveData();
+            updateUI();
+        }
+
+        // --- Core Logic & Algorithm ---
+        function calculateSettlements() {
+            if (members.length === 0) return { total: 0, perPerson: 0, balances: {}, settlements: [] };
+
+            // 1. Calculate Totals
+            const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+            const totalWeight = members.reduce((sum, m) => sum + m.weight, 0);
+            const perUnitShare = total / totalWeight;
+
+            // 2. Calculate balances (Paid - their weighted share)
+            const balances = {};
+            members.forEach(m => {
+                balances[m.name] = -(perUnitShare * m.weight); // Initialize everyone with debt of per-unit-share * their weight
+            });
+
             expenses.forEach(exp => {
-                textToCopy += `- ${exp.desc} : ${formatCurrency(exp.amount)} (Paid by ${exp.payer})\n`;
+                if(balances[exp.payer] !== undefined) {
+                    balances[exp.payer] += exp.amount;
+                }
             });
-        }
-        textToCopy += `\n`;
 
-        textToCopy += `📊 Individual Balances:\n`;
-        members.forEach(m => {
-            const bal = balances[m] || 0;
-            if (bal > 0.01) textToCopy += `- ${m} receives ${formatCurrency(bal)}\n`;
-            else if (bal < -0.01) textToCopy += `- ${m} owes ${formatCurrency(Math.abs(bal))}\n`;
-            else textToCopy += `- ${m} is settled up\n`;
-        });
-
-        textToCopy += `\n💸 How to Settle Up:\n`;
-        if (settlements.length === 0) {
-            textToCopy += `Everyone is settled up! Zero balances.\n`;
-        } else {
-            settlements.forEach(s => {
-                textToCopy += `➡ ${s.from} pays ${s.to} ${formatCurrency(s.amount)}\n`;
+            // 2b. Apply direct transfers/payments
+            transfers.forEach(t => {
+                if(balances[t.from] !== undefined) balances[t.from] += t.amount;
+                if(balances[t.to] !== undefined) balances[t.to] -= t.amount;
             });
-        }
-        
-        textToCopy += `\nGenerated via: Trip Expense Splitter — Calcora\nhttps://calcora.site/finance/trip-expense-splitter.html`;
 
-        // Modern clipboard API
-        if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const btn = document.querySelector('.settlements-wrapper button');
-                const oldHTML = btn.innerHTML;
-                btn.innerHTML = '✅ Copied!';
-                setTimeout(() => btn.innerHTML = oldHTML, 2000);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                alert("Failed to copy to clipboard.");
-            });
-        } else {
-            // Fallback for non-https / older browsers
-            let textArea = document.createElement("textarea");
-            textArea.value = textToCopy;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                const btn = document.querySelector('.settlements-wrapper button');
-                const oldHTML = btn.innerHTML;
-                btn.innerHTML = '✅ Copied!';
-                setTimeout(() => btn.innerHTML = oldHTML, 2000);
-            } catch (err) {
-                console.error('Fallback copy failed', err);
-                alert("Failed to copy to clipboard.");
+            // 3. Smart Settlement Algorithm (Minimize transactions)
+            // Separate into debtors (balance < 0) and creditors (balance > 0)
+            let debtors = [];
+            let creditors = [];
+
+            for (let m of members) {
+                let balance = Number(balances[m.name].toFixed(2));
+                if (balance < 0) debtors.push({ name: m.name, amount: Math.abs(balance) });
+                else if (balance > 0) creditors.push({ name: m.name, amount: balance });
             }
-            textArea.remove();
+
+            // Sort both descending by amount to settle the largest chunks first
+            debtors.sort((a, b) => b.amount - a.amount);
+            creditors.sort((a, b) => b.amount - a.amount);
+
+            const settlements = [];
+            let d = 0, c = 0;
+
+            while (d < debtors.length && c < creditors.length) {
+                let debtor = debtors[d];
+                let creditor = creditors[c];
+
+                // Limit precision issues
+                if (debtor.amount < 0.01) { d++; continue; }
+                if (creditor.amount < 0.01) { c++; continue; }
+
+                // Find minimum of what debtor owes and creditor needs
+                let settledAmount = Math.min(debtor.amount, creditor.amount);
+
+                settlements.push({
+                    from: debtor.name,
+                    to: creditor.name,
+                    amount: settledAmount
+                });
+
+                // Adjust remaining amounts
+                debtor.amount -= settledAmount;
+                creditor.amount -= settledAmount;
+
+                // Move to next if fulfilled
+                if (debtor.amount < 0.01) d++;
+                if (creditor.amount < 0.01) c++;
+            }
+
+            return { total, perPerson: perUnitShare, balances, settlements };
         }
-    }
 
-    // --- UI Rendering ---
-    function updateUI() {
-        const bdg = document.getElementById('memberCountBadge');
-        if (bdg) bdg.innerText = members.length;
+        // --- Export / Copy to Clipboard ---
+        function exportToCSV() {
+            if (expenses.length === 0 && members.length === 0 && transfers.length === 0) {
+                alert("No data to export.");
+                return;
+            }
 
-        renderMembers();
-        renderExpenseFormSelect();
-        renderExpenses();
-        renderSummary();
-    }
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Trip Expense Splitter Export\n\n";
 
-    function renderMembers() {
-        const list = document.getElementById('membersList');
-        if (members.length === 0) {
-            list.innerHTML = `<div class="empty-state">No members added yet. Add someone to start splitting!</div>`;
-            return;
+            csvContent += "Group Members\n";
+            members.forEach(m => csvContent += `${m.name}\n`);
+
+            csvContent += "\nExpenses\n";
+            csvContent += "Date,Description,Paid By,Amount\n";
+            expenses.forEach(exp => {
+                // Escape quotes inside description just in case
+                const safeDesc = exp.desc.replace(/"/g, '""');
+                csvContent += `${exp.date},"${safeDesc}",${exp.payer},${exp.amount}\n`;
+            });
+
+            csvContent += "\nDirect Transfers\n";
+            csvContent += "Date,From,To,Amount\n";
+            transfers.forEach(t => {
+                csvContent += `${t.date},${t.from},${t.to},${t.amount}\n`;
+            });
+
+            const { settlements, balances } = calculateSettlements();
+
+            csvContent += "\nIndividual Balances\n";
+            csvContent += "Member,Balance\n";
+            members.forEach(m => {
+                csvContent += `${m.name},${balances[m.name].toFixed(2)}\n`;
+            });
+
+            csvContent += "\nSettlement Plan\n";
+            csvContent += "Payer,Receiver,Amount\n";
+            settlements.forEach(s => {
+                csvContent += `${s.from},${s.to},${s.amount}\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "trip_expenses_export.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        list.innerHTML = members.map(name => `
+        function copySettlementToClipboard() {
+            const { total, perPerson, balances, settlements } = calculateSettlements();
+            if (members.length === 0) {
+                alert("No data to copy.");
+                return;
+            }
+
+            let textToCopy = `🛫 Trip Expense Summary:\n\n`;
+            textToCopy += `👥 Total Members: ${members.length}\n`;
+            textToCopy += `💰 Total Group Expense: ${formatCurrency(total)}\n`;
+            textToCopy += `🧍 Equal Share / Person: ${formatCurrency(perPerson)}\n\n`;
+
+            textToCopy += `📝 Expenses:\n`;
+            if (expenses.length === 0) {
+                textToCopy += `- No expenses logged yet.\n`;
+            } else {
+                expenses.forEach(exp => {
+                    textToCopy += `- ${exp.desc} : ${formatCurrency(exp.amount)} (Paid by ${exp.payer})\n`;
+                });
+            }
+            textToCopy += `\n`;
+
+            textToCopy += `💸 Direct Transfers:\n`;
+            if (transfers.length === 0) {
+                textToCopy += `- No direct transfers logged yet.\n`;
+            } else {
+                transfers.forEach(t => {
+                    textToCopy += `- ${t.from} paid ${t.to} : ${formatCurrency(t.amount)}\n`;
+                });
+            }
+            textToCopy += `\n`;
+
+            textToCopy += `📊 Individual Balances:\n`;
+            members.forEach(m => {
+                const bal = balances[m.name] || 0;
+                if (bal > 0.01) textToCopy += `- ${m.name} receives ${formatCurrency(bal)}\n`;
+                else if (bal < -0.01) textToCopy += `- ${m.name} owes ${formatCurrency(Math.abs(bal))}\n`;
+                else textToCopy += `- ${m.name} is settled up\n`;
+            });
+
+            textToCopy += `\n💸 How to Settle Up:\n`;
+            if (settlements.length === 0) {
+                textToCopy += `Everyone is settled up! Zero balances.\n`;
+            } else {
+                settlements.forEach(s => {
+                    textToCopy += `➡ ${s.from} pays ${s.to} ${formatCurrency(s.amount)}\n`;
+                });
+            }
+
+            textToCopy += `\nGenerated via: Trip Expense Splitter — Calcora\nhttps://calcora.site/finance/trip-expense-splitter.html`;
+
+            // Modern clipboard API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const btn = document.querySelector('.settlements-wrapper button');
+                    const oldHTML = btn.innerHTML;
+                    btn.innerHTML = '✅ Copied!';
+                    setTimeout(() => btn.innerHTML = oldHTML, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert("Failed to copy to clipboard.");
+                });
+            } else {
+                // Fallback for non-https / older browsers
+                let textArea = document.createElement("textarea");
+                textArea.value = textToCopy;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                textArea.style.top = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    const btn = document.querySelector('.settlements-wrapper button');
+                    const oldHTML = btn.innerHTML;
+                    btn.innerHTML = '✅ Copied!';
+                    setTimeout(() => btn.innerHTML = oldHTML, 2000);
+                } catch (err) {
+                    console.error('Fallback copy failed', err);
+                    alert("Failed to copy to clipboard.");
+                }
+                textArea.remove();
+            }
+        }
+
+        // --- UI Rendering ---
+        function updateUI() {
+            const bdg = document.getElementById('memberCountBadge');
+            if (bdg) bdg.innerText = members.length;
+
+            renderMembers();
+            renderExpenseFormSelect();
+            renderExpenses();
+            renderSummary();
+        }
+
+        function renderMembers() {
+            const list = document.getElementById('membersList');
+            if (members.length === 0) {
+                list.innerHTML = `<div class="empty-state">No members added yet. Add someone to start splitting!</div>`;
+                return;
+            }
+
+            list.innerHTML = members.map(m => `
             <div class="list-item">
                 <div class="member-info">
-                    <div class="avatar">${getInitials(name)}</div>
-                    <span style="font-weight: 500">${name}</span>
+                    <div class="avatar">${getInitials(m.name)}</div>
+                    <span style="font-weight: 500">${m.name}</span>
                 </div>
-                <button class="btn-icon no-print" onclick="removeMember('${name}')" title="Remove member">
+                <button class="btn-icon no-print" onclick="removeMember('${m.name}')" title="Remove member">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
                 </button>
             </div>
         `).join('');
-    }
+        }
 
-    function renderExpenseFormSelect() {
-        const select = document.getElementById('expensePayer');
-        const currentValue = select.value;
-        
-        select.innerHTML = '<option value="" disabled selected>Select payer...</option>' + 
-            members.map(m => `<option value="${m}">${m}</option>`).join('');
+        function renderExpenseFormSelect() {
+            const select = document.getElementById('expensePayer');
+            const tFrom = document.getElementById('transferFrom');
+            const tTo = document.getElementById('transferTo');
             
-        // Restore value if still present
-        if (members.includes(currentValue)) {
-            select.value = currentValue;
-        }
-    }
+            const currentValue = select ? select.value : '';
+            const currentFrom = tFrom ? tFrom.value : '';
+            const currentTo = tTo ? tTo.value : '';
+            
+            const optionsHtml = members.map(m => `<option value="${m.name}">${m.name}</option>`).join('');
 
-    function renderExpenses() {
-        const list = document.getElementById('expensesList');
-        if (expenses.length === 0) {
-            list.innerHTML = `<div class="empty-state">
+            if (select) {
+                select.innerHTML = '<option value="" disabled selected>Select payer...</option>' + optionsHtml;
+                if (members.some(m => m.name === currentValue)) select.value = currentValue;
+            }
+            
+            if (tFrom) {
+                tFrom.innerHTML = '<option value="" disabled selected>Payer...</option>' + optionsHtml;
+                if (members.some(m => m.name === currentFrom)) tFrom.value = currentFrom;
+            }
+
+            if (tTo) {
+                tTo.innerHTML = '<option value="" disabled selected>Receiver...</option>' + optionsHtml;
+                if (members.some(m => m.name === currentTo)) tTo.value = currentTo;
+            }
+        }
+
+        function renderExpenses() {
+            const list = document.getElementById('expensesList');
+            if (expenses.length === 0 && transfers.length === 0) {
+                list.innerHTML = `<div class="empty-state">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
-                No expenses added yet.
+                No expenses or transfers added yet.
             </div>`;
-            return;
-        }
+                return;
+            }
 
-        // Show newest first
-        const sortedExpenses = [...expenses].reverse();
-        
-        list.innerHTML = sortedExpenses.map(exp => `
-            <div class="list-item" style="align-items: flex-start;">
-                <div class="expense-info">
-                    <div class="avatar" style="background:#E2E8F0; color:#475569; border-radius:8px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                    </div>
-                    <div>
-                        <div class="expense-desc">${exp.desc}</div>
-                        <div class="expense-meta">Paid by <strong>${exp.payer}</strong> • ${exp.date}</div>
-                    </div>
-                </div>
-                <div style="display:flex; align-items:center; gap: 1rem;">
-                    <span class="amount">${formatCurrency(exp.amount)}</span>
-                    <button class="btn-icon no-print" onclick="removeExpense('${exp.id}')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                    </button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function renderSummary() {
-        const { total, perPerson, balances, settlements } = calculateSettlements();
-        
-        document.getElementById('totalExpense').innerText = formatCurrency(total);
-        document.getElementById('perPersonShare').innerText = formatCurrency(perPerson);
-
-        // Balances List
-        const balanceListEl = document.getElementById('balancesList');
-        if (members.length === 0) {
-            balanceListEl.innerHTML = `<div class="empty-state" style="padding:1rem;">Add members to see individual balances.</div>`;
-        } else {
-            balanceListEl.innerHTML = members.map(m => {
-                const bal = balances[m] || 0;
-                let colorClass = bal > 0.01 ? 'positive' : (bal < -0.01 ? 'negative' : '');
-                let balText = bal > 0.01 ? `Gets ${formatCurrency(bal)}` : 
-                             (bal < -0.01 ? `Owes ${formatCurrency(Math.abs(bal))}` : 'Settled up');
-                             
-                return `
-                <div class="balance-item">
-                    <div class="name">${m}</div>
-                    <div class="amount ${colorClass}">${balText}</div>
-                </div>`;
+            const combined = [
+                ...expenses.map(e => ({...e, type: 'expense'})), 
+                ...transfers.map(t => ({...t, type: 'transfer'}))
+            ].sort((a,b) => b.id - a.id);
+            
+            list.innerHTML = combined.map(item => {
+                if (item.type === 'expense') {
+                    return `
+                    <div class="list-item" style="align-items: flex-start;">
+                        <div class="expense-info">
+                            <div class="avatar" style="background:#E2E8F0; color:#475569; border-radius:8px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                            <div>
+                                <div class="expense-desc">${item.desc}</div>
+                                <div class="expense-meta">Paid by <strong>${item.payer}</strong> • ${item.date}</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap: 1rem;">
+                            <span class="amount">${formatCurrency(item.amount)}</span>
+                            <button class="btn-icon no-print" onclick="removeExpense('${item.id}')" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                            </button>
+                        </div>
+                    </div>`;
+                } else {
+                    return `
+                    <div class="list-item" style="align-items: flex-start; background: #f0fdf4; border: 1px dashed var(--success);">
+                        <div class="expense-info">
+                            <div class="avatar" style="background:var(--success); color:white; border-radius:8px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <div>
+                                <div class="expense-desc">Direct Transfer</div>
+                                <div class="expense-meta"><strong>${item.from}</strong> paid <strong>${item.to}</strong> • ${item.date}</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap: 1rem;">
+                            <span class="amount" style="color:var(--success)">${formatCurrency(item.amount)}</span>
+                            <button class="btn-icon no-print" onclick="removeTransfer('${item.id}')" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                            </button>
+                        </div>
+                    </div>`;
+                }
             }).join('');
         }
 
-        // Settlements List
-        const settleListEl = document.getElementById('settlementList');
-        if (settlements.length === 0) {
-            settleListEl.innerHTML = `<div class="empty-state">
+        function renderSummary() {
+            const { total, perPerson, balances, settlements } = calculateSettlements();
+
+            document.getElementById('totalExpense').innerText = formatCurrency(total);
+            document.getElementById('perPersonShare').innerText = formatCurrency(perPerson);
+
+            // Balances List
+            const balanceListEl = document.getElementById('balancesList');
+            if (members.length === 0) {
+                balanceListEl.innerHTML = `<div class="empty-state" style="padding:1rem;">Add members to see individual balances.</div>`;
+            } else {
+                balanceListEl.innerHTML = members.map(m => {
+                    const bal = balances[m.name] || 0;
+                    let colorClass = bal > 0.01 ? 'positive' : (bal < -0.01 ? 'negative' : '');
+                    let balText = bal > 0.01 ? `Gets ${formatCurrency(bal)}` :
+                        (bal < -0.01 ? `Owes ${formatCurrency(Math.abs(bal))}` : 'Settled up');
+
+                    return `
+                <div class="balance-item">
+                    <div class="name">${m.name}</div>
+                    <div class="amount ${colorClass}">${balText}</div>
+                </div>`;
+                }).join('');
+            }
+
+            // Settlements List
+            const settleListEl = document.getElementById('settlementList');
+            if (settlements.length === 0) {
+                settleListEl.innerHTML = `<div class="empty-state">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 Everyone is settled up! Zero balances.
             </div>`;
-            return;
-        }
+                return;
+            }
 
-        settleListEl.innerHTML = settlements.map(s => `
+            settleListEl.innerHTML = settlements.map(s => `
             <div class="settlement-card">
                 <div class="settlement-person payer">
                     <div class="avatar">${getInitials(s.from)}</div>
@@ -1037,20 +1285,22 @@
                 </div>
             </div>
         `).join('');
-    }
-
-    function resetData() {
-        if(confirm("Are you sure you want to clear all members and expenses? This cannot be undone.")) {
-            members = [];
-            expenses = [];
-            saveData();
-            updateUI();
         }
-    }
 
-    // Initial load
-    updateUI();
-</script>
+        function resetData() {
+            if (confirm("Are you sure you want to clear all members, expenses, and transfers? This cannot be undone.")) {
+                members = [];
+                expenses = [];
+                transfers = [];
+                saveData();
+                updateUI();
+            }
+        }
+
+        // Initial load
+        updateUI();
+    </script>
 
 </body>
+
 </html>
