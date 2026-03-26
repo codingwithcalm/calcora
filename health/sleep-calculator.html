@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free Sleep Calculator — Optimal Bedtime & Wake Up Time | Calcora</title>
+    <meta name="description" content="Calculate the best time to sleep and wake up based on 90-minute sleep cycles. Get optimal bedtimes for better rest and energy. Free, instant results.">
+    <meta name="keywords" content="sleep calculator, bedtime calculator, sleep cycle calculator, best time to wake up, how much sleep do i need, sleep cycles">
+    <link rel="canonical" href="https://calcora.site/health/sleep-calculator.html">
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Health","item":"https://calcora.site/index.html#health"},{"@type":"ListItem","position":3,"name":"Sleep Calculator","item":"https://calcora.site/health/sleep-calculator.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sleep Calculator","operatingSystem":"All","applicationCategory":"HealthApplication","url":"https://calcora.site/health/sleep-calculator.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"1340"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do I feel groggy even after 8 hours of sleep?","acceptedAnswer":{"@type":"Answer","text":"You likely woke up in the middle of a deep sleep cycle. Use this calculator to time your wake-up at the end of a complete 90-minute cycle for maximum alertness."}},{"@type":"Question","name":"How long does it take to fall asleep?","acceptedAnswer":{"@type":"Answer","text":"The average person takes 10-20 minutes to fall asleep (called sleep latency). This calculator adds 15 minutes to account for this."}},{"@type":"Question","name":"Is 6 hours of sleep enough?","acceptedAnswer":{"@type":"Answer","text":"For most adults, 6 hours is insufficient. The National Sleep Foundation recommends 7-9 hours. However, 6 hours (4 full cycles) is better than 7 hours where you wake mid-cycle."}},{"@type":"Question","name":"What is the best time to go to sleep?","acceptedAnswer":{"@type":"Answer","text":"For a 7 AM wake-up, ideal bedtimes are 9:30 PM (6 cycles), 11:00 PM (5 cycles), or 12:30 AM (4 cycles). Use this calculator with your wake-up time for personalized recommendations."}},{"@type":"Question","name":"Are naps good for you?","acceptedAnswer":{"@type":"Answer","text":"Short power naps (10-20 minutes) boost alertness without grogginess. Avoid naps longer than 30 minutes unless you can complete a full 90-minute cycle. Don't nap after 3 PM."}},{"@type":"Question","name":"How can I fall asleep faster?","acceptedAnswer":{"@type":"Answer","text":"Keep a consistent schedule, avoid screens 1 hour before bed, keep your room cool (65-68°F), limit caffeine after 2 PM, and try relaxation techniques like deep breathing or progressive muscle relaxation."}}]}</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><div class="logo-m">C</div></a><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in">
+        <a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr"><div class="mod-icon">😴</div><h1>Sleep Calculator</h1><p class="mod-desc">Find the best time to go to bed or wake up based on 90-minute sleep cycles. Wake up feeling refreshed, not groggy.</p></div>
+
+        <div class="glass">
+            <div style="display:flex;gap:8px;margin-bottom:16px">
+                <button id="btn-wake" onclick="setMode('wake')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--accent);background:var(--accent);color:#fff;font-weight:700;cursor:pointer;font-family:inherit;font-size:0.9rem">I need to wake up at...</button>
+                <button id="btn-sleep" onclick="setMode('sleep')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--border);background:transparent;color:var(--text);font-weight:700;cursor:pointer;font-family:inherit;font-size:0.9rem">I'm going to sleep at...</button>
+            </div>
+            <div class="inp-grp">
+                <label id="time-label">I need to wake up at</label>
+                <input type="time" id="target-time" value="07:00" style="width:100%;padding:14px;border-radius:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:1.2rem;font-family:inherit;text-align:center">
+            </div>
+            <button onclick="calculate()" style="width:100%;margin-top:14px;padding:16px;background:linear-gradient(135deg,#818cf8,#a78bfa);color:#fff;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:inherit">🌙 Calculate Sleep Times</button>
+        </div>
+
+        <div id="results" class="glass" style="margin-top:18px;display:none">
+            <div class="ctitle" id="res-title">Recommended Bedtimes</div>
+            <div id="cycles" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:12px"></div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128200;</i> Sleep Cycles Explained</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <p>Each sleep cycle lasts approximately <strong>90 minutes</strong> and consists of 4 stages:</p>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Stage</th><th>Duration</th><th>Type</th><th>What Happens</th></tr></thead>
+                        <tbody>
+                            <tr><td>Stage 1</td><td>5-10 min</td><td>Light NREM</td><td>Transition from wakefulness, easy to wake</td></tr>
+                            <tr><td>Stage 2</td><td>20 min</td><td>Light NREM</td><td>Body temp drops, heart rate slows</td></tr>
+                            <tr><td>Stage 3</td><td>20-40 min</td><td>Deep NREM</td><td>Physical repair, immune boost, growth hormone</td></tr>
+                            <tr><td style="color:var(--accent);font-weight:700">REM</td><td>10-60 min</td><td>REM</td><td>Dreams, memory consolidation, learning</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 style="margin-top:20px;font-size:1.05rem;color:var(--text)">Recommended Sleep by Age</h3>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Age Group</th><th>Recommended Hours</th><th>Cycles</th></tr></thead>
+                        <tbody>
+                            <tr><td>Teens (14-17)</td><td>8-10 hours</td><td>5-7 cycles</td></tr>
+                            <tr><td style="color:var(--emerald);font-weight:700">Adults (18-64)</td><td style="color:var(--emerald);font-weight:700">7-9 hours</td><td style="color:var(--emerald);font-weight:700">5-6 cycles</td></tr>
+                            <tr><td>Seniors (65+)</td><td>7-8 hours</td><td>5 cycles</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 style="margin-top:24px;font-size:1.05rem;color:var(--text)">Nap Duration Guide</h3>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Nap Type</th><th>Duration</th><th>Benefit</th><th>Best For</th></tr></thead>
+                        <tbody>
+                            <tr><td style="font-weight:700;color:var(--accent)">Power Nap</td><td>10–20 min</td><td style="color:var(--emerald)">Alertness boost, no grogginess</td><td>Midday energy dip</td></tr>
+                            <tr><td style="font-weight:700">NASA Nap</td><td>26 min</td><td style="color:var(--emerald)">34% better performance (NASA study)</td><td>Pilots, shift workers</td></tr>
+                            <tr><td style="font-weight:700;color:var(--amber)">Slow-Wave Nap</td><td>30–60 min</td><td style="color:var(--amber)">Memory consolidation, but sleep inertia</td><td>Before exams, creative work</td></tr>
+                            <tr><td style="font-weight:700;color:var(--emerald)">Full Cycle Nap</td><td>90 min</td><td style="color:var(--emerald)">Complete restoration, no grogginess</td><td>Sleep-deprived recovery</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 style="margin-top:24px;font-size:1.05rem;color:var(--text)">Sleep Hygiene Checklist</h3>
+                <div style="margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px">
+                    <div style="padding:10px;background:var(--badge);border-radius:8px;font-size:0.82rem">✅ Keep a consistent sleep/wake schedule</div>
+                    <div style="padding:10px;background:var(--badge);border-radius:8px;font-size:0.82rem">✅ Room temperature: 60–67°F (15–19°C)</div>
+                    <div style="padding:10px;background:var(--badge);border-radius:8px;font-size:0.82rem">✅ No screens 1 hour before bed</div>
+                    <div style="padding:10px;background:var(--badge);border-radius:8px;font-size:0.82rem">✅ No caffeine after 2 PM</div>
+                    <div style="padding:10px;background:var(--badge);border-radius:8px;font-size:0.82rem">✅ Dark room (use blackout curtains)</div>
+                    <div style="padding:10px;background:var(--badge);border-radius:8px;font-size:0.82rem">✅ Avoid heavy meals 3 hrs before bed</div>
+                </div>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid #818cf8;font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: Waking up between sleep cycles (rather than in the middle of one) is the key to feeling refreshed. That's why 6 hours of sleep can sometimes feel better than 7 — you woke at the end of a full cycle.
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Why do I feel groggy even after 8 hours of sleep?</summary><p style="margin-top:8px">You likely woke up in the middle of a deep sleep cycle (Stage 3 NREM). Use this calculator to time your wake-up at the end of a complete 90-minute cycle. Waking between cycles — even with slightly less total sleep — results in much better alertness.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">How long does it take to fall asleep?</summary><p style="margin-top:8px">The average person takes 10–20 minutes to fall asleep (called sleep latency). This calculator adds 15 minutes to account for this. If you consistently fall asleep in under 5 minutes, it may indicate sleep deprivation.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Is 6 hours of sleep enough?</summary><p style="margin-top:8px">For most adults, 6 hours is insufficient. The National Sleep Foundation recommends 7–9 hours. However, 6 hours (4 full cycles) is better than 7 hours where you wake mid-cycle. Long-term sleep deprivation increases risks of obesity, diabetes, and heart disease.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">What is the best time to go to sleep?</summary><p style="margin-top:8px">For a 7:00 AM wake-up, ideal bedtimes are 9:30 PM (6 cycles, 9 hours), 11:00 PM (5 cycles, 7.5 hours), or 12:30 AM (4 cycles, 6 hours). Enter your target wake time in the calculator above for personalized results.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Are naps good for you?</summary><p style="margin-top:8px">Short power naps (10–20 min) boost alertness without causing grogginess. NASA found a 26-minute nap improves performance by 34%. Avoid naps longer than 30 minutes unless you can do a full 90-minute cycle. Don't nap after 3 PM as it can disrupt nighttime sleep.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">How can I fall asleep faster?</summary><p style="margin-top:8px">Keep a consistent schedule, avoid screens 1 hour before bed (blue light suppresses melatonin), keep your room cool (60–67°F), limit caffeine after 2 PM, and try the 4-7-8 breathing technique: inhale 4 seconds, hold 7, exhale 8.</p></details>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='calorie-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CALORIE CALCULATOR</a><a href='bmi-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BMI CALCULATOR</a><a href='tdee-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TDEE CALCULATOR</a><a href='macro-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>MACRO CALCULATOR</a><a href='water-intake.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>WATER INTAKE</a><a href='body-fat-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BODY FAT CALC</a><a href='pregnancy-due-date.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DUE DATE</a><a href='../daily/age-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a></div></div>
+
+    <footer class='site-ft'><p>&copy; 2026 <a href="../index.html">Calcora</a></p></footer>
+    <script src="../script.js"></script>
+    <script>
+    let mode = 'wake';
+    function setMode(m) {
+        mode = m;
+        document.getElementById('time-label').textContent = m === 'wake' ? 'I need to wake up at' : "I'm going to sleep at";
+        document.getElementById('btn-wake').style.background = m === 'wake' ? 'var(--accent)' : 'transparent';
+        document.getElementById('btn-wake').style.color = m === 'wake' ? '#fff' : 'var(--text)';
+        document.getElementById('btn-wake').style.borderColor = m === 'wake' ? 'var(--accent)' : 'var(--border)';
+        document.getElementById('btn-sleep').style.background = m === 'sleep' ? 'var(--accent)' : 'transparent';
+        document.getElementById('btn-sleep').style.color = m === 'sleep' ? '#fff' : 'var(--text)';
+        document.getElementById('btn-sleep').style.borderColor = m === 'sleep' ? 'var(--accent)' : 'var(--border)';
+    }
+    function calculate() {
+        const tv = document.getElementById('target-time').value.split(':');
+        const th = parseInt(tv[0]), tm = parseInt(tv[1]);
+        const sleepLatency = 15;
+        const cycleMin = 90;
+        const div = document.getElementById('cycles');
+        div.innerHTML = '';
+        document.getElementById('results').style.display = 'block';
+        const times = [];
+        if (mode === 'wake') {
+            document.getElementById('res-title').textContent = '🛏️ Go to bed at one of these times:';
+            for (let c = 6; c >= 3; c--) {
+                const totalMin = c * cycleMin + sleepLatency;
+                let bh = th - Math.floor(totalMin / 60);
+                let bm = tm - (totalMin % 60);
+                if (bm < 0) { bm += 60; bh--; }
+                if (bh < 0) bh += 24;
+                times.push({ h: bh, m: bm, cycles: c, hours: (c * 1.5) });
+            }
+        } else {
+            document.getElementById('res-title').textContent = '⏰ Set your alarm for one of these times:';
+            for (let c = 3; c <= 6; c++) {
+                const totalMin = c * cycleMin + sleepLatency;
+                let wh = th + Math.floor(totalMin / 60);
+                let wm = tm + (totalMin % 60);
+                if (wm >= 60) { wm -= 60; wh++; }
+                if (wh >= 24) wh -= 24;
+                times.push({ h: wh, m: wm, cycles: c, hours: (c * 1.5) });
+            }
+        }
+        times.forEach(t => {
+            const timeStr = (t.h % 12 || 12) + ':' + String(t.m).padStart(2,'0') + (t.h >= 12 ? ' PM' : ' AM');
+            const best = t.cycles >= 5;
+            const card = document.createElement('div');
+            card.style.cssText = `padding:16px;background:var(--badge);border-radius:12px;text-align:center;border:2px solid ${best ? 'var(--emerald)' : 'var(--border)'}`;
+            card.innerHTML = `<div style="font-size:1.4rem;font-weight:800;color:${best?'var(--emerald)':'var(--text)'}">${timeStr}</div><div style="font-size:0.8rem;color:var(--dim);margin-top:4px">${t.cycles} cycles · ${t.hours} hours</div>${best?'<div style="margin-top:6px;font-size:0.7rem;color:var(--emerald);font-weight:700">✓ RECOMMENDED</div>':''}`;
+            div.appendChild(card);
+        });
+    }
+    calculate();
+    </script>
+</body>
+</html>

@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>JSON Formatter & Validator - Best Free Online Tool | Calcora</title>
+    <title>Free JSON Formatter — Beautify and Validate JSON Online | Calcora</title>
 <link rel="icon" type="image/png" href="../assets/logo.png">
     <meta name="description"
         content="Free JSON formatter and validator. Beautify, minify, and validate JSON with syntax highlighting and error detection.">
@@ -67,23 +67,100 @@
             </div>
         </div>
     
-        <div class="glass" style="margin-top:24px">
-            <div class="ctitle"><i>&#128214;</i> How it Works & Guide</div>
-            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
-                <p>This tool is designed to be fast, private, and easy to use. All calculations and processing happen directly in your browser.</p>
-                <ol style="margin-top:10px;padding-left:20px">
-                    <li><b>Input:</b> Enter your data or upload the required file into the designated input area.</li>
-                    <li><b>Process:</b> Click the primary action button to trigger the instant calculation or conversion.</li>
-                    <li><b>Result:</b> Review the output and use the copy button to save your results to the clipboard.</li>
-                </ol>
-                <p style="margin-top:12px;font-size:0.78rem;color:var(--dim)">Learn more: <a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener">MDN Web Docs</a> | <a href="https://web.dev/" target="_blank" rel="noopener">Google Web.dev</a></p>
-                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
-                    Pro Tip: For developers, using client-side tools like this one prevents sensitive data (API keys, code snippets) from being logged on external servers, providing an essential layer of security for your workflow.
+                <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128200;</i> What is JSON?</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <p><strong>JSON (JavaScript Object Notation)</strong> is the most widely used data interchange format on the web. It is used in REST APIs, configuration files, databases (MongoDB, Firebase), and package managers (package.json).</p>
+                <h3 style="margin-top:20px;font-size:1.05rem;color:var(--text)">JSON Data Types</h3>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Type</th><th>Example</th><th>Notes</th></tr></thead>
+                        <tbody>
+                            <tr><td>String</td><td>"hello world"</td><td>Must use double quotes</td></tr>
+                            <tr><td>Number</td><td>42, 3.14, -1</td><td>No quotes, no leading zeros</td></tr>
+                            <tr><td>Boolean</td><td>true, false</td><td>Lowercase only</td></tr>
+                            <tr><td>Null</td><td>null</td><td>Represents empty value</td></tr>
+                            <tr><td>Array</td><td>[1, 2, 3]</td><td>Ordered list of values</td></tr>
+                            <tr><td>Object</td><td>{"key": "value"}</td><td>Unordered key-value pairs</td></tr>
+                        </tbody>
+                    </table>
                 </div>
-                <p style="margin-top:10px"><i>Note: Your data never leaves your device. We prioritize your privacy and security.</i></p>
             </div>
-        </div></div>
-    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Tech Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../tech/api-request-builder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>API REQUEST BUILDER</a><a href='../tech/base64-encoder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BASE64 ENCODER</a><a href='../tech/browser-storage-inspector.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BROWSER STORAGE INSPECTOR</a><a href='../tech/code-screenshot.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CODE SCREENSHOT</a></div></div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128295;</i> Common JSON Errors &amp; How to Fix Them</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Error</th><th>Wrong</th><th>Correct</th></tr></thead>
+                        <tbody>
+                            <tr><td>Single quotes</td><td>{'key': 'val'}</td><td>{"key": "val"}</td></tr>
+                            <tr><td>Trailing comma</td><td>{"a":1, "b":2,}</td><td>{"a":1, "b":2}</td></tr>
+                            <tr><td>Unquoted keys</td><td>{key: "val"}</td><td>{"key": "val"}</td></tr>
+                            <tr><td>Single value</td><td>Hello</td><td>"Hello" or {"v":"Hello"}</td></tr>
+                            <tr><td>Comments</td><td>{"a":1 // note}</td><td>Not allowed in JSON</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: If you need comments in JSON-like files, use <strong>JSONC</strong> (JSON with Comments) which is supported by VS Code, TypeScript configs (tsconfig.json), and ESLint configs.
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#9878;</i> JSON vs XML vs YAML</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Factor</th><th>JSON</th><th>XML</th><th>YAML</th></tr></thead>
+                        <tbody>
+                            <tr><td>Readability</td><td>Good</td><td>Verbose</td><td style="color:var(--emerald)"><strong>Best</strong></td></tr>
+                            <tr><td>File size</td><td style="color:var(--emerald)"><strong>Small</strong></td><td>Large (tags)</td><td>Small</td></tr>
+                            <tr><td>Comments</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+                            <tr><td>API standard</td><td style="color:var(--emerald)"><strong>Dominant</strong></td><td>Legacy</td><td>Rare</td></tr>
+                            <tr><td>Config files</td><td>Common</td><td>Rare now</td><td style="color:var(--emerald)"><strong>Dominant</strong></td></tr>
+                            <tr><td>Parsing speed</td><td style="color:var(--emerald)"><strong>Fast</strong></td><td>Slow</td><td>Moderate</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">What does this JSON formatter do?</summary>
+                    <p style="margin-top:8px">It takes raw or minified JSON and formats it with proper indentation, detects syntax errors, and makes it human-readable. It runs entirely in your browser &#8212; no data is sent to any server.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Why does my JSON have syntax errors?</summary>
+                    <p style="margin-top:8px">The most common causes: single quotes instead of double quotes, trailing commas after the last item, unquoted property names, or missing brackets/braces. Use this tool to highlight exact error locations.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is there a size limit for JSON?</summary>
+                    <p style="margin-top:8px">JSON itself has no size limit. This tool can handle files up to 10MB in-browser. For larger files, use command-line tools like jq. Most APIs limit JSON payloads to 1-10MB.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Can JSON contain functions or dates?</summary>
+                    <p style="margin-top:8px">No. JSON only supports strings, numbers, booleans, null, arrays, and objects. Dates are typically stored as ISO 8601 strings (e.g., "2026-03-25T10:30:00Z") and parsed by the application.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my data safe when using this tool?</summary>
+                    <p style="margin-top:8px">Yes. All formatting happens locally in your browser using JavaScript. No data is transmitted to any server. Your JSON content remains 100% private.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Developer Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='json-to-typescript.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>JSON TO TYPESCRIPT</a><a href='base64-encoder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BASE64 ENCODER</a><a href='api-request-builder.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>API BUILDER</a><a href='color-converter.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>COLOR CONVERTER</a><a href='password-generator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PASSWORD GENERATOR</a><a href='markdown-table-generator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>MARKDOWN TABLE</a><a href='error-explainer.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>ERROR EXPLAINER</a><a href='qr-code-generator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>QR CODE GENERATOR</a></div></div>
+
     <footer class='site-ft'>
         <p>© 2026 <a href="../index.html">Calcora</a></p>
     </footer>

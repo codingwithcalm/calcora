@@ -1,0 +1,461 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free On-Page SEO Analyzer — Website Audit and Score | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Free online SEO Analyzer. Instantly audit any webpage's title tags, meta descriptions, headings, images, and calculate an overall SEO score.">
+    <meta name="keywords" content="seo analyzer, website audit tool, on-page seo checker, check seo score, image alt checker, meta tags analyzer">
+    <link rel="canonical" href="https://calcora.site/tech/seo-analyzer.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Matching the exact absolute manifest URL from Calcora template to prevent local file CORS crashes -->
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora — Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">
+
+    <style>
+        .url-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .url-input-container input {
+            flex-grow: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--text);
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+            vertical-align: text-bottom;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Dashboard Styling */
+        .dashboard {
+            display: none;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .dash-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--badge);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .score-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text);
+            background: conic-gradient(var(--emerald) 0%, var(--border) 0%);
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .score-circle::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--badge);
+            border-radius: 50%;
+        }
+        .score-number {
+            position: relative;
+            z-index: 1;
+        }
+        .score-desc {
+            flex-grow: 1;
+            min-width: 200px;
+        }
+        .score-desc h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .score-desc p {
+            color: var(--dim);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .audit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .audit-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .audit-card.pass { border-left-color: var(--emerald); }
+        .audit-card.warn { border-left-color: var(--amber); }
+        .audit-card.fail { border-left-color: var(--rose); }
+        
+        .ac-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .ac-badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+        .pass .ac-badge { background: rgba(16, 185, 129, 0.2); color: var(--emerald); }
+        .warn .ac-badge { background: rgba(245, 158, 11, 0.2); color: var(--amber); }
+        .fail .ac-badge { background: rgba(244, 63, 94, 0.2); color: var(--rose); }
+
+        .ac-content {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--dim);
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 6px;
+            word-wrap: break-word;
+            margin-bottom: 8px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        .ac-msg {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>On-Page SEO Analyzer</h1>
+            <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+                <strong>Quick Answer:</strong> This tool instantly audits any webpage's HTML structure. It scores vital on-page SEO factors like Title tags, Meta descriptions, Canonical URLs, Heading hierarchy (H1/H2), and Image Alt texts to help you optimize for better search engine rankings.
+            </div>
+            <p>Fetch and audit websites instantly for critical SEO ranking factors.</p>
+        </div>
+        
+        <div class="url-input-container">
+            <input type="url" id="url-input" placeholder="https://example.com/blog-post" onkeydown="if(event.key==='Enter') analyzeSEO()">
+            <button class="btn btn-accent" onclick="analyzeSEO()" id="fetch-btn">
+                <span>🔍 Analyze Page</span>
+                <div class="loader" id="loader"></div>
+            </button>
+        </div>
+
+        <div id="status" style="margin-bottom:12px;font-size:.85rem;font-weight:600;display:none;padding:12px;border-radius:8px"></div>
+
+        <div class="dashboard" id="dashboard">
+            <div class="dash-header">
+                <div class="score-circle" id="score-circle">
+                    <span class="score-number" id="score-text">0</span>
+                </div>
+                <div class="score-desc">
+                    <h3 id="score-title">Analysis Complete</h3>
+                    <p id="score-sub">We checked your page against modern Google Search algorithms for On-Page SEO compliance. Review the actionable factors below.</p>
+                </div>
+            </div>
+
+            <h2 style="font-size: 1.2rem; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">Detailed Audit Results</h2>
+            <div class="audit-grid" id="audit-grid">
+                <!-- Cards inject here -->
+            </div>
+        </div>
+    
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>📖</i> Grading Criteria & Guide</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>On-Page SEO involves optimizing individual web pages in order to rank higher and earn more relevant traffic in search engines. Here is exactly what our algorithm evaluates:</p>
+                <ul style="margin-top:10px;padding-left:20px;list-style:disc">
+                    <li><b>Title Tag:</b> Must exist and ideally be between 50-60 characters so it doesn't get truncated in Google Search Results.</li>
+                    <li><b>Meta Description:</b> Should exist and vividly describe the page within 120-160 characters.</li>
+                    <li><b>H1 Heading:</b> A page should have exactly *one* H1 element summarizing the core topic.</li>
+                    <li><b>H2 Headings:</b> Confirms the presence of subheadings indicating a well-structured document.</li>
+                    <li><b>Image Alt Attributes:</b> Every `&lt;img&gt;` tag must have an `alt` attribute for accessibility and Google Image indexing.</li>
+                    <li><b>Canonical Link:</b> Prevents duplicate content issues by explicitly telling search engines which URL is the master version.</li>
+                </ul>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: Missing image alt tags and multiple H1 tags are the top two completely avoidable SEO errors that developers make. Fixing these provides easy ranking wins!
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        const urlInput = document.getElementById('url-input');
+        const fetchBtn = document.getElementById('fetch-btn');
+        const loader = document.getElementById('loader');
+        const statusBox = document.getElementById('status');
+        const dashboard = document.getElementById('dashboard');
+        const scoreCircle = document.getElementById('score-circle');
+        const scoreText = document.getElementById('score-text');
+        const scoreTitle = document.getElementById('score-title');
+        const auditGrid = document.getElementById('audit-grid');
+
+        // Robust proxy fetching logic
+        async function fetchViaProxy(url) {
+            try {
+                const primaryRes = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`);
+                if (primaryRes.ok) return await primaryRes.text();
+            } catch (e) {
+                console.log("Primary proxy failed, trying fallback...", e);
+            }
+            try {
+                const fallbackRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+                if (fallbackRes.ok) {
+                    const data = await fallbackRes.json();
+                    if (data.contents) return data.contents;
+                }
+            } catch (e) {
+                console.log("Fallback proxy failed...", e);
+            }
+            throw new Error('CORS proxies failed. Target may be blocking scrapers or network issue.');
+        }
+
+        async function analyzeSEO() {
+            let targetUrl = urlInput.value.trim();
+            if (!targetUrl) {
+                showStatus('❌ Please enter a valid URL.', 'var(--rose)');
+                return;
+            }
+            if (!targetUrl.startsWith('http')) {
+                targetUrl = 'https://' + targetUrl;
+                urlInput.value = targetUrl;
+            }
+
+            setLoading(true);
+            showStatus('⏳ Analyzing page DOM and SEO patterns... Please wait.', 'var(--sky)');
+            dashboard.style.display = 'none';
+            auditGrid.innerHTML = '';
+            
+            try {
+                const htmlContent = await fetchViaProxy(targetUrl);
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlContent, 'text/html');
+
+                let totalScore = 0;
+                let maxScore = 100;
+                let results = [];
+
+                // 1. Check Title Tag (20 pts)
+                const titleElement = doc.querySelector('title');
+                const titleText = titleElement ? titleElement.textContent.trim() : '';
+                if (!titleElement || !titleText) {
+                    results.push(makeCard('fail', 'Title Tag', 'Missing', 'Your page is missing a `<title>` tag. This is a critical SEO error.'));
+                } else if (titleText.length < 30 || titleText.length > 65) {
+                    totalScore += 10;
+                    results.push(makeCard('warn', 'Title Tag', 'Needs Work', `Title is ${titleText.length} characters. Optimal length is between 40-60 characters.`, titleText));
+                } else {
+                    totalScore += 20;
+                    results.push(makeCard('pass', 'Title Tag', 'Excellent', `Title is an optimal ${titleText.length} characters long.`, titleText));
+                }
+
+                // 2. Check Meta Description (20 pts)
+                const descElement = doc.querySelector('meta[name="description"]');
+                const descText = descElement ? descElement.getAttribute('content').trim() : '';
+                if (!descElement || !descText) {
+                    results.push(makeCard('fail', 'Meta Description', 'Missing', 'Your page is missing a meta description. Search engines might randomly pick unoptimized text to display.'));
+                } else if (descText.length < 100 || descText.length > 165) {
+                    totalScore += 10;
+                    results.push(makeCard('warn', 'Meta Description', 'Needs Work', `Description is ${descText.length} characters. Optimal is between 120-160 characters.`, descText));
+                } else {
+                    totalScore += 20;
+                    results.push(makeCard('pass', 'Meta Description', 'Excellent', `Description is an optimal ${descText.length} characters long.`, descText));
+                }
+
+                // 3. H1 Heading (20 pts)
+                const h1s = doc.querySelectorAll('h1');
+                if (h1s.length === 0) {
+                    results.push(makeCard('fail', 'H1 Heading', 'Missing', 'No `<H1>` tag found. Every page should have exactly one H1 acting as the main topic header.'));
+                } else if (h1s.length > 1) {
+                    totalScore += 10;
+                    results.push(makeCard('warn', 'H1 Heading', 'Multiple', `Found ${h1s.length} H1 tags. Modern SEO prefers exactly one unique H1 per page for clarity.`));
+                } else {
+                    totalScore += 20;
+                    results.push(makeCard('pass', 'H1 Heading', 'Excellent', 'Found exactly one H1 tag.', h1s[0].textContent.trim()));
+                }
+
+                // 4. H2 Headings (10 pts)
+                const h2s = doc.querySelectorAll('h2');
+                if (h2s.length === 0) {
+                    results.push(makeCard('warn', 'H2 Hierarchy', 'Missing', 'No `<H2>` tags found. Subheadings break up content and provide structural context to search engines.'));
+                } else {
+                    totalScore += 10;
+                    results.push(makeCard('pass', 'H2 Hierarchy', 'Excellent', `Found ${h2s.length} H2 tags properly structuring the document content.`));
+                }
+
+                // 5. Image Alt Attributes (20 pts)
+                const images = Array.from(doc.querySelectorAll('img'));
+                let missingAlt = 0;
+                images.forEach(img => {
+                    if (!img.hasAttribute('alt') || img.getAttribute('alt').trim() === '') {
+                        missingAlt++;
+                    }
+                });
+                if (images.length === 0) {
+                    totalScore += 20;
+                    results.push(makeCard('pass', 'Image Alt Tags', 'Not Applicable', 'No images found on the page to check.'));
+                } else if (missingAlt === 0) {
+                    totalScore += 20;
+                    results.push(makeCard('pass', 'Image Alt Tags', 'Excellent', `All ${images.length} images have descriptive alt attributes.`));
+                } else {
+                    const ratio = (images.length - missingAlt) / images.length;
+                    totalScore += Math.floor(20 * ratio);
+                    results.push(makeCard('warn', 'Image Alt Tags', 'Needs Work', `${missingAlt} out of ${images.length} images are missing an "alt" attribute. Search engines cannot interpret these images.`));
+                }
+
+                // 6. Canonical Link (10 pts)
+                const canonical = doc.querySelector('link[rel="canonical"]');
+                if (!canonical || !canonical.getAttribute('href')) {
+                    results.push(makeCard('warn', 'Canonical Tag', 'Missing', 'No canonical URL specified. This can sometimes lead to duplicate content strikes if URLs map to the same page.'));
+                } else {
+                    totalScore += 10;
+                    results.push(makeCard('pass', 'Canonical Tag', 'Excellent', 'A valid canonical link was detected preventing duplicate content.', canonical.getAttribute('href')));
+                }
+
+                // Render Dashboard
+                statusBox.style.display = 'none';
+                dashboard.style.display = 'flex';
+                dashboard.style.flexDirection = 'column';
+                results.forEach(r => auditGrid.innerHTML += r);
+
+                // Animate Score
+                animateScore(totalScore);
+
+                document.getElementById('fetch-btn').querySelector('span').innerText = '🔄 Analyze Again';
+
+            } catch (error) {
+                showStatus('❌ ' + error.message, 'var(--rose)');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function makeCard(status, title, badge, message, contentPreview = null) {
+            let contentHtml = '';
+            if(contentPreview) {
+                const clean = contentPreview.replace(/</g, '&lt;').replace(/>/g, '&gt;').substring(0, 150);
+                contentHtml = `<div class="ac-content">${clean}${contentPreview.length > 150 ? '...' : ''}</div>`;
+            }
+            return `
+                <div class="audit-card ${status}">
+                    <div class="ac-head">
+                        <span>${title}</span>
+                        <span class="ac-badge">${badge}</span>
+                    </div>
+                    ${contentHtml}
+                    <div class="ac-msg">${message}</div>
+                </div>
+            `;
+        }
+
+        function animateScore(targetScore) {
+            let current = 0;
+            let color = 'var(--rose)';
+            if(targetScore >= 80) color = 'var(--emerald)';
+            else if(targetScore >= 50) color = 'var(--amber)';
+
+            let colorStr = color.replace('var(--','').replace(')','');
+            // Quick lookup of my CSS vars
+            const varMap = {
+                'emerald': '#10b981',
+                'amber': '#f59e0b',
+                'rose': '#f43f5e'
+            };
+            const hexColor = varMap[colorStr] || '#10b981';
+
+            if(targetScore >= 80) scoreTitle.innerText = "Excellent SEO Health!";
+            else if(targetScore >= 50) scoreTitle.innerText = "Fair SEO Health - Improvements Needed";
+            else scoreTitle.innerText = "Poor SEO Health - Critical Errors Found";
+
+            const interval = setInterval(() => {
+                current += 2;
+                if(current >= targetScore) {
+                    current = targetScore;
+                    clearInterval(interval);
+                }
+                scoreText.innerText = current;
+                scoreCircle.style.background = `conic-gradient(${hexColor} ${current}%, var(--border) ${current}%)`;
+                scoreText.style.color = hexColor;
+            }, 20);
+        }
+
+        function setLoading(isLoading) {
+            fetchBtn.disabled = isLoading;
+            const btnText = fetchBtn.querySelector('span');
+            if (isLoading) {
+                btnText.style.opacity = '0.5';
+                loader.style.display = 'inline-block';
+            } else {
+                btnText.style.opacity = '1';
+                loader.style.display = 'none';
+            }
+        }
+
+        function showStatus(message, color) {
+            statusBox.style.display = 'block';
+            statusBox.style.background = color + '20';
+            statusBox.style.border = `1px solid ${color}`;
+            statusBox.style.color = color;
+            statusBox.textContent = message;
+        }
+    </script>
+</body>
+
+</html>

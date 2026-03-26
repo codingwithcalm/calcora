@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free GPA Calculator — College CGPA & SGPA Calculator Online | Calcora</title>
+    <meta name="description" content="Calculate your GPA, CGPA, and SGPA instantly. Add courses with grades and credits. Supports 4.0, 5.0, and 10.0 scales. Free online grade calculator.">
+    <meta name="keywords" content="gpa calculator, cgpa calculator, sgpa calculator, grade point average, college gpa, semester gpa">
+    <link rel="canonical" href="https://calcora.site/daily/gpa-calculator.html">
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Daily","item":"https://calcora.site/index.html#daily"},{"@type":"ListItem","position":3,"name":"GPA Calculator","item":"https://calcora.site/daily/gpa-calculator.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"GPA Calculator","operatingSystem":"All","applicationCategory":"EducationalApplication","url":"https://calcora.site/daily/gpa-calculator.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"980"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is GPA calculated?","acceptedAnswer":{"@type":"Answer","text":"GPA = Sum of (Grade Points × Credits) ÷ Total Credits. Each course's grade is multiplied by its credit hours, totaled, then divided by total credits to get the weighted average."}},{"@type":"Question","name":"What's the difference between GPA, CGPA, and SGPA?","acceptedAnswer":{"@type":"Answer","text":"GPA is general grade point average. SGPA (Semester GPA) covers one semester. CGPA (Cumulative GPA) covers all semesters combined."}},{"@type":"Question","name":"How to convert CGPA to percentage?","acceptedAnswer":{"@type":"Answer","text":"For 10-point scale (India): Percentage = CGPA × 9.5 (CBSE formula). For 4.0 scale: rough conversion is GPA × 25 = approximate percentage."}},{"@type":"Question","name":"What GPA do I need for grad school?","acceptedAnswer":{"@type":"Answer","text":"Most US grad schools require minimum 3.0. Top programs expect 3.5+. MBA programs average 3.5-3.8 admitted GPA. Medical schools average 3.7+."}},{"@type":"Question","name":"Can I raise my GPA in one semester?","acceptedAnswer":{"@type":"Answer","text":"Yes, but the impact depends on how many credits you've completed. With fewer total credits, one strong semester makes a bigger difference. Focus on high-credit courses where you can excel."}},{"@type":"Question","name":"What is a good GPA?","acceptedAnswer":{"@type":"Answer","text":"On a 4.0 scale: 3.5+ is excellent, 3.0-3.49 is good, 2.5-2.99 is average, below 2.0 may trigger academic probation."}}]}</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><div class="logo-m">C</div></a><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in">
+        <a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr"><div class="mod-icon">🎓</div><h1>GPA Calculator</h1><p class="mod-desc">Calculate your GPA, CGPA, and semester GPA. Add courses with credits and grades to get your cumulative grade point average.</p></div>
+
+        <div class="glass">
+            <div class="inp-grp" style="margin-bottom:16px"><label>Grading Scale</label>
+                <select id="scale" style="width:100%;padding:10px;border-radius:8px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:0.9rem">
+                    <option value="4">4.0 Scale (US Standard)</option>
+                    <option value="10">10.0 Scale (India)</option>
+                    <option value="5">5.0 Scale</option>
+                </select>
+            </div>
+            <div id="courses"></div>
+            <button onclick="addCourse()" style="width:100%;margin-top:12px;padding:12px;background:var(--badge);color:var(--accent);border:2px dashed var(--border);border-radius:10px;cursor:pointer;font-size:0.9rem;font-weight:600;font-family:inherit">+ Add Course</button>
+        </div>
+
+        <div class="res-grid" style="margin-top:18px">
+            <div class="res-card"><div class="r-label">Your GPA</div><div class="r-val" id="gpa" style="font-size:2.5rem">0.00</div></div>
+            <div class="res-card"><div class="r-label">Total Credits</div><div class="r-val" id="credits">0</div></div>
+            <div class="res-card"><div class="r-label">Total Courses</div><div class="r-val" id="num-courses">0</div></div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128200;</i> GPA Grading Scale Reference</div>
+            <div class="guide-content" style="font-size:0.85rem;line-height:1.5;color:var(--dim)">
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.82rem">
+                        <thead><tr><th>Letter Grade</th><th>4.0 Scale</th><th>10.0 Scale</th><th>Percentage</th></tr></thead>
+                        <tbody>
+                            <tr><td style="color:var(--emerald);font-weight:700">A+ / O</td><td>4.0</td><td>10</td><td>90–100%</td></tr>
+                            <tr><td style="color:var(--emerald)">A</td><td>4.0</td><td>9</td><td>85–89%</td></tr>
+                            <tr><td style="color:var(--emerald)">A-</td><td>3.7</td><td>8.5</td><td>80–84%</td></tr>
+                            <tr><td>B+</td><td>3.3</td><td>8</td><td>75–79%</td></tr>
+                            <tr><td>B</td><td>3.0</td><td>7</td><td>70–74%</td></tr>
+                            <tr><td>B-</td><td>2.7</td><td>6.5</td><td>65–69%</td></tr>
+                            <tr><td>C+</td><td>2.3</td><td>6</td><td>60–64%</td></tr>
+                            <tr><td>C</td><td>2.0</td><td>5</td><td>55–59%</td></tr>
+                            <tr><td style="color:var(--amber)">D</td><td>1.0</td><td>4</td><td>50–54%</td></tr>
+                            <tr><td style="color:var(--rose)">F</td><td>0.0</td><td>0</td><td>&lt;50%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 style="margin-top:24px;font-size:1.05rem;color:var(--text)">GPA Requirements by Goal</h3>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.82rem">
+                        <thead><tr><th>Goal</th><th>Minimum GPA</th><th>Competitive GPA</th><th>Notes</th></tr></thead>
+                        <tbody>
+                            <tr><td style="font-weight:700">Dean's List</td><td>3.5</td><td style="color:var(--emerald);font-weight:700">3.7+</td><td>Varies by university</td></tr>
+                            <tr><td style="font-weight:700">Cum Laude</td><td>3.5</td><td style="color:var(--emerald);font-weight:700">3.5–3.69</td><td>Latin honors</td></tr>
+                            <tr><td style="font-weight:700">Magna Cum Laude</td><td>3.7</td><td style="color:var(--emerald);font-weight:700">3.7–3.89</td><td>Latin honors</td></tr>
+                            <tr><td style="font-weight:700">Summa Cum Laude</td><td>3.9</td><td style="color:var(--emerald);font-weight:700">3.9+</td><td>Highest Latin honor</td></tr>
+                            <tr><td style="font-weight:700">Grad School (MS)</td><td>3.0</td><td style="color:var(--emerald)">3.5+</td><td>Top programs expect 3.5+</td></tr>
+                            <tr><td style="font-weight:700">MBA Programs</td><td>3.0</td><td style="color:var(--emerald)">3.5–3.8</td><td>Top 10 average: 3.7</td></tr>
+                            <tr><td style="font-weight:700">Medical School</td><td>3.0</td><td style="color:var(--emerald)">3.7+</td><td>Average admitted: 3.73</td></tr>
+                            <tr><td style="font-weight:700">Law School</td><td>3.0</td><td style="color:var(--emerald)">3.5+</td><td>Top 14 average: 3.8+</td></tr>
+                            <tr><td style="font-weight:700">Scholarships</td><td>3.0</td><td style="color:var(--emerald)">3.5+</td><td>Merit-based aid threshold</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 style="margin-top:24px;font-size:1.05rem;color:var(--text)">GPA vs CGPA vs SGPA — Key Differences</h3>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.82rem">
+                        <thead><tr><th>Term</th><th>Full Name</th><th>Scope</th><th>Common In</th></tr></thead>
+                        <tbody>
+                            <tr><td style="font-weight:700;color:var(--accent)">GPA</td><td>Grade Point Average</td><td>General / overall</td><td>USA, UK, Canada</td></tr>
+                            <tr><td style="font-weight:700;color:var(--emerald)">SGPA</td><td>Semester GPA</td><td>Single semester only</td><td>India (universities)</td></tr>
+                            <tr><td style="font-weight:700;color:var(--amber)">CGPA</td><td>Cumulative GPA</td><td>All semesters combined</td><td>India, Middle East</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: To raise your GPA most efficiently, focus on high-credit courses where you can realistically earn an A. A 4-credit A boosts your GPA four times more than a 1-credit A. Also consider retaking courses where you scored below a C — many schools replace the old grade.
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">How is GPA calculated?</summary><p style="margin-top:8px">GPA = Sum of (Grade Points × Credits) ÷ Total Credits. For example, if you got an A (4.0) in a 3-credit course and a B (3.0) in a 4-credit course: GPA = (4.0×3 + 3.0×4) ÷ (3+4) = 24÷7 = 3.43.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">What's the difference between GPA, CGPA, and SGPA?</summary><p style="margin-top:8px">GPA is general grade point average. SGPA covers one semester only. CGPA covers all semesters combined. In India, CGPA on a 10-point scale is standard; in the US, GPA on a 4.0 scale is used.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">How to convert CGPA to percentage?</summary><p style="margin-top:8px">For 10-point scale (India/CBSE): Percentage = CGPA × 9.5. So a CGPA of 8.0 = 76%. For 4.0 scale: approximate percentage = GPA × 25. A GPA of 3.5 ≈ 87.5%.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">What GPA do I need for grad school?</summary><p style="margin-top:8px">Most US grad schools require minimum 3.0 (B average). Top programs expect 3.5+. MBA programs average 3.5–3.8 admitted GPA. Medical schools average 3.73. Law school T14 averages 3.8+.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Can I raise my GPA in one semester?</summary><p style="margin-top:8px">Yes, but the impact depends on total credits completed. Early in college, one strong semester can raise your GPA significantly. By senior year, the effect is smaller. Focus on high-credit courses and consider retaking failed courses if your school allows grade replacement.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">What is a good GPA?</summary><p style="margin-top:8px">On a 4.0 scale: 3.5+ is excellent (Dean's List territory), 3.0–3.49 is good, 2.5–2.99 is average, 2.0–2.49 is below average, below 2.0 may trigger academic probation at most schools.</p></details>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='percentage-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PERCENTAGE CALC</a><a href='age-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a><a href='random-number-generator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>RANDOM NUMBER GEN</a><a href='scientific-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SCIENTIFIC CALC</a><a href='word-counter.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>WORD COUNTER</a><a href='tip-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TIP CALCULATOR</a><a href='discount-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DISCOUNT CALC</a><a href='aspect-ratio-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>ASPECT RATIO</a></div></div>
+
+    <footer class='site-ft'><p>&copy; 2026 <a href="../index.html">Calcora</a></p></footer>
+    <script src="../script.js"></script>
+    <script>
+    const grades4 = {'A+':4,'A':4,'A-':3.7,'B+':3.3,'B':3,'B-':2.7,'C+':2.3,'C':2,'C-':1.7,'D+':1.3,'D':1,'D-':0.7,'F':0};
+    const grades10 = {'O':10,'A+':9,'A':8.5,'B+':8,'B':7,'B-':6.5,'C+':6,'C':5,'D':4,'F':0};
+    const grades5 = {'A':5,'B+':4.5,'B':4,'C+':3.5,'C':3,'D':2,'F':0};
+    let courseCount = 0;
+    function getGradeOptions() {
+        const s = document.getElementById('scale').value;
+        const g = s === '10' ? grades10 : s === '5' ? grades5 : grades4;
+        return Object.keys(g).map(k => `<option value="${k}">${k}</option>`).join('');
+    }
+    function addCourse() {
+        courseCount++;
+        const div = document.createElement('div');
+        div.className = 'course-row';
+        div.id = 'cr-' + courseCount;
+        div.style.cssText = 'display:grid;grid-template-columns:1fr 80px 100px 40px;gap:8px;align-items:end;margin-bottom:8px';
+        div.innerHTML = `<div class="inp-grp" style="margin:0"><label style="font-size:0.75rem">Course Name</label><input type="text" placeholder="e.g. Math 101" style="width:100%;padding:8px;border-radius:6px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:0.85rem;font-family:inherit"></div><div class="inp-grp" style="margin:0"><label style="font-size:0.75rem">Credits</label><input type="number" value="3" min="1" max="10" class="cr-credits" style="width:100%;padding:8px;border-radius:6px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:0.85rem;font-family:inherit" onchange="calcGPA()"></div><div class="inp-grp" style="margin:0"><label style="font-size:0.75rem">Grade</label><select class="cr-grade" style="width:100%;padding:8px;border-radius:6px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:0.85rem" onchange="calcGPA()">${getGradeOptions()}</select></div><button onclick="document.getElementById('cr-${courseCount}').remove();calcGPA()" style="padding:8px;background:var(--rose);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:1rem;height:36px">×</button>`;
+        document.getElementById('courses').appendChild(div);
+        calcGPA();
+    }
+    function calcGPA() {
+        const s = document.getElementById('scale').value;
+        const g = s === '10' ? grades10 : s === '5' ? grades5 : grades4;
+        const rows = document.querySelectorAll('.course-row');
+        let totalPoints = 0, totalCredits = 0;
+        rows.forEach(row => {
+            const credits = parseFloat(row.querySelector('.cr-credits').value) || 0;
+            const grade = row.querySelector('.cr-grade').value;
+            totalPoints += (g[grade] || 0) * credits;
+            totalCredits += credits;
+        });
+        const gpa = totalCredits > 0 ? (totalPoints / totalCredits) : 0;
+        document.getElementById('gpa').textContent = gpa.toFixed(2);
+        document.getElementById('credits').textContent = totalCredits;
+        document.getElementById('num-courses').textContent = rows.length;
+    }
+    document.getElementById('scale').addEventListener('change', () => {
+        document.querySelectorAll('.cr-grade').forEach(sel => { sel.innerHTML = getGradeOptions(); });
+        calcGPA();
+    });
+    addCourse(); addCourse(); addCourse();
+    </script>
+</body>
+</html>

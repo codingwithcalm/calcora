@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free Pregnancy Weight Gain Calculator — IOM Guidelines | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Free Pregnancy Weight Gain Calculator based on ACOG and IOM medical guidelines. Track your healthy weight goals week by week.">
+    <meta name="keywords" content="pregnancy weight gain calculator, healthy pregnancy weight, trimester weight tracking">
+    <link rel="canonical" href="https://calcora.site/health/pregnancy-weight-gain.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora — Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">
+
+    <style>
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 900px) {
+            .layout-grid { grid-template-columns: 1fr; }
+        }
+        .input-group { margin-bottom: 20px; }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dim);
+            font-size: 0.95rem;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1.1rem;
+            font-family: inherit;
+        }
+        .res-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--rose);
+            padding: 24px;
+            border-radius: 12px;
+            position: relative;
+            margin-bottom: 16px;
+        }
+        .rb-title { color: var(--dim); font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; font-weight: 700; }
+        .rb-val { font-size: 2.2rem; font-weight: 800; color: var(--text); margin-bottom: 10px;}
+        
+        .timeline {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+        }
+        .alert-info {
+            background: rgba(14, 165, 233, 0.1);
+            border-left: 4px solid var(--sky);
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--sky);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Pregnancy Weight Gain Calculator</h1>
+            <p>Calculate your recommended healthy weight gain guidelines based on pre-pregnancy BMI (ACOG & IOM Guidelines).</p>
+        </div>
+        
+        <div class="alert-info">
+            <strong>Disclaimer:</strong> This calculator provides general medical guidelines from the Institute of Medicine (IOM). Every pregnancy is unique. Always consult your doctor or OB-GYN regarding your specific health goals.
+        </div>
+
+        <div class="layout-grid">
+            <div class="glass" style="height: fit-content;">
+                <h3 style="margin-bottom: 20px;">Pre-Pregnancy Details</h3>
+                
+                <div class="input-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" value="165" oninput="calcWeight()">
+                </div>
+                
+                <div class="input-group">
+                    <label for="weight">Pre-Pregnancy Weight (kg)</label>
+                    <input type="number" id="weight" value="65" oninput="calcWeight()">
+                </div>
+                <div class="input-group">
+                    <label for="week">Current Pregnancy Week (1-40)</label>
+                    <input type="number" id="week" value="20" min="1" max="40" oninput="calcWeight()">
+                </div>
+            </div>
+
+            <div>
+                <div class="res-box" id="rb-target" style="border-left-color: var(--emerald);">
+                    <div class="rb-title">Recommended Weight At Week <span id="out-week">20</span></div>
+                    <div class="rb-val" id="val-current-target">Loading...</div>
+                    <div style="font-size: 0.95rem; color: var(--dim);">Based on your BMI profile, you should have gained approximately <strong id="val-gain-so-far" style="color:var(--text)">0 kg</strong> by this week.</div>
+                </div>
+
+                <div class="timeline">
+                    <div style="margin-bottom: 15px; font-weight: 700; font-size: 1.1rem; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Full Term Summary (Week 40)</div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: var(--dim);">Pre-Pregnancy BMI:</span>
+                        <strong id="val-bmi">0</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: var(--dim);">BMI Category:</span>
+                        <strong id="val-category" style="color: var(--accent);">Normal</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: var(--dim);">Recommended Total Gain:</span>
+                        <strong id="val-total-gain">0 kg - 0 kg</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: var(--dim);">Recommended Target Weight:</span>
+                        <strong id="val-total-target">0 kg - 0 kg</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    <div class="glass" style="margin-top:24px">
+        <div class="ctitle"><i>&#128214;</i> How to Use This Calculator</div>
+        <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+            <p>Track your healthy pregnancy weight gain based on IOM (Institute of Medicine) and ACOG guidelines. This calculator adjusts recommendations based on your pre-pregnancy BMI.</p>
+            <ol style="margin-top:10px;padding-left:20px">
+                <li><b>Enter Height:</b> Input your height in centimeters.</li>
+                <li><b>Pre-Pregnancy Weight:</b> Enter your weight before pregnancy in kg.</li>
+                <li><b>Current Week:</b> Set your current pregnancy week (1-40).</li>
+                <li><b>Read Results:</b> See your recommended weight range for this week and full-term targets.</li>
+            </ol>
+            <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                Note: Every pregnancy is unique. This calculator provides general IOM guidelines. Always consult your OB-GYN for personalized medical advice.
+            </div>
+        </div>
+    </div>
+
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../health/pregnancy-due-date.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DUE DATE CALCULATOR</a><a href='../health/bmi-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BMI CALCULATOR</a><a href='../health/calorie-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CALORIE CALCULATOR</a><a href='../health/water-intake.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>WATER INTAKE</a></div></div>
+    
+    <footer class='site-ft'>
+        <p>&copy; 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        function calcWeight() {
+            const heightCm = parseFloat(document.getElementById('height').value) || 0;
+            const weightKg = parseFloat(document.getElementById('weight').value) || 0;
+            let week = parseInt(document.getElementById('week').value) || 1;
+            if(week > 40) week = 40; if(week < 1) week = 1;
+
+            if (heightCm === 0 || weightKg === 0) return;
+
+            document.getElementById('out-week').innerText = week;
+
+            // BMI Calc
+            const heightM = heightCm / 100;
+            const bmi = weightKg / (heightM * heightM);
+            
+            let category = "Normal Target";
+            let totalGainMin = 0;
+            let totalGainMax = 0;
+            let rate23Min = 0; // Trimester 2/3 weekly gain min (kg)
+            let rate23Max = 0;
+
+            // IOM Guidelines for single pregnancies (in kg)
+            if (bmi < 18.5) {
+                category = "Underweight";
+                totalGainMin = 12.5; totalGainMax = 18;
+                rate23Min = 0.44; rate23Max = 0.58;
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                category = "Normal Weight";
+                totalGainMin = 11.5; totalGainMax = 16;
+                rate23Min = 0.35; rate23Max = 0.50;
+            } else if (bmi >= 25.0 && bmi <= 29.9) {
+                category = "Overweight";
+                totalGainMin = 7; totalGainMax = 11.5;
+                rate23Min = 0.23; rate23Max = 0.33;
+            } else {
+                category = "Obese";
+                totalGainMin = 5; totalGainMax = 9;
+                rate23Min = 0.17; rate23Max = 0.27;
+            }
+
+            // Trimester 1 (Weeks 1-13) gain is mostly flat, guidelines suggest 0.5 to 2kg TOTAL for T1.
+            let currentGainMin = 0;
+            let currentGainMax = 0;
+
+            if (week <= 13) {
+                // Approximate linear gain for T1
+                currentGainMin = (0.5 / 13) * week;
+                currentGainMax = (2.0 / 13) * week;
+            } else {
+                // T1 Gain + Weekly gain for remaining weeks
+                currentGainMin = 0.5 + ((week - 13) * rate23Min);
+                currentGainMax = 2.0 + ((week - 13) * rate23Max);
+            }
+
+            // Cap it at the max recommendations
+            if (currentGainMin > totalGainMin && week === 40) currentGainMin = totalGainMin;
+            if (currentGainMax > totalGainMax && week === 40) currentGainMax = totalGainMax;
+
+            document.getElementById('val-bmi').innerText = bmi.toFixed(1);
+            document.getElementById('val-category').innerText = category;
+            
+            document.getElementById('val-total-gain').innerText = `${totalGainMin.toFixed(1)} kg - ${totalGainMax.toFixed(1)} kg`;
+            document.getElementById('val-total-target').innerText = `${(weightKg + totalGainMin).toFixed(1)} kg - ${(weightKg + totalGainMax).toFixed(1)} kg`;
+
+            const currentTargetMin = weightKg + currentGainMin;
+            const currentTargetMax = weightKg + currentGainMax;
+
+            document.getElementById('val-current-target').innerText = `${currentTargetMin.toFixed(1)} kg - ${currentTargetMax.toFixed(1)} kg`;
+            document.getElementById('val-gain-so-far').innerText = `${currentGainMin.toFixed(1)} kg to ${currentGainMax.toFixed(1)} kg`;
+        }
+        calcWeight();
+    </script>
+</body>
+
+</html>

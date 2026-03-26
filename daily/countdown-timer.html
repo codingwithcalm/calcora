@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free Countdown Timer — Online Timer with Alarm | Calcora</title>
+    <meta name="description" content="Set a countdown timer online with alarm sound. Custom hours, minutes, seconds. Perfect for cooking, studying, workouts. Free, no app needed.">
+    <meta name="keywords" content="countdown timer, online timer, timer with alarm, cooking timer, study timer, pomodoro timer">
+    <link rel="canonical" href="https://calcora.site/daily/countdown-timer.html">
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Daily","item":"https://calcora.site/index.html#daily"},{"@type":"ListItem","position":3,"name":"Countdown Timer","item":"https://calcora.site/daily/countdown-timer.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Countdown Timer","operatingSystem":"All","applicationCategory":"UtilitiesApplication","url":"https://calcora.site/daily/countdown-timer.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"2100"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it work in the background?","acceptedAnswer":{"@type":"Answer","text":"Yes! The timer continues running even if you switch tabs. The page title updates with the remaining time so you can see it in your tab bar."}},{"@type":"Question","name":"What is the Pomodoro Technique?","acceptedAnswer":{"@type":"Answer","text":"The Pomodoro Technique involves working in focused 25-minute intervals followed by 5-minute breaks. After 4 pomodoros, take a longer 15-30 minute break."}},{"@type":"Question","name":"Will I hear an alarm when it ends?","acceptedAnswer":{"@type":"Answer","text":"Yes, the timer plays 5 beep sounds when it reaches zero. Make sure your volume is on. The display also turns red to provide a visual indicator."}},{"@type":"Question","name":"Can I pause and resume?","acceptedAnswer":{"@type":"Answer","text":"Yes, click Pause to stop the timer and Resume to continue from where you left off. The progress bar will also pause."}},{"@type":"Question","name":"What is the maximum duration?","acceptedAnswer":{"@type":"Answer","text":"You can set up to 99 hours, 59 minutes, and 59 seconds. That is more than 4 days of continuous timing."}}]}</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><div class="logo-m">C</div></a><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in">
+        <a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr"><div class="mod-icon">⏳</div><h1>Countdown Timer</h1><p class="mod-desc">Set a countdown with alarm. Perfect for cooking, studying, workouts, breaks, and presentations.</p></div>
+
+        <div class="glass" style="text-align:center">
+            <div id="display" style="font-size:4rem;font-weight:900;letter-spacing:4px;color:var(--text);padding:20px 0;font-variant-numeric:tabular-nums">00:00:00</div>
+            <div id="progress-bar" style="width:100%;height:6px;background:var(--badge);border-radius:3px;margin-bottom:20px;overflow:hidden"><div id="progress" style="width:0%;height:100%;background:linear-gradient(90deg,var(--accent),var(--emerald));border-radius:3px;transition:width 1s linear"></div></div>
+            <div id="setup" style="display:flex;gap:10px;justify-content:center;margin-bottom:20px">
+                <div class="inp-grp" style="width:80px"><label style="font-size:0.7rem">Hours</label><input type="number" id="hrs" value="0" min="0" max="99" style="width:100%;padding:12px;border-radius:8px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:1.2rem;text-align:center;font-family:inherit"></div>
+                <div class="inp-grp" style="width:80px"><label style="font-size:0.7rem">Minutes</label><input type="number" id="mins" value="5" min="0" max="59" style="width:100%;padding:12px;border-radius:8px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:1.2rem;text-align:center;font-family:inherit"></div>
+                <div class="inp-grp" style="width:80px"><label style="font-size:0.7rem">Seconds</label><input type="number" id="secs" value="0" min="0" max="59" style="width:100%;padding:12px;border-radius:8px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:1.2rem;text-align:center;font-family:inherit"></div>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:center">
+                <button id="startBtn" onclick="startTimer()" style="padding:14px 32px;background:var(--emerald);color:#000;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit">▶ Start</button>
+                <button id="pauseBtn" onclick="pauseTimer()" style="padding:14px 24px;background:var(--amber);color:#000;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;display:none">⏸ Pause</button>
+                <button onclick="resetTimer()" style="padding:14px 24px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit">↺ Reset</button>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:18px">
+            <div class="ctitle">⚡ Quick Presets</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:12px">
+                <button onclick="preset(0,1,0)" style="padding:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit">1 min</button>
+                <button onclick="preset(0,3,0)" style="padding:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit">3 min</button>
+                <button onclick="preset(0,5,0)" style="padding:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit">5 min</button>
+                <button onclick="preset(0,10,0)" style="padding:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit">10 min</button>
+                <button onclick="preset(0,15,0)" style="padding:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit">15 min</button>
+                <button onclick="preset(0,25,0)" style="padding:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit">🍅 25 min</button>
+                <button onclick="preset(0,30,0)" style="padding:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit">30 min</button>
+                <button onclick="preset(1,0,0)" style="padding:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit">1 hour</button>
+            </div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128200;</i> Time Management Techniques Using Timers</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.82rem">
+                        <thead><tr><th>Technique</th><th>Work</th><th>Break</th><th>Best For</th></tr></thead>
+                        <tbody>
+                            <tr><td style="font-weight:700;color:var(--accent)">Pomodoro</td><td>25 min</td><td>5 min</td><td style="color:var(--emerald)">Studying, writing, coding</td></tr>
+                            <tr><td style="font-weight:700">52/17 Rule</td><td>52 min</td><td>17 min</td><td>Deep focus work</td></tr>
+                            <tr><td style="font-weight:700">Time Boxing</td><td>Custom</td><td>Custom</td><td>Meetings, project deadlines</td></tr>
+                            <tr><td style="font-weight:700">90-Minute Block</td><td>90 min</td><td>20 min</td><td>Creative work, ultradian rhythm</td></tr>
+                            <tr><td style="font-weight:700">Flowtime</td><td>Until focus fades</td><td>5–15 min</td><td>Variable attention spans</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 style="margin-top:24px;font-size:1.05rem;color:var(--text)">Timer Use Cases by Activity</h3>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.82rem">
+                        <thead><tr><th>Activity</th><th>Recommended Duration</th><th>Preset</th></tr></thead>
+                        <tbody>
+                            <tr><td style="font-weight:700">🍳 Cooking (soft-boiled eggs)</td><td>6–7 minutes</td><td>Use 5 min preset</td></tr>
+                            <tr><td style="font-weight:700">🧘 Meditation</td><td>10–20 minutes</td><td>Use 10 or 15 min preset</td></tr>
+                            <tr><td style="font-weight:700">🏋️ HIIT Workout</td><td>30–45 seconds work/rest</td><td>Custom seconds</td></tr>
+                            <tr><td style="font-weight:700">📚 Pomodoro Study</td><td>25 minutes</td><td>Use 🍅 25 min preset</td></tr>
+                            <tr><td style="font-weight:700">🎬 Presentation</td><td>5–15 minutes</td><td>Custom hours/min</td></tr>
+                            <tr><td style="font-weight:700">☕ Tea Brewing</td><td>3–5 minutes</td><td>Use 3 or 5 min preset</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: The Pomodoro Technique works because 25 minutes is short enough to maintain focus but long enough to make meaningful progress. After 4 rounds, take a longer 15–30 minute break to recharge.
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Does it work in the background?</summary><p style="margin-top:8px">Yes! The timer continues running even if you switch tabs. The page title updates with the remaining time so you can monitor it from your browser's tab bar without switching back.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">What is the Pomodoro Technique?</summary><p style="margin-top:8px">The Pomodoro Technique involves working in focused 25-minute intervals ("pomodoros") followed by 5-minute breaks. After 4 pomodoros, take a longer 15–30 minute break. Use the 🍅 25 min preset to get started. Studies show this boosts productivity by up to 25%.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Will I hear an alarm when it ends?</summary><p style="margin-top:8px">Yes, the timer plays a series of 5 beep sounds when it reaches zero. Make sure your device volume is turned on. The display also turns red to give you a visual indicator in case your audio is muted.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Can I pause and resume the timer?</summary><p style="margin-top:8px">Yes! Click the Pause button to halt the countdown, then click Resume to continue from exactly where you stopped. The progress bar also pauses. You can pause and resume as many times as needed.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">What is the maximum timer duration?</summary><p style="margin-top:8px">You can set up to 99 hours, 59 minutes, and 59 seconds — that's more than 4 days of continuous timing. This makes it useful for long events, slow-cooking recipes, or multi-day project deadlines.</p></details>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='stopwatch.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>STOPWATCH</a><a href='time-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TIME CALCULATOR</a><a href='date-difference.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DATE DIFFERENCE</a><a href='age-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a><a href='random-number-generator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>RANDOM NUMBER</a><a href='word-counter.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>WORD COUNTER</a></div></div>
+
+    <footer class='site-ft'><p>&copy; 2026 <a href="../index.html">Calcora</a></p></footer>
+    <script src="../script.js"></script>
+    <script>
+    let interval, remaining = 0, total = 0, running = false;
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function beep() { const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.connect(g); g.connect(audioCtx.destination); o.frequency.value = 800; o.type = 'sine'; g.gain.value = 0.3; o.start(); setTimeout(() => { o.stop(); }, 300); }
+    function updateDisplay() {
+        const h = Math.floor(remaining / 3600);
+        const m = Math.floor((remaining % 3600) / 60);
+        const s = remaining % 60;
+        const str = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+        document.getElementById('display').textContent = str;
+        document.title = running ? str + ' — Countdown Timer' : 'Countdown Timer — Calcora';
+        if (total > 0) document.getElementById('progress').style.width = ((total - remaining) / total * 100) + '%';
+    }
+    function startTimer() {
+        if (!running) {
+            if (remaining === 0) {
+                const h = parseInt(document.getElementById('hrs').value) || 0;
+                const m = parseInt(document.getElementById('mins').value) || 0;
+                const s = parseInt(document.getElementById('secs').value) || 0;
+                remaining = h * 3600 + m * 60 + s;
+                total = remaining;
+            }
+            if (remaining <= 0) return;
+            running = true;
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('pauseBtn').style.display = 'inline-block';
+            document.getElementById('setup').style.opacity = '0.3';
+            interval = setInterval(() => {
+                remaining--;
+                updateDisplay();
+                if (remaining <= 0) {
+                    clearInterval(interval);
+                    running = false;
+                    document.getElementById('display').style.color = 'var(--rose)';
+                    for (let i = 0; i < 5; i++) setTimeout(beep, i * 500);
+                    document.getElementById('startBtn').style.display = 'inline-block';
+                    document.getElementById('pauseBtn').style.display = 'none';
+                    document.getElementById('setup').style.opacity = '1';
+                }
+            }, 1000);
+        }
+    }
+    function pauseTimer() { clearInterval(interval); running = false; document.getElementById('startBtn').style.display = 'inline-block'; document.getElementById('pauseBtn').style.display = 'none'; document.getElementById('startBtn').textContent = '▶ Resume'; }
+    function resetTimer() { clearInterval(interval); running = false; remaining = 0; total = 0; updateDisplay(); document.getElementById('progress').style.width = '0%'; document.getElementById('display').style.color = 'var(--text)'; document.getElementById('startBtn').style.display = 'inline-block'; document.getElementById('pauseBtn').style.display = 'none'; document.getElementById('startBtn').textContent = '▶ Start'; document.getElementById('setup').style.opacity = '1'; }
+    function preset(h,m,s) { document.getElementById('hrs').value=h; document.getElementById('mins').value=m; document.getElementById('secs').value=s; resetTimer(); startTimer(); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free PPF Calculator — Public Provident Fund Calculator Online | Calcora</title>
+    <meta name="description" content="Calculate PPF maturity amount & tax-free returns. Free PPF calculator with yearly compounding for 15-year tenure. See how much your PPF investment will grow.">
+    <meta name="keywords" content="ppf calculator, public provident fund calculator, ppf maturity calculator, ppf interest rate, ppf returns calculator">
+    <link rel="canonical" href="https://calcora.site/finance/ppf-calculator.html">
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calcora.site/index.html#finance"},{"@type":"ListItem","position":3,"name":"PPF Calculator","item":"https://calcora.site/finance/ppf-calculator.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PPF Calculator","operatingSystem":"All","applicationCategory":"FinanceApplication","url":"https://calcora.site/finance/ppf-calculator.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"750"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../index.html" class="logo"><div class="logo-m">C</div></a><div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span class="t-icon ic-sun">☀️</span><div class="t-track"><div class="t-knob"></div></div><span class="t-icon ic-moon">🌙</span></div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button></div></nav>
+    <div class="page fade-in">
+        <a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr"><div class="mod-icon">🏛️</div><h1>PPF Calculator</h1><p class="mod-desc">Calculate your Public Provident Fund maturity amount. See how 15 years of tax-free compounding can build significant wealth.</p></div>
+        <div class="glass">
+            <div class="grid-2">
+                <div class="inp-grp"><label>Yearly Investment (₹)</label><input type="range" id="p" min="500" max="150000" value="150000" step="500"><div class="range-vals"><span>₹500</span><span id="p-v">₹1,50,000</span><span>₹1.5L</span></div></div>
+                <div class="inp-grp"><label>Interest Rate (% p.a.)</label><input type="range" id="r" min="5" max="9" value="7.1" step="0.1"><div class="range-vals"><span>5%</span><span id="r-v">7.1%</span><span>9%</span></div></div>
+                <div class="inp-grp"><label>Duration (Years)</label><input type="range" id="y" min="15" max="50" value="15" step="5"><div class="range-vals"><span>15</span><span id="y-v">15 Years</span><span>50</span></div></div>
+            </div>
+        </div>
+        <div class="res-grid" style="margin-top:18px">
+            <div class="res-card"><div class="r-label">Maturity Amount</div><div class="r-val" id="maturity">₹0</div></div>
+            <div class="res-card"><div class="r-label">Total Invested</div><div class="r-val" id="invested">₹0</div></div>
+            <div class="res-card"><div class="r-label">Tax-Free Interest</div><div class="r-val" id="interest">₹0</div></div>
+        </div>
+        <div class="glass" style="margin-top:18px"><div class="ctitle">📊 Investment Breakdown</div><div class="chart-box"><canvas id="ch"></canvas></div></div>
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128200;</i> PPF Key Features</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Feature</th><th>Details</th></tr></thead>
+                        <tbody>
+                            <tr><td>Current Interest Rate</td><td><strong>7.1% p.a.</strong> (Q1 FY2025-26)</td></tr>
+                            <tr><td>Lock-in Period</td><td>15 years (extendable in 5-year blocks)</td></tr>
+                            <tr><td>Min Investment</td><td>₹500/year</td></tr>
+                            <tr><td>Max Investment</td><td>₹1,50,000/year</td></tr>
+                            <tr><td>Tax Benefit</td><td><strong>EEE</strong> — Invest, Interest, Maturity all tax-free</td></tr>
+                            <tr><td>Compounding</td><td>Yearly</td></tr>
+                            <tr><td>Partial Withdrawal</td><td>After 7th year (up to 50% of balance)</td></tr>
+                            <tr><td>Loan Against PPF</td><td>Available from 3rd to 6th year</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--emerald);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: Deposit before April 5th each year to earn interest for the current month. PPF interest is calculated on the lowest balance between 5th and end of each month.
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#9878;</i> PPF vs Other Tax-Saving Options</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Factor</th><th>PPF</th><th>ELSS</th><th>NSC</th><th>Tax-Saving FD</th></tr></thead>
+                        <tbody>
+                            <tr><td>Returns</td><td>7.1%</td><td style="color:var(--emerald)">12-15%</td><td>7.7%</td><td>6.5-7%</td></tr>
+                            <tr><td>Lock-in</td><td>15 years</td><td style="color:var(--emerald)">3 years</td><td>5 years</td><td>5 years</td></tr>
+                            <tr><td>Risk</td><td style="color:var(--emerald)">Zero (Govt)</td><td>Market-linked</td><td style="color:var(--emerald)">Zero (Govt)</td><td>Very Low</td></tr>
+                            <tr><td>Tax on returns</td><td style="color:var(--emerald)">Tax-FREE</td><td>12.5% LTCG</td><td>Taxable</td><td>Taxable</td></tr>
+                            <tr><td>80C Deduction</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Is PPF completely tax-free?</summary><p style="margin-top:8px">Yes! PPF enjoys EEE (Exempt-Exempt-Exempt) status. Your investment qualifies for 80C deduction, the interest earned is tax-free, and the maturity amount is also tax-free. It's one of the very few instruments with this triple benefit.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Can I extend PPF beyond 15 years?</summary><p style="margin-top:8px">Yes. After 15 years, you can extend in blocks of 5 years (with or without fresh contributions). Extended PPF continues to earn interest at the prevailing rate.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Can NRIs open a PPF account?</summary><p style="margin-top:8px">NRIs cannot open new PPF accounts. However, existing accounts opened as a resident can be continued until maturity (15 years). Extension is not allowed for NRIs.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">How much will ₹1.5L/year PPF give after 15 years?</summary><p style="margin-top:8px">At the current rate of 7.1%: Total invested = ₹22.5L, Maturity amount = ₹40.68L, Tax-free interest = ₹18.18L. This is one of the safest ways to double your money.</p></details>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='fd-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>FD CALCULATOR</a><a href='rd-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>RD CALCULATOR</a><a href='sip-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SIP CALCULATOR</a><a href='compound-interest.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>COMPOUND INTEREST</a><a href='tax-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TAX CALCULATOR</a><a href='emi-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>EMI CALCULATOR</a><a href='salary-to-hourly.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SALARY CALC</a><a href='gst-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>GST CALCULATOR</a></div></div>
+
+    <footer class='site-ft'><p>&copy; 2026 <a href="../index.html">Calcora</a></p></footer>
+    <script src="../script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        C.doughnut('ch', ['Invested', 'Interest'], [1, 1], ['#34d399', '#fb7185']);
+        function calc() {
+            const P = +document.getElementById('p').value;
+            const r = +document.getElementById('r').value / 100;
+            const y = +document.getElementById('y').value;
+            document.getElementById('p-v').textContent = C.F(P);
+            document.getElementById('r-v').textContent = ((r*100) % 1 === 0 ? r*100 : (r*100).toFixed(1)) + '%';
+            document.getElementById('y-v').textContent = y + ' Years';
+            let balance = 0;
+            const invested = P * y;
+            for (let i = 0; i < y; i++) {
+                balance = (balance + P) * (1 + r);
+            }
+            const interest = balance - invested;
+            document.getElementById('maturity').textContent = C.F(balance);
+            document.getElementById('invested').textContent = C.F(invested);
+            document.getElementById('interest').textContent = C.F(interest);
+            C.uChart('ch', [invested, Math.max(0, interest)]);
+        }
+        ['p', 'r', 'y'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+        C.initSliders(); calc();
+    });
+    </script>
+</body>
+</html>

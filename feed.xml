@@ -56,6 +56,8 @@
   <item><title>UI Spacing Inspector</title><link>https://calcora.site/tech/ui-spacing-inspector.html</link><description>Measure margins and padding from any UI screenshot or mockup.</description></item>
   <item><title>Error Explainer</title><link>https://calcora.site/tech/error-explainer.html</link><description>Paste dev errors to get instant explanations and fixes.</description></item>
   <item><title>YouTube Text Extractor</title><link>https://calcora.site/tech/yt-thumbnail-text.html</link><description>Extract text from YouTube thumbnails using AI OCR.</description></item>
+  <item><title>Full Website Extractor</title><link>https://calcora.site/tech/source-code-viewer.html</link><description>Instantly extract HTML, CSS, Javascript, and capture a website screenshot.</description></item>
+  <item><title>On-Page SEO Analyzer</title><link>https://calcora.site/tech/seo-analyzer.html</link><description>Instantly audit any webpage to check title tags, meta descriptions, headings, image alt texts, and calculate an overall SEO score.</description></item>
 
   <!-- Health Tools -->
   <item><title>BMI Calculator</title><link>https://calcora.site/health/bmi-calculator.html</link><description>Calculate Body Mass Index with WHO category classification.</description></item>
@@ -63,6 +65,12 @@
   <item><title>Water Intake Calculator</title><link>https://calcora.site/health/water-intake.html</link><description>Find your ideal daily water intake based on weight and activity.</description></item>
   <item><title>Pregnancy Due Date</title><link>https://calcora.site/health/pregnancy-due-date.html</link><description>Estimate due date and trimester timeline from last menstrual period.</description></item>
   <item><title>Body Fat Calculator</title><link>https://calcora.site/health/body-fat-calculator.html</link><description>Estimate body fat percentage using the U.S. Navy method.</description></item>
+  <item><title>TDEE Calculator</title><link>https://calcora.site/health/tdee-calculator.html</link><description>Calculate Total Daily Energy Expenditure (maintenance calories) based on activity.</description></item>
+  <item><title>Pregnancy Weight Gain Tracker</title><link>https://calcora.site/health/pregnancy-weight-gain.html</link><description>Track recommended weight gain during pregnancy using medically backed IOM guidelines.</description></item>
+  <item><title>Word & Character Counter</title><link>https://calcora.site/daily/word-counter.html</link><description>Instantly counter words, characters, text density, and calculate expected reading times.</description></item>
+  <item><title>Tip Calculator</title><link>https://calcora.site/daily/tip-calculator.html</link><description>Split restaurant bills easily and figure out exact tips across multiple people instantly.</description></item>
+  <item><title>Salary to Hourly Calculator</title><link>https://calcora.site/finance/salary-to-hourly.html</link><description>Convert your annual salary into hourly, daily, weekly, and monthly equivalents.</description></item>
+  <item><title>Compound Interest Calculator</title><link>https://calcora.site/finance/compound-interest.html</link><description>Project your future wealth generation using the power of compounded investment interest.</description></item>
 
   <!-- File Tools -->
   <item><title>PDF Merge</title><link>https://calcora.site/files/pdf-merge.html</link><description>Combine multiple PDF files into a single document.</description></item>

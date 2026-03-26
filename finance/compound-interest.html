@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free Compound Interest Calculator — Investment Growth | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Free compound interest calculator to forecast the future value of your investments over time.">
+    <meta name="keywords" content="compound interest calculator, investment calculator, APY growth, personal finance">
+    <link rel="canonical" href="https://calcora.site/finance/compound-interest.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora — Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">
+
+    <style>
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 900px) {
+            .layout-grid { grid-template-columns: 1fr; }
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dim);
+            font-size: 0.95rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1.1rem;
+            font-family: inherit;
+        }
+        .res-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .total-val {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--emerald);
+            margin: 10px 0;
+            line-height: 1.1;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .st-lbl {
+            color: var(--dim);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        .st-val {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Compound Interest Calculator</h1>
+            <p>Calculate how much your investments can grow over time through the power of compound interest.</p>
+        </div>
+        
+        <div class="layout-grid">
+            <div class="glass" style="height: fit-content;">
+                <h3 style="margin-bottom: 20px;">Inputs</h3>
+                <div class="input-group">
+                    <label for="initial">Initial Investment ($)</label>
+                    <input type="number" id="initial" value="10000" oninput="calculateCompound()">
+                </div>
+                <div class="input-group">
+                    <label for="monthly">Monthly Contribution ($)</label>
+                    <input type="number" id="monthly" value="500" oninput="calculateCompound()">
+                </div>
+                <div class="input-group">
+                    <label for="years">Years to Grow</label>
+                    <input type="number" id="years" value="10" oninput="calculateCompound()">
+                </div>
+                <div class="input-group">
+                    <label for="rate">Estimated Annual Interest Rate (%)</label>
+                    <input type="number" id="rate" value="7" step="0.1" oninput="calculateCompound()">
+                </div>
+            </div>
+
+            <div class="res-box">
+                <div class="st-lbl">Future Investment Value</div>
+                <div class="total-val" id="future-value">$0.00</div>
+                <div style="color: var(--dim); font-size: 0.95rem;">Compounded annually based on your inputs.</div>
+                
+                <div class="stat-grid">
+                    <div>
+                        <div class="st-lbl">Total Principal Deposited</div>
+                        <div class="st-val" id="total-principal" style="color: var(--sky);">$0.00</div>
+                    </div>
+                    <div>
+                        <div class="st-lbl">Total Interest Earned</div>
+                        <div class="st-val" id="total-interest" style="color: var(--amber);">$0.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AD SLOT -->
+    <div class="ad-slot"><ins><!-- AdSense mid --></ins></div>
+
+    <div class="glass" style="margin-top:24px">
+        <div class="ctitle"><i>&#128214;</i> How to Use This Calculator</div>
+        <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+            <p>See the power of compounding in action. This calculator shows how your initial investment plus regular monthly contributions grow over time.</p>
+            <ol style="margin-top:10px;padding-left:20px">
+                <li><b>Initial Investment:</b> Enter the amount you have today to invest.</li>
+                <li><b>Monthly Contribution:</b> Set how much you can add each month (even $0 works).</li>
+                <li><b>Years:</b> Choose your investment time horizon.</li>
+                <li><b>Interest Rate:</b> Enter the expected annual return percentage.</li>
+            </ol>
+            <h3 style="margin-top:20px;font-size:1rem;color:var(--text)">Common Use Cases</h3>
+            <ul style="margin-top:8px;padding-left:20px">
+                <li>Projecting retirement savings growth over 20-30 years</li>
+                <li>Comparing fixed deposit rates vs stock market returns</li>
+                <li>Showing the impact of starting to invest early vs late</li>
+                <li>Planning for a child's education fund</li>
+            </ul>
+            <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                Pro Tip: The "Rule of 72" is a quick way to estimate doubling time. Divide 72 by your annual return rate. At 7%, your money doubles roughly every ~10.3 years.
+            </div>
+        </div>
+    </div>
+
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../finance/sip-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SIP CALCULATOR</a><a href='../finance/emi-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>EMI CALCULATOR</a><a href='../finance/salary-to-hourly.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SALARY TO HOURLY</a><a href='../finance/tax-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TAX CALCULATOR</a></div></div>
+    
+    <footer class='site-ft'>
+        <p>&copy; 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        function formatMoney(num) {
+            return '$' + num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        function calculateCompound() {
+            const initial = parseFloat(document.getElementById('initial').value) || 0;
+            const monthly = parseFloat(document.getElementById('monthly').value) || 0;
+            const years = parseFloat(document.getElementById('years').value) || 0;
+            const rate = parseFloat(document.getElementById('rate').value) || 0;
+
+            const r = rate / 100;
+            const months = years * 12;
+
+            // Future Value of Initial Principal compounding yearly, plus Future Value of a Series (Monthly contributions)
+            // FV = P(1+r/n)^(nt) + PMT * [ (1+r/n)^(nt) - 1 ] / (r/n)
+            // Simplified compounding annually but contributing monthly approx:
+            
+            let futureValue = initial * Math.pow((1 + r/1), (1 * years));
+            
+            if (r > 0) {
+                // Monthly contribution compound formula (annually compounded assuming contributions grow throughout year)
+                // PMT * 12 = annual contribution.
+                // Formula for annual contributions: PMT_annual * [ (1+r)^t - 1 ] / r
+                const annualContribution = monthly * 12;
+                futureValue += annualContribution * ((Math.pow(1 + r, years) - 1) / r);
+            } else {
+                futureValue += (monthly * 12) * years;
+            }
+
+            const totalPrincipal = initial + (monthly * 12 * years);
+            const totalInterest = futureValue - totalPrincipal;
+
+            document.getElementById('future-value').innerText = formatMoney(futureValue);
+            document.getElementById('total-principal').innerText = formatMoney(totalPrincipal);
+            document.getElementById('total-interest').innerText = formatMoney(Math.max(0, totalInterest));
+        }
+
+        calculateCompound();
+    </script>
+</body>
+
+</html>

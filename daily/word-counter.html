@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free Word Counter — Count Words Characters Reading Time | Calcora</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <meta name="description"
+        content="Free online word counter and character counter tool. Check your word density, character limits, and estimated reading time.">
+    <meta name="keywords" content="word counter, character counter, letter counter, word count tool, reading time calculator">
+    <link rel="canonical" href="https://calcora.site/daily/word-counter.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora — Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">
+
+    <style>
+        .wc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .wc-stat {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .wc-lbl {
+            color: var(--dim);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .wc-val {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text);
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+        .wc-text {
+            width: 100%;
+            height: 350px;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(0,0,0,0.2);
+            color: var(--text);
+            font-size: 1.1rem;
+            font-family: inherit;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+        .wc-text:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .wc-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding: 0 4px;
+        }
+        .btn-clear {
+            background: transparent;
+            color: var(--rose);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .btn-clear:hover { background: rgba(244, 63, 94, 0.1); }
+    </style>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../index.html" class="logo"><img src="../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme"><span
+                    class="t-icon ic-sun">☀️</span>
+                <div class="t-track">
+                    <div class="t-knob"></div>
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div><button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+
+    <div class="page fade-in"><a href="../index.html" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Word & Character Counter</h1>
+            <p>Paste your text to instantly calculate words, characters, paragraph geometry, and estimated reading time.</p>
+        </div>
+        
+        <div class="glass">
+            <div class="wc-grid">
+                <div class="wc-stat" style="border-bottom: 4px solid var(--emerald);">
+                    <div class="wc-lbl">Words</div>
+                    <div class="wc-val" id="st-words">0</div>
+                </div>
+                <div class="wc-stat" style="border-bottom: 4px solid var(--accent);">
+                    <div class="wc-lbl">Characters</div>
+                    <div class="wc-val" id="st-chars">0</div>
+                </div>
+                <div class="wc-stat" style="border-bottom: 4px solid var(--sky);">
+                    <div class="wc-lbl">Sentences</div>
+                    <div class="wc-val" id="st-sentences">0</div>
+                </div>
+                <div class="wc-stat" style="border-bottom: 4px solid var(--amber);">
+                    <div class="wc-lbl">Paragraphs</div>
+                    <div class="wc-val" id="st-paragraphs">0</div>
+                </div>
+            </div>
+
+            <textarea class="wc-text" id="wc-input" placeholder="Start typing or paste your document here..." oninput="analyzeText()"></textarea>
+            
+            <div class="wc-toolbar">
+                <div style="color: var(--dim); font-size: 0.9rem;">
+                    Estimated Reading Time: <strong id="st-reading" style="color: var(--text);">0 min</strong> | 
+                    Chars (no spaces): <strong id="st-nospaces" style="color: var(--text);">0</strong>
+                </div>
+                <button class="btn-clear" onclick="clearText()">Clear Text</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    <div class="glass" style="margin-top:24px">
+        <div class="ctitle"><i>&#128214;</i> How to Use This Tool</div>
+        <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+            <p>Instantly count words, characters, sentences, paragraphs and estimate reading time. Perfect for writers, students, and content creators.</p>
+            <ol style="margin-top:10px;padding-left:20px">
+                <li><b>Paste Text:</b> Type or paste your content into the text area above.</li>
+                <li><b>Instant Stats:</b> Word count, character count, sentences, and paragraphs update in real-time.</li>
+                <li><b>Reading Time:</b> Check the estimated reading time below the text area.</li>
+                <li><b>Clear:</b> Click the Clear Text button to reset and start fresh.</li>
+            </ol>
+            <h3 style="margin-top:20px;font-size:1rem;color:var(--text)">Common Use Cases</h3>
+            <ul style="margin-top:8px;padding-left:20px">
+                <li>Checking essay or assignment word count limits</li>
+                <li>Optimizing social media posts for character limits (X/Twitter: 280 chars)</li>
+                <li>Estimating blog post reading time for SEO metadata</li>
+                <li>Counting characters for SMS/text message limits</li>
+            </ul>
+            <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                Pro Tip: The average adult reads at ~225 words per minute. For blog posts, aim for 1,500-2,500 words for optimal SEO ranking.
+            </div>
+        </div>
+    </div>
+
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../daily/percentage-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PERCENTAGE CALCULATOR</a><a href='../daily/time-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TIME CALCULATOR</a><a href='../daily/date-difference.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DATE DIFFERENCE</a><a href='../daily/age-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a></div></div>
+    
+    <footer class='site-ft'>
+        <p>&copy; 2026 <a href="../index.html">Calcora</a></p>
+    </footer>
+    <script src="../script.js"></script>
+    <script>
+        function analyzeText() {
+            const text = document.getElementById('wc-input').value;
+            
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const chars = text.length;
+            const charsNoSpace = text.replace(/\s+/g, '').length;
+            const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0).length;
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+
+            document.getElementById('st-words').innerText = words.toLocaleString();
+            document.getElementById('st-chars').innerText = chars.toLocaleString();
+            document.getElementById('st-nospaces').innerText = charsNoSpace.toLocaleString();
+            document.getElementById('st-paragraphs').innerText = paragraphs.toLocaleString();
+            document.getElementById('st-sentences').innerText = sentences.toLocaleString();
+
+            const readingMinutes = Math.ceil(words / 225); // average adult reading speed 225 wpm
+            document.getElementById('st-reading').innerText = readingMinutes === 0 ? '0 min' : `~${readingMinutes} min`;
+        }
+
+        function clearText() {
+            document.getElementById('wc-input').value = '';
+            analyzeText();
+        }
+
+        analyzeText();
+    </script>
+</body>
+
+</html>
