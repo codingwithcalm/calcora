@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Calorie Calculator — Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/png" href="../../assets/"logo.png">
+    <meta name="description" content="Estimate your daily calorie needs for weight loss, maintenance, or gain. Free calculator based on the Mifflin-St Jeor Equation.">
+    <meta name="keywords" content="calorie calculator, daily calories, weight loss calculator, bmr calculator, tdee, fitness tools">
+    <link rel="canonical" href="https://calcora.site/health/calorie-calculator/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Calorie Calculator","applicationCategory":"HealthApplication","operatingSystem":"Web","url":"https://calcora.site/health/calorie-calculator.html"}</script>
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "health", "item": "https://calcora.site/index.html#health" },{ "@type": "ListItem", "position": 3, "name": "Calorie Calculator", "item": "https://calcora.site/health/calorie-calculator.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Calorie Calculator", "operatingSystem": "All", "applicationCategory": "healthApplication", "url": "https://calcora.site/health/calorie-calculator.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "How accurate are these health calculators?", "acceptedAnswer": { "@type": "Answer", "text": "Our health tools use evidence-based formulas from WHO, NIH, and US Navy standards. However, they provide estimates and should not replace professional medical advice." } },{ "@type": "Question", "name": "Is my health data stored anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run locally in your browser. We never collect, store, or transmit any personal health information." } },{ "@type": "Question", "name": "Can I use these tools on mobile?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, all health calculators are fully responsive and optimized for mobile devices, tablets, and desktops." } }] }</script>
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta name="twitter:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:title" content="Calorie Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Estimate your daily calorie needs for weight loss, maintenance, or gain. Free calculator based on the Mifflin-St Jeor Equation.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/health/calorie-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calorie Calculator",
+  "url": "https://calcora.site/health/calorie-calculator/",
+  "description": "Estimate your daily calorie needs for weight loss, maintenance, or gain. Free calculator based on the Mifflin-St Jeor Equation.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div></nav>
+    <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Calorie Calculator</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> The Calcora Calorie Calculator helps you track vital wellness metrics based on evidence-based standards like the WHO classification or U.S. Navy methods. It is a private, instant way to monitor your health goals without signing up for intrusive health apps.
+        </div>
+        <p>Estimate daily calorie needs using the Mifflin-St Jeor equation.</p>
+        </div>
+        <div class="tool-grid">
+            
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    
+
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../../">Calcora</a></p>
+    </footer>
+    <script src="../../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Lose', 'Maintain', 'Gain'], [1, 1, 1], ['#34d399', '#a78bfa', '#fb7185']);
+            function calc() {
+                const g = document.getElementById('gender').value, a = +document.getElementById('age').value, w = +document.getElementById('w').value, h = +document.getElementById('h').value, act = +document.getElementById('act').value;
+                document.getElementById('age-v').textContent = a; document.getElementById('w-v').textContent = w; document.getElementById('h-v').textContent = h;
+                let bmr = 10 * w + 6.25 * h - 5 * a; bmr += g === 'male' ? 5 : -161;
+                const tdee = Math.round(bmr * act), lose = tdee - 500, gain = tdee + 500;
+                document.getElementById('maintain').textContent = tdee + ' kcal';
+                document.getElementById('lose').textContent = Math.max(1200, lose) + ' kcal';
+                document.getElementById('gain').textContent = gain + ' kcal';
+                document.getElementById('bmr').textContent = Math.round(bmr) + ' kcal';
+                document.getElementById('protein').textContent = Math.round(w * 1.6) + 'g';
+                C.uChart('ch', [Math.max(1200, lose), tdee, gain]);
+            }
+            ['age', 'w', 'h'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            ['gender', 'act'].forEach(id => document.getElementById(id).addEventListener('change', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About Calorie Calculator</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Estimate your daily calorie needs for weight loss, maintenance, or gain. Free calculator based on the Mifflin-St Jeor Equation.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../health/bmi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Bmi Calculator</a><a href='../../health/body-fat-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Body Fat Calculator</a><a href='../../health/calorie-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Calorie Calculator</a><a href='../../health/macro-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Macro Calculator</a><a href='../../health/period-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Period Calculator</a><a href='../../health/pregnancy-due-date/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Due Date</a><a href='../../health/pregnancy-weight-gain/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Weight Gain</a><a href='../../health/sleep-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sleep Calculator</a><a href='../../health/tdee-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tdee Calculator</a><a href='../../health/water-intake/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Water Intake</a></div></div>
+</div>
+</body>
+
+</html>

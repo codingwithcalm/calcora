@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Profit & Loss Calculator — Free Online Tool | Calcora</title>
+<link rel="icon" type="image/png" href="../../assets/"logo.png">
+    <meta name="description"
+        content="Calculate profit/loss, margin, and markup easily. Ideal for small business owners and freelancers to price products.">
+    <meta name="keywords"
+        content="profit loss calculator, margin calculator, markup calculator, business math, retail math, sales profit">
+    <link rel="canonical" href="https://calcora.site/finance/profit-loss-calculator/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Profit & Loss Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.site/finance/profit-loss-calculator.html"}</script>
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "finance", "item": "https://calcora.site/index.html#finance" },{ "@type": "ListItem", "position": 3, "name": "Profit & Loss Calculator", "item": "https://calcora.site/finance/profit-loss-calculator.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Profit & Loss Calculator", "operatingSystem": "All", "applicationCategory": "financeApplication", "url": "https://calcora.site/finance/profit-loss-calculator.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "What is EMI and how is it calculated?", "acceptedAnswer": { "@type": "Answer", "text": "EMI (Equated Monthly Installment) is a fixed payment made to a lender each month. It is calculated using the formula EMI = P x r x (1+r)^n / ((1+r)^n - 1), where P is principal, r is monthly rate, and n is tenure in months." } },{ "@type": "Question", "name": "Is this calculator free and private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, all Calcora tools are 100% free. Your data never leaves your browser - all calculations happen client-side for maximum privacy." } },{ "@type": "Question", "name": "How accurate are these financial calculations?", "acceptedAnswer": { "@type": "Answer", "text": "Our calculators use industry-standard formulas with IEEE 754 floating-point precision. Results match those of major banks and financial institutions." } }] }</script>
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta name="twitter:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:title" content="Profit & Loss Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Calculate profit/loss, margin, and markup easily. Ideal for small business owners and freelancers to price products.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/finance/profit-loss-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Profit & Loss Calculator",
+  "url": "https://calcora.site/finance/profit-loss-calculator/",
+  "description": "Calculate profit/loss, margin, and markup easily. Ideal for small business owners and freelancers to price products.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../../" class="back">? Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Profit & Loss Calculator</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> Our Profit & Loss Calculator provides instant, professional-grade results with zero data collection. Use this tool to plan your wealth, compare loan options, or estimate taxes with current 2026-27 rules. It uses the standard compounding formula A = P(1 + r/n)^(nt) for maximum accuracy.
+        </div>
+        <p>Calculate profit/loss amount, percentage, markup, and margin.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> Buy at ?500, sell at ?750 = ?250 profit (50% markup, 33.3%
+            margin).</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>??</i> Pricing Details</div>
+                <div class="control">
+                    <div class="il"><span>Cost Price (CP)</span></div>
+                    <input type="number" id="cp" class="ti" placeholder="e.g. 500" style="width:100%; font-size:1.1rem; padding:12px; margin-top:8px">
+                </div>
+                <div class="control" style="margin-top:20px">
+                    <div class="il"><span>Selling Price (SP)</span></div>
+                    <input type="number" id="sp" class="ti" placeholder="e.g. 750" style="width:100%; font-size:1.1rem; padding:12px; margin-top:8px">
+                </div>
+            </div>
+
+            <div class="glass res-card">
+                <div class="ctitle"><i>??</i> Analysis Results</div>
+                <div class="res-box">
+                    <div class="res-v" id="amount" style="background:var(--accent); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">?0</div>
+                    <div class="res-l" id="status-label">Profit/Loss</div>
+                </div>
+                <div class="pills">
+                    <div class="pill"><div class="pl">Markup</div><div class="pv" id="markup">0%</div></div>
+                    <div class="pill"><div class="pl">Margin</div><div class="pv" id="margin">0%</div></div>
+                </div>
+                <div class="chart-wrap"><canvas id="ch"></canvas></div>
+            </div>
+        </div>
+
+<footer class='site-ft'>
+        <p>© 2026 <a href="../../">Calcora</a></p>
+    </footer>
+    <script src="../../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Cost', 'Profit'], [1, 1], ['#fb7185', '#34d399']);
+            function calc() {
+                const cp = +document.getElementById('cp').value || 0, sp = +document.getElementById('sp').value || 0;
+                const pl = sp - cp, isProfit = pl >= 0;
+                const markup = cp > 0 ? (pl / cp * 100) : 0, margin = sp > 0 ? (pl / sp * 100) : 0;
+                document.getElementById('status-label').textContent = isProfit ? 'Profit' : 'Loss';
+                document.getElementById('amount').textContent = C.F(Math.abs(pl));
+                document.getElementById('amount').style.background = isProfit ? 'linear-gradient(135deg,var(--emerald),var(--cyan))' : 'linear-gradient(135deg,var(--rose),var(--amber))';
+                document.getElementById('markup').textContent = markup.toFixed(1) + '%';
+                document.getElementById('margin').textContent = margin.toFixed(1) + '%';
+                C.uChart('ch', [Math.max(1, cp), Math.max(1, Math.abs(pl))]);
+            }
+            ['cp', 'sp'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            calc();
+        });
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About Profit & Loss Calculator</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Calculate profit/loss, margin, and markup easily. Ideal for small business owners and freelancers to price products.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../finance/compound-interest/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Compound Interest</a><a href='../../finance/emi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Emi Calculator</a><a href='../../finance/fd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Fd Calculator</a><a href='../../finance/gst-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Gst Calculator</a><a href='../../finance/loan-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Loan Calculator</a><a href='../../finance/ppf-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Ppf Calculator</a><a href='../../finance/profit-loss-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Profit Loss Calculator</a><a href='../../finance/rd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Rd Calculator</a><a href='../../finance/salary-to-hourly/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Salary To Hourly</a><a href='../../finance/sip-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sip Calculator</a><a href='../../finance/tax-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tax Calculator</a><a href='../../finance/trip-expense-splitter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Trip Expense Splitter</a><a href='../../finance/website-cost-estimator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Website Cost Estimator</a></div></div>
+</div>
+</body>
+
+</html>

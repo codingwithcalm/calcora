@@ -1,0 +1,5 @@
+# Redirect .html to clean URL securely
+/*\.html  /:splat  301!
+
+# Serve clean URLs
+/*  /:splat.html  200

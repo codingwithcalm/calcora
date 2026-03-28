@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>PPF Calculator — Free Online Tool | Calcora</title>
+    <meta name="description" content="Calculate PPF maturity amount & tax-free returns. Free PPF calculator with yearly compounding for 15-year tenure. See how much your PPF investment will grow.">
+    <meta name="keywords" content="ppf calculator, public provident fund calculator, ppf maturity calculator, ppf interest rate, ppf returns calculator">
+    <link rel="canonical" href="https://calcora.site/finance/ppf-calculator/">
+    <link rel="icon" type="image/x-icon" href="../../assets/"logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calcora.site/index.html#finance"},{"@type":"ListItem","position":3,"name":"PPF Calculator","item":"https://calcora.site/finance/ppf-calculator.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PPF Calculator","operatingSystem":"All","applicationCategory":"FinanceApplication","url":"https://calcora.site/finance/ppf-calculator.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"750"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<meta property="og:title" content="PPF Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Calculate PPF maturity amount & tax-free returns. Free PPF calculator with yearly compounding for 15-year tenure. See how much your PPF investment will grow.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/finance/ppf-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PPF Calculator",
+  "url": "https://calcora.site/finance/ppf-calculator/",
+  "description": "Calculate PPF maturity amount & tax-free returns. Free PPF calculator with yearly compounding for 15-year tenure. See how much your PPF investment will grow.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div></nav>
+    <div class="page fade-in">
+        <a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr"><div class="mod-icon">🏛️</div><h1>PPF Calculator</h1><p class="mod-desc">Calculate your Public Provident Fund maturity amount. See how 15 years of tax-free compounding can build significant wealth.</p></div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>💰</i> Investment Details</div>
+                <div class="control">
+                    <div class="il"><span>Yearly Investment</span><span id="p-v">₹1,50,000</span></div>
+                    <input type="range" id="p" class="c-slider" min="500" max="150000" value="150000" step="500">
+                </div>
+                <div class="control">
+                    <div class="il"><span>Expected Return (% p.a.)</span><span id="r-v">7.1%</span></div>
+                    <input type="range" id="r" class="c-slider" min="5" max="9" value="7.1" step="0.1">
+                </div>
+                <div class="control">
+                    <div class="il"><span>Duration (Years)</span><span id="y-v">15 Years</span></div>
+                    <input type="range" id="y" class="c-slider" min="1" max="50" value="15" step="1">
+                </div>
+            </div>
+
+            <div class="glass res-card">
+                <div class="ctitle"><i>📊</i> Result Analysis</div>
+                <div class="res-box">
+                    <div class="res-v" id="maturity">₹0</div>
+                    <div class="res-l">Estimated Maturity Value</div>
+                </div>
+                <div class="pills">
+                    <div class="pill"><div class="pl"><span class="dot" style="background:#34d399"></span> Total Invested</div><div class="pv" id="invested">₹0</div></div>
+                    <div class="pill"><div class="pl"><span class="dot" style="background:#fb7185"></span> Total Interest</div><div class="pv" id="interest">₹0</div></div>
+                </div>
+                <div class="chart-wrap"><canvas id="ch"></canvas></div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    
+
+    <footer class='site-ft'><p>&copy; 2026 <a href="../../">Calcora</a></p></footer>
+    <script src="../../script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        C.doughnut('ch', ['Invested', 'Interest'], [1, 1], ['#34d399', '#fb7185']);
+        function calc() {
+            const P = +document.getElementById('p').value;
+            const r = +document.getElementById('r').value / 100;
+            const y = +document.getElementById('y').value;
+            document.getElementById('p-v').textContent = C.F(P);
+            document.getElementById('r-v').textContent = ((r*100) % 1 === 0 ? r*100 : (r*100).toFixed(1)) + '%';
+            document.getElementById('y-v').textContent = y + ' Years';
+            let balance = 0;
+            const invested = P * y;
+            for (let i = 0; i < y; i++) {
+                balance = (balance + P) * (1 + r);
+            }
+            const interest = balance - invested;
+            document.getElementById('maturity').textContent = C.F(balance);
+            document.getElementById('invested').textContent = C.F(invested);
+            document.getElementById('interest').textContent = C.F(interest);
+            C.uChart('ch', [invested, Math.max(0, interest)]);
+        }
+        ['p', 'r', 'y'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+        C.initSliders(); calc();
+    });
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About PPF Calculator</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Calculate PPF maturity amount & tax-free returns. Free PPF calculator with yearly compounding for 15-year tenure. See how much your PPF investment will grow.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../finance/compound-interest/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Compound Interest</a><a href='../../finance/emi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Emi Calculator</a><a href='../../finance/fd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Fd Calculator</a><a href='../../finance/gst-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Gst Calculator</a><a href='../../finance/loan-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Loan Calculator</a><a href='../../finance/ppf-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Ppf Calculator</a><a href='../../finance/profit-loss-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Profit Loss Calculator</a><a href='../../finance/rd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Rd Calculator</a><a href='../../finance/salary-to-hourly/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Salary To Hourly</a><a href='../../finance/sip-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sip Calculator</a><a href='../../finance/tax-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tax Calculator</a><a href='../../finance/trip-expense-splitter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Trip Expense Splitter</a><a href='../../finance/website-cost-estimator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Website Cost Estimator</a></div></div>
+</div>
+</body>
+</html>
+

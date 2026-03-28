@@ -3,13 +3,7 @@
    ═══════════════════════════════════════ */
 (function(){
 'use strict';
-const TK='calcora-theme';
-function getPref(){const s=localStorage.getItem(TK);if(s)return s;return matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}
-function apply(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem(TK,t);}
-apply(getPref());
 document.addEventListener('DOMContentLoaded',()=>{
-const tog=document.getElementById('theme-toggle');
-if(tog)tog.addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme')||'dark';apply(c==='dark'?'light':'dark');});
 window.C=window.C||{};
 C.fillSlider=function(el){const p=((el.value-el.min)/(el.max-el.min))*100;el.style.background=`linear-gradient(90deg,var(--accent) ${p}%,var(--inputBg) ${p}%)`;};
 C.initSliders=function(){document.querySelectorAll('input[type=range]').forEach(s=>{C.fillSlider(s);s.addEventListener('input',()=>C.fillSlider(s));});};

@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Tip Calculator — Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/png" href="../../assets/"logo.png">
+    <meta name="description"
+        content="Free online tip calculator and bill splitter. Quickly find out exactly how much to tip and how to split the check.">
+    <meta name="keywords" content="tip calculator, bill splitter, split bill, restaurant tip, gratuity calculator">
+    <link rel="canonical" href="https://calcora.site/daily/tip-calculator/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora — Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">
+
+    <style>
+        .tc-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .input-group { margin-bottom: 24px; }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dim);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .input-field {
+            position: relative;
+        }
+        .input-prefix {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dim);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .input-field input {
+            width: 100%;
+            padding: 16px 16px 16px 40px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .input-field input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .tip-btns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .tip-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tip-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        
+        .per-person-card {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--emerald);
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 32px;
+        }
+        .pp-lbl {
+            color: var(--emerald);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .pp-val {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+        }
+        
+        .summary-flex {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .sum-item { text-align: left; }
+        .sum-item.right { text-align: right; }
+        .sum-lbl { color: var(--dim); font-size: 0.9rem; margin-bottom: 4px; }
+        .sum-val { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    </style>
+<meta property="og:title" content="Tip Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Free online tip calculator and bill splitter. Quickly find out exactly how much to tip and how to split the check.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/daily/tip-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Tip Calculator",
+  "url": "https://calcora.site/daily/tip-calculator/",
+  "description": "Free online tip calculator and bill splitter. Quickly find out exactly how much to tip and how to split the check.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        </div>
+    </nav>
+
+    <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr" style="text-align: center;">
+            <h1>Tip Calculator</h1>
+            <p>Fast, simple bill splitting and gratuity calculation.</p>
+        </div>
+        
+        <div class="glass tc-container">
+            <div class="input-group">
+                <label for="bill">Bill Amount</label>
+                <div class="input-field">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="bill" placeholder="0.00" oninput="calcTip()">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Tip Percentage</label>
+                <div class="tip-btns">
+                    <button class="tip-btn" onclick="setTip(15)" id="btn-15">15%</button>
+                    <button class="tip-btn active" onclick="setTip(18)" id="btn-18">18%</button>
+                    <button class="tip-btn" onclick="setTip(20)" id="btn-20">20%</button>
+                </div>
+                <div class="input-field">
+                    <span class="input-prefix">%</span>
+                    <input type="number" id="custom-tip" value="18" placeholder="Custom %" oninput="calcCustomTip()">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="split">Number of People</label>
+                <div class="input-field">
+                    <span class="input-prefix">👤</span>
+                    <input type="number" id="split" value="1" min="1" oninput="calcTip()">
+                </div>
+            </div>
+
+            <div class="per-person-card">
+                <div class="pp-lbl">Total Per Person</div>
+                <div class="pp-val" id="val-pp">$0.00</div>
+                <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 10px;">includes tip</div>
+            </div>
+
+            <div class="summary-flex">
+                <div class="sum-item">
+                    <div class="sum-lbl">Total Tip</div>
+                    <div class="sum-val" id="val-tip" style="color: var(--amber);">$0.00</div>
+                </div>
+                <div class="sum-item right">
+                    <div class="sum-lbl">Total Bill with Tip</div>
+                    <div class="sum-val" id="val-total">$0.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    
+</div>
+<footer class='site-ft'>
+        <p>&copy; 2026 <a href="../../">Calcora</a></p>
+    </footer>
+    <script src="../../script.js"></script>
+    <script>
+        function setTip(pct) {
+            document.getElementById('custom-tip').value = pct;
+            document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + pct).classList.add('active');
+            calcTip();
+        }
+
+        function calcCustomTip() {
+            document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('active'));
+            // Try to match preset buttons
+            const val = document.getElementById('custom-tip').value;
+            if(val == 15) document.getElementById('btn-15').classList.add('active');
+            if(val == 18) document.getElementById('btn-18').classList.add('active');
+            if(val == 20) document.getElementById('btn-20').classList.add('active');
+            
+            calcTip();
+        }
+
+        function calcTip() {
+            const bill = parseFloat(document.getElementById('bill').value) || 0;
+            const tipPct = parseFloat(document.getElementById('custom-tip').value) || 0;
+            const split = parseInt(document.getElementById('split').value) || 1;
+
+            if (bill === 0) {
+                document.getElementById('val-pp').innerText = '$0.00';
+                document.getElementById('val-tip').innerText = '$0.00';
+                document.getElementById('val-total').innerText = '$0.00';
+                return;
+            }
+
+            const totalTip = bill * (tipPct / 100);
+            const totalBill = bill + totalTip;
+            const perPerson = totalBill / split;
+
+            document.getElementById('val-tip').innerText = '$' + totalTip.toFixed(2);
+            document.getElementById('val-total').innerText = '$' + totalBill.toFixed(2);
+            document.getElementById('val-pp').innerText = '$' + perPerson.toFixed(2);
+        }
+
+        calcTip();
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About Tip Calculator</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Free online tip calculator and bill splitter. Quickly find out exactly how much to tip and how to split the check.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../daily/age-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Age Calculator</a><a href='../../daily/aspect-ratio-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Aspect Ratio Calculator</a><a href='../../daily/countdown-timer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Countdown Timer</a><a href='../../daily/date-difference/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Date Difference</a><a href='../../daily/discount-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Discount Calculator</a><a href='../../daily/gpa-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Gpa Calculator</a><a href='../../daily/percentage-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Percentage Calculator</a><a href='../../daily/random-number-generator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Random Number Generator</a><a href='../../daily/scientific-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Scientific Calculator</a><a href='../../daily/stopwatch/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Stopwatch</a><a href='../../daily/time-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Time Calculator</a><a href='../../daily/tip-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tip Calculator</a><a href='../../daily/word-counter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Word Counter</a></div></div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Salary to Hourly Calculator — Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/png" href="../../assets/"logo.png">
+    <meta name="description"
+        content="Instantly convert your annual salary into hourly, daily, weekly, and monthly wages. Free salary conversion calculator.">
+    <meta name="keywords" content="salary to hourly calculator, annual salary to hourly wage, salary calculator, wage converter">
+    <link rel="canonical" href="https://calcora.site/finance/salary-to-hourly/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora — Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">
+
+    <style>
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dim);
+            font-size: 0.95rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1.1rem;
+            font-family: inherit;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .res-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .res-title {
+            color: var(--dim);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .res-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--emerald);
+        }
+        .accent-card {
+            border-color: var(--emerald);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        .flex-row {
+            display: flex;
+            gap: 16px;
+        }
+        .flex-row .input-group {
+            flex: 1;
+        }
+        @media (max-width: 600px) {
+            .flex-row { flex-direction: column; gap: 0; }
+        }
+    </style>
+<meta property="og:title" content="Salary to Hourly Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Instantly convert your annual salary into hourly, daily, weekly, and monthly wages. Free salary conversion calculator.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/finance/salary-to-hourly/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Salary to Hourly Calculator",
+  "url": "https://calcora.site/finance/salary-to-hourly/",
+  "description": "Instantly convert your annual salary into hourly, daily, weekly, and monthly wages. Free salary conversion calculator.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        </div>
+    </nav>
+
+    <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Salary to Hourly Calculator</h1>
+            <p>Easily convert your annual salary into hourly, daily, weekly, and monthly wages.</p>
+        </div>
+        
+        <div class="glass">
+            <div class="input-group">
+                <label for="annual-salary">Annual Base Salary ($)</label>
+                <input type="number" id="annual-salary" value="60000" placeholder="e.g. 60000" oninput="calculateWage()">
+            </div>
+            
+            <div class="flex-row">
+                <div class="input-group">
+                    <label for="hours-week">Hours worked per week</label>
+                    <input type="number" id="hours-week" value="40" placeholder="e.g. 40" oninput="calculateWage()">
+                </div>
+                <div class="input-group">
+                    <label for="weeks-year">Weeks worked per year</label>
+                    <input type="number" id="weeks-year" value="52" placeholder="e.g. 52" oninput="calculateWage()">
+                </div>
+            </div>
+
+            <div class="results-grid">
+                <div class="res-card accent-card">
+                    <div class="res-title">Hourly Wage</div>
+                    <div class="res-value" id="val-hourly">$28.85</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-title">Daily Wage</div>
+                    <div class="res-value" id="val-daily">$230.77</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-title">Weekly Wage</div>
+                    <div class="res-value" id="val-weekly">$1,153.85</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-title">Monthly Wage</div>
+                    <div class="res-value" id="val-monthly">$5,000.00</div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- AD SLOT -->
+        <div class="ad-slot"><ins><!-- AdSense mid --></ins></div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128214;</i> How to Use This Calculator</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>Convert your annual salary to an hourly wage in seconds. Perfect for comparing job offers, negotiating pay, or understanding your true earning rate.</p>
+                <ol style="margin-top:10px;padding-left:20px">
+                    <li><b>Enter Salary:</b> Type your annual base salary (before taxes) in the salary field.</li>
+                    <li><b>Set Hours:</b> Adjust hours worked per week (default 40 for full-time).</li>
+                    <li><b>Set Weeks:</b> Change weeks per year if you have unpaid time off (default 52).</li>
+                    <li><b>Read Results:</b> Your hourly, daily, weekly, and monthly wages update instantly.</li>
+                </ol>
+                <h3 style="margin-top:20px;font-size:1rem;color:var(--text)">Common Use Cases</h3>
+                <ul style="margin-top:8px;padding-left:20px">
+                    <li>Comparing a salaried position vs an hourly contract offer</li>
+                    <li>Freelancers setting their hourly billing rate based on desired annual income</li>
+                    <li>Understanding overtime pay implications</li>
+                    <li>Budgeting based on actual take-home per period</li>
+                </ul>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: If you get 2 weeks unpaid vacation, set weeks to 50 instead of 52 — this gives a more accurate hourly rate since you're only paid for 50 weeks.
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    
+    <footer class='site-ft'>
+        <p>&copy; 2026 <a href="../../">Calcora</a></p>
+    </footer>
+    <script src="../../script.js"></script>
+    <script>
+        function formatMoney(num) {
+            return '$' + num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        function calculateWage() {
+            const annual = parseFloat(document.getElementById('annual-salary').value) || 0;
+            const hoursPerWeek = parseFloat(document.getElementById('hours-week').value) || 1;
+            const weeksPerYear = parseFloat(document.getElementById('weeks-year').value) || 1;
+
+            if (annual === 0) {
+                document.getElementById('val-hourly').innerText = '$0.00';
+                document.getElementById('val-daily').innerText = '$0.00';
+                document.getElementById('val-weekly').innerText = '$0.00';
+                document.getElementById('val-monthly').innerText = '$0.00';
+                return;
+            }
+
+            const totalHours = hoursPerWeek * weeksPerYear;
+            const hourly = annual / totalHours;
+            const daily = hourly * (hoursPerWeek / 5); // Assuming 5 work days a week for daily breakdown
+            const weekly = hourly * hoursPerWeek;
+            const monthly = annual / 12;
+
+            document.getElementById('val-hourly').innerText = formatMoney(hourly);
+            document.getElementById('val-daily').innerText = formatMoney(daily);
+            document.getElementById('val-weekly').innerText = formatMoney(weekly);
+            document.getElementById('val-monthly').innerText = formatMoney(monthly);
+        }
+
+        // Init
+        calculateWage();
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../finance/compound-interest/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Compound Interest</a><a href='../../finance/emi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Emi Calculator</a><a href='../../finance/fd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Fd Calculator</a><a href='../../finance/gst-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Gst Calculator</a><a href='../../finance/loan-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Loan Calculator</a><a href='../../finance/ppf-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Ppf Calculator</a><a href='../../finance/profit-loss-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Profit Loss Calculator</a><a href='../../finance/rd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Rd Calculator</a><a href='../../finance/salary-to-hourly/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Salary To Hourly</a><a href='../../finance/sip-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sip Calculator</a><a href='../../finance/tax-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tax Calculator</a><a href='../../finance/trip-expense-splitter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Trip Expense Splitter</a><a href='../../finance/website-cost-estimator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Website Cost Estimator</a></div></div>
+</div>
+</body>
+
+</html>

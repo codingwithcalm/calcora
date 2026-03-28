@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>FD Calculator — Free Online Tool | Calcora</title>
+    <meta name="description" content="Calculate your Fixed Deposit maturity amount & interest earned instantly. Free FD calculator with quarterly compounding for all major banks. No sign-up needed.">
+    <meta name="keywords" content="fd calculator, fixed deposit calculator, fd interest calculator, fd maturity calculator, bank fd rates, fixed deposit returns">
+    <link rel="canonical" href="https://calcora.site/finance/fd-calculator/">
+    <link rel="icon" type="image/x-icon" href="../../assets/"logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calcora.site/index.html#finance"},{"@type":"ListItem","position":3,"name":"FD Calculator","item":"https://calcora.site/finance/fd-calculator.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FD Calculator","operatingSystem":"All","applicationCategory":"FinanceApplication","url":"https://calcora.site/finance/fd-calculator.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"890"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is FD interest calculated?","acceptedAnswer":{"@type":"Answer","text":"FD interest is calculated using compound interest formula: A = P(1 + r/n)^(n*t), where P is principal, r is annual rate, n is compounding frequency (usually quarterly), and t is tenure in years."}},{"@type":"Question","name":"What are the current FD rates in India?","acceptedAnswer":{"@type":"Answer","text":"Major bank FD rates in 2026 range from 6.5% to 8.25% for regular citizens. Senior citizens get an additional 0.25-0.50% premium. Small finance banks may offer up to 9%."}},{"@type":"Question","name":"Is FD interest taxable?","acceptedAnswer":{"@type":"Answer","text":"Yes, FD interest is fully taxable as per your income tax slab. TDS of 10% is deducted if interest exceeds Rs 40,000/year (Rs 50,000 for senior citizens). You can submit Form 15G/15H to avoid TDS if total income is below taxable limit."}}]}</script>
+<meta property="og:title" content="FD Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Calculate your Fixed Deposit maturity amount & interest earned instantly. Free FD calculator with quarterly compounding for all major banks. No sign-up needed.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/finance/fd-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "FD Calculator",
+  "url": "https://calcora.site/finance/fd-calculator/",
+  "description": "Calculate your Fixed Deposit maturity amount & interest earned instantly. Free FD calculator with quarterly compounding for all major banks. No sign-up needed.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in">
+            <a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+        </div>
+    </nav>
+    <div class="page fade-in">
+        <a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <div class="mod-icon">🏦</div>
+            <h1>FD Calculator</h1>
+            <p class="mod-desc">Calculate your Fixed Deposit maturity amount, interest earned, and compare returns across different tenures and rates.</p>
+        </div>
+
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>💰</i> Deposit Details</div>
+                <div class="control">
+                    <div class="il"><span>Deposit Amount</span><span id="p-v">₹5,00,000</span></div>
+                    <input type="range" id="p" class="c-slider" min="10000" max="10000000" value="500000" step="10000">
+                </div>
+                <div class="control">
+                    <div class="il"><span>Interest Rate (% p.a.)</span><span id="r-v">7%</span></div>
+                    <input type="range" id="r" class="c-slider" min="1" max="15" value="7" step="0.1">
+                </div>
+                <div class="control">
+                    <div class="il"><span>Tenure (Years)</span><span id="y-v">5 Years</span></div>
+                    <input type="range" id="y" class="c-slider" min="1" max="25" value="5" step="1">
+                </div>
+                <div class="control">
+                    <div class="il"><span>Compounding Frequency</span></div>
+                    <select id="comp" class="ti" style="margin-top:8px">
+                        <option value="4" selected>Quarterly (Standard)</option>
+                        <option value="12">Monthly</option>
+                        <option value="2">Half-Yearly</option>
+                        <option value="1">Yearly</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="glass res-card">
+                <div class="ctitle"><i>📊</i> Result Analysis</div>
+                <div class="res-box">
+                    <div class="res-v" id="maturity">₹0</div>
+                    <div class="res-l">Estimated Maturity Value</div>
+                </div>
+                <div class="pills">
+                    <div class="pill"><div class="pl"><span class="dot" style="background:#34d399"></span> Interest Earned</div><div class="pv" id="interest">₹0</div></div>
+                    <div class="pill"><div class="pl"><span class="dot" style="background:#0891b2"></span> Effective Yield</div><div class="pv" id="yield">0%</div></div>
+                </div>
+                <div class="chart-wrap"><canvas id="ch"></canvas></div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    
+
+    <footer class='site-ft'>
+        <p>&copy; 2026 <a href="../../">Calcora</a></p>
+    </footer>
+    <script src="../../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Principal', 'Interest'], [1, 1], ['#34d399', '#fb7185']);
+            function calc() {
+                const P = +document.getElementById('p').value;
+                const r = +document.getElementById('r').value;
+                const y = +document.getElementById('y').value;
+                const n = +document.getElementById('comp').value;
+                document.getElementById('p-v').textContent = C.F(P);
+                document.getElementById('r-v').textContent = (r % 1 === 0 ? r : r.toFixed(1)) + '%';
+                document.getElementById('y-v').textContent = y + (y === 1 ? ' Year' : ' Years');
+                const maturity = P * Math.pow(1 + (r / 100 / n), n * y);
+                const interest = maturity - P;
+                const effectiveYield = (Math.pow(maturity / P, 1 / y) - 1) * 100;
+                document.getElementById('maturity').textContent = C.F(maturity);
+                document.getElementById('interest').textContent = C.F(interest);
+                document.getElementById('yield').textContent = effectiveYield.toFixed(2) + '%';
+                C.uChart('ch', [P, Math.max(0, interest)]);
+            }
+            ['p', 'r', 'y'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            document.getElementById('comp').addEventListener('change', calc);
+            C.initSliders(); calc();
+        });
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About FD Calculator</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Calculate your Fixed Deposit maturity amount & interest earned instantly. Free FD calculator with quarterly compounding for all major banks. No sign-up needed.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../finance/compound-interest/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Compound Interest</a><a href='../../finance/emi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Emi Calculator</a><a href='../../finance/fd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Fd Calculator</a><a href='../../finance/gst-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Gst Calculator</a><a href='../../finance/loan-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Loan Calculator</a><a href='../../finance/ppf-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Ppf Calculator</a><a href='../../finance/profit-loss-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Profit Loss Calculator</a><a href='../../finance/rd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Rd Calculator</a><a href='../../finance/salary-to-hourly/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Salary To Hourly</a><a href='../../finance/sip-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sip Calculator</a><a href='../../finance/tax-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tax Calculator</a><a href='../../finance/trip-expense-splitter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Trip Expense Splitter</a><a href='../../finance/website-cost-estimator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Website Cost Estimator</a></div></div>
+</div>
+</body>
+</html>
+

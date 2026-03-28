@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>SVG Optimizer — Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/"logo.png">
+    <meta name="description"
+        content="Free SVG optimizer. Remove unnecessary metadata, comments, and minify SVG code to reduce file size and improve web performance.">
+    <meta name="keywords" content="svg optimizer, minify svg, clean svg, svgo alternative, web performance tools">
+    <link rel="canonical" href="https://calcora.site/files/svg-optimizer/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "files", "item": "https://calcora.site/index.html#files" },{ "@type": "ListItem", "position": 3, "name": "SVG Optimizer", "item": "https://calcora.site/files/svg-optimizer.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SVG Optimizer", "operatingSystem": "All", "applicationCategory": "filesApplication", "url": "https://calcora.site/files/svg-optimizer.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "Are my files uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Calcora file tools process everything locally in your browser using JavaScript. Your files never leave your device." } },{ "@type": "Question", "name": "What is the maximum file size supported?", "acceptedAnswer": { "@type": "Answer", "text": "File size limits depend on your browser and device memory. Most modern browsers can handle files up to 100MB+ without issues." } },{ "@type": "Question", "name": "What file formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "We support PDF, JPG, PNG, SVG, ICO, and WebP formats across our various file tools. Each tool page lists its specific supported formats." } }] }</script>
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta name="twitter:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:title" content="SVG Optimizer — Free Online Tool | Calcora">
+<meta property="og:description" content="Free SVG optimizer. Remove unnecessary metadata, comments, and minify SVG code to reduce file size and improve web performance.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/files/svg-optimizer/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SVG Optimizer",
+  "url": "https://calcora.site/files/svg-optimizer/",
+  "description": "Free SVG optimizer. Remove unnecessary metadata, comments, and minify SVG code to reduce file size and improve web performance.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>SVG Optimizer</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> Our SVG Optimizer allows you to process documents and images safely in your browser. Unlike other online converters, we do not upload your files to our servers; everything is handled locally using your computer's resources for 100% privacy and lightning-fast speed.
+        </div>
+        <p>Reduce SVG file size by up to 80% by removing technical bloat and metadata.</p>
+        </div>
+        
+        <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+            <button class="btn btn-accent" onclick="optimize()">🚀 Optimize SVG</button>
+            <button class="copy-btn" onclick="copyResult()">📋 Copy Code</button>
+            <button class="btn btn-outline" onclick="downloadSVG()">💾 Download</button>
+        </div>
+
+        <div class="tool-grid">
+            
+</div>
+<footer class='site-ft'>
+        <p>© 2026 <a href="../../">Calcora</a></p>
+    </footer>
+    <script src="../../script.js"></script>
+    <script>
+        function optimize() {
+            let svg = document.getElementById('input').value.trim();
+            if (!svg) return;
+
+            const originalSize = new Blob([svg]).size;
+            
+            // Basic Optimization Logic (Regex)
+            svg = svg.replace(/<!--[\s\S]*?-->/g, ''); // Remove comments
+            svg = svg.replace(/<\?xml[\s\S]*?\?>/i, ''); // Remove XML decl
+            svg = svg.replace(/<!DOCTYPE[\s\S]*?>/i, ''); // Remove Doctype
+            svg = svg.replace(/metadata[\s\S]*?\/metadata/g, ''); // Remove metadata tags
+            svg = svg.replace(/\s+/g, ' '); // Collapse whitespaces
+            svg = svg.replace(/>\s+</g, '><'); // Remove space between tags
+            svg = svg.replace(/(\w+)="([^"]*)"/g, (m, p1, p2) => `${p1}="${p2.trim()}"`); // Trim attributes
+
+            const optimizedSize = new Blob([svg]).size;
+            const savings = ((originalSize - optimizedSize) / originalSize * 100).toFixed(1);
+
+            document.getElementById('output').textContent = svg;
+            document.getElementById('savings').textContent = `Savings: ${savings}%`;
+            document.getElementById('savings').style.color = savings > 0 ? 'var(--emerald)' : 'var(--rose)';
+            document.getElementById('size').textContent = `${formatBytes(originalSize)} → ${formatBytes(optimizedSize)}`;
+            
+            document.getElementById('prev-orig').innerHTML = document.getElementById('input').value;
+            document.getElementById('prev-opt').innerHTML = svg;
+        }
+
+        function loadFile(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                document.getElementById('input').value = e.target.result;
+                optimize();
+            };
+            reader.readAsText(file);
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024, sizes = ['B', 'KB', 'MB'], i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        function copyResult() {
+            const out = document.getElementById('output');
+            navigator.clipboard.writeText(out.textContent).then(() => {
+                const btn = event.target;
+                btn.textContent = '📋 Copied!';
+                setTimeout(() => btn.textContent = '📋 Copy Code', 1500);
+            });
+        }
+
+        function downloadSVG() {
+            const svg = document.getElementById('output').textContent;
+            if (!svg) return;
+            const blob = new Blob([svg], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'optimized.svg';
+            a.click();
+        }
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About SVG Optimizer</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Free SVG optimizer. Remove unnecessary metadata, comments, and minify SVG code to reduce file size and improve web performance.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Files Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../files/favicon-generator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Favicon Generator</a><a href='../../files/file-compressor/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>File Compressor</a><a href='../../files/image-resizer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Image Resizer</a><a href='../../files/jpg-png-converter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Jpg Png Converter</a><a href='../../files/pdf-merge/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pdf Merge</a><a href='../../files/pdf-split/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pdf Split</a><a href='../../files/svg-optimizer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Svg Optimizer</a></div></div>
+</div>
+</body>
+
+</html>

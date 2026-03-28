@@ -1,0 +1,660 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Full Website Extractor — Free Online Tool | Calcora</title>
+    <link rel="icon" type="image/png" href="../../assets/"logo.png">
+    <meta name="description"
+        content="Free online website source code extractor. Fetch and view HTML, CSS, JavaScript, and take screenshots of any public webpage, including WordPress sites.">
+    <meta name="keywords" content="source code viewer, website extractor, get css code, get javascript, website screenshot, scrape html, developer tool">
+    <link rel="canonical" href="https://calcora.site/tech/source-code-viewer/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    
+    <!-- Manifest link temporarily removed to prevent local file:/// origin CORS errors -->
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora — Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">
+
+    <style>
+        .source-container {
+            position: relative;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: none;
+        }
+        .source-container.active {
+            display: block;
+        }
+        .source-container pre {
+            margin: 0;
+            padding: 16px;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text);
+            min-height: 500px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        .url-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .url-input-container input {
+            flex-grow: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--text);
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+            vertical-align: text-bottom;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Tabs Styling */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            background: var(--badge);
+            color: var(--dim);
+            border: 1px solid transparent;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .tab-btn:hover {
+            color: var(--text);
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .screenshot-wrap {
+            text-align: center;
+            padding: 20px;
+            background: var(--badge);
+            border-radius: 8px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        .screenshot-wrap.active {
+            display: flex;
+        }
+        .screenshot-wrap img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            min-height: 200px;
+            background: #111;
+        }
+        .stat-badge {
+            font-size: 0.75rem;
+            background: var(--border);
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 6px;
+        }
+        .dl-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: flex-end;
+            padding: 10px 16px;
+            background: var(--badge);
+            border-top: 1px solid var(--border);
+        }
+        /* Colors & Fonts Styling */
+        .design-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .design-grid { grid-template-columns: 1fr; }
+        }
+        .color-swatch-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .color-swatch {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            padding: 6px 12px 6px 6px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        .color-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .font-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .font-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+    </style>
+<meta property="og:title" content="Full Website Extractor — Free Online Tool | Calcora">
+<meta property="og:description" content="Free online website source code extractor. Fetch and view HTML, CSS, JavaScript, and take screenshots of any public webpage, including WordPress sites.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/tech/source-code-viewer/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Full Website Extractor",
+  "url": "https://calcora.site/tech/source-code-viewer/",
+  "description": "Free online website source code extractor. Fetch and view HTML, CSS, JavaScript, and take screenshots of any public webpage, including WordPress sites.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Full Website Extractor</h1>
+            <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+                <strong>Quick Answer:</strong> This tool extracts a complete view of a webpage. It fetches the raw HTML, parses WordPress or custom linked stylesheets/scripts to combine all CSS & JS into downloadable blocks, and generates a visual layout screenshot.
+            </div>
+            <p>Extract HTML, compiled CSS, JavaScript, and Screenshots instantly.</p>
+        </div>
+        
+        <div class="url-input-container">
+            <input type="url" id="url-input" placeholder="https://wordpress-site.com" onkeydown="if(event.key==='Enter') fetchWebsiteAssets()">
+            <button class="btn btn-accent" onclick="fetchWebsiteAssets()" id="fetch-btn">
+                <span>⚡ Extract Website</span>
+                <div class="loader" id="loader"></div>
+            </button>
+        </div>
+
+        <div id="status" style="margin-bottom:12px;font-size:.85rem;font-weight:600;display:none;padding:12px;border-radius:8px"></div>
+
+        <div class="glass" id="results-area" style="display:none; padding: 20px;">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('tab-ss')" id="btn-tab-ss">📸 Screenshot</button>
+                <button class="tab-btn" onclick="switchTab('tab-design')" id="btn-tab-design">🎨 Design</button>
+                <button class="tab-btn" onclick="switchTab('tab-html')" id="btn-tab-html">📄 HTML <span class="stat-badge" id="stat-html">0 KB</span></button>
+                <button class="tab-btn" onclick="switchTab('tab-css')" id="btn-tab-css">🎨 CSS <span class="stat-badge" id="stat-css">0 KB</span></button>
+                <button class="tab-btn" onclick="switchTab('tab-js')" id="btn-tab-js">⚙️ JS <span class="stat-badge" id="stat-js">0 KB</span></button>
+            </div>
+
+            <!-- Screenshot Tab -->
+            <div class="screenshot-wrap active" id="tab-ss">
+                <div style="margin-bottom: 12px; color: var(--dim); font-size: 0.85rem;">Full-page capture (Loading can take up to 20s depending on site length and speed)</div>
+                <img id="ss-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Website Screenshot" onerror="this.style.display='none'; document.getElementById('ss-error').style.display='block';" style="display:none;">
+                <div id="ss-error" style="display:none; color: var(--rose); padding: 20px;">❌ Failed to capture screenshot. The site might be blocking headless browsers or is too large.</div>
+                <div style="margin-top: 15px;">
+                    <a id="ss-download" href="#" target="_blank" class="btn btn-outline" style="display:none;">⬇️ Open Full Image</a>
+                </div>
+            </div>
+
+            <!-- Design Tab -->
+            <div class="source-container" id="tab-design" style="padding: 24px;">
+                <div class="design-grid">
+                    <div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Color Palette</h3>
+                        <div style="font-size: 0.8rem; color: var(--dim);">Extracted from CSS rules</div>
+                        <div class="color-swatch-list" id="out-colors">
+                            <div style="color:var(--dim);font-size:0.85rem">Fetching styles...</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Typography (Fonts)</h3>
+                        <div style="font-size: 0.8rem; color: var(--dim);">Extracted from font-family rules</div>
+                        <div class="font-list" id="out-fonts">
+                            <div style="color:var(--dim);font-size:0.85rem">Fetching styles...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HTML Tab -->
+            <div class="source-container" id="tab-html">
+                <pre id="out-html">Fetching...</pre>
+                <div class="dl-actions">
+                    <button class="copy-btn" onclick="copyOut('out-html', this)">📋 Copy HTML</button>
+                    <button class="btn btn-outline" onclick="downloadCode('out-html', 'html')">⬇️ Download HTML</button>
+                </div>
+            </div>
+
+            <!-- CSS Tab -->
+            <div class="source-container" id="tab-css">
+                <pre id="out-css">Fetching and compiling cascading stylesheets...</pre>
+                <div class="dl-actions">
+                    <button class="copy-btn" onclick="copyOut('out-css', this)">📋 Copy CSS</button>
+                    <button class="btn btn-outline" onclick="downloadCode('out-css', 'css')">⬇️ Download CSS</button>
+                </div>
+            </div>
+
+            <!-- JS Tab -->
+            <div class="source-container" id="tab-js">
+                <pre id="out-js">Fetching and joining JavaScript files...</pre>
+                <div class="dl-actions">
+                    <button class="copy-btn" onclick="copyOut('out-js', this)">📋 Copy JS</button>
+                    <button class="btn btn-outline" onclick="downloadCode('out-js', 'js')">⬇️ Download JS</button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>📖</i> How it Works & Limitations</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>This extractor goes beyond basic source code viewing by utilizing DOM parsing to act like a true scraper.</p>
+                <ul style="margin-top:10px;padding-left:20px;list-style:disc">
+                    <li><b>Screenshot:</b> We use a rendering API to capture a full viewport visual of the website.</li>
+                    <li><b>HTML:</b> Returns the raw document DOM. Server-side rendered frameworks (like WordPress or Laravel) will show up perfectly.</li>
+                    <li><b>CSS:</b> The tool finds all `&lt;style&gt;` inline blocks and systematically proxy-fetches all `&lt;link rel="stylesheet"&gt;` URLs (handling WordPress `/wp-content/themes/...` paths automatically), merging them into one grand CSS block.</li>
+                    <li><b>JavaScript:</b> Combines all inline `&lt;script&gt;` tags and fetches all external `.js` scripts for comprehensive analysis.</li>
+                </ul>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: If you get a "CORS policy" or "Network Error" when running this locally (a file:/// URL), it's because modern browsers block proxy fetching for security without an HTTP server. Run it on an actual host or local server!
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+<footer class='site-ft'>
+        <p>© 2026 <a href="../../">Calcora</a></p>
+    </footer>
+    <script src="../../script.js"></script>
+    <script>
+        const urlInput = document.getElementById('url-input');
+        const fetchBtn = document.getElementById('fetch-btn');
+        const loader = document.getElementById('loader');
+        const statusBox = document.getElementById('status');
+        const resultsArea = document.getElementById('results-area');
+
+        // Output elements
+        const outHtml = document.getElementById('out-html');
+        const outCss = document.getElementById('out-css');
+        const outJs = document.getElementById('out-js');
+
+        const statHtml = document.getElementById('stat-html');
+        const statCss = document.getElementById('stat-css');
+        const statJs = document.getElementById('stat-js');
+
+        // Screenshot
+        const ssImage = document.getElementById('ss-image');
+        const ssError = document.getElementById('ss-error');
+        const ssDownload = document.getElementById('ss-download');
+
+        function escapeHTML(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        function formatBytes(bytes) {
+            if(bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        // Use multiple rotating public proxies to bypass CORS gracefully
+        async function fetchViaProxy(url) {
+            // Primary Proxy: CodeTabs (returns raw text directly)
+            try {
+                const primaryRes = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`);
+                if (primaryRes.ok) return await primaryRes.text();
+            } catch (e) {
+                console.log("Primary proxy failed, trying fallback...", e);
+            }
+
+            // Fallback Proxy: AllOrigins (returns JSON wrapper)
+            try {
+                const fallbackRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+                if (fallbackRes.ok) {
+                    const data = await fallbackRes.json();
+                    if (data.contents) return data.contents;
+                }
+            } catch (e) {
+                console.log("Fallback proxy failed...", e);
+            }
+
+            throw new Error('All public CORS proxies were blocked by your network or the target server.');
+        }
+
+        function switchTab(tabId) {
+            ['tab-ss', 'tab-design', 'tab-html', 'tab-css', 'tab-js'].forEach(id => {
+                document.getElementById(id).classList.remove('active');
+                document.getElementById('btn-' + id).classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        async function fetchWebsiteAssets() {
+            let targetUrl = urlInput.value.trim();
+            if (!targetUrl) {
+                showStatus('❌ Please enter a valid URL.', 'var(--rose)');
+                return;
+            }
+            if (!targetUrl.startsWith('http')) {
+                targetUrl = 'https://' + targetUrl;
+                urlInput.value = targetUrl;
+            }
+
+            setLoading(true);
+            showStatus('⏳ Extracting full website assets... This might take up to 20 seconds for heavy sites like WordPress.', 'var(--sky)');
+            resultsArea.style.display = 'block';
+            
+            // Reset fields
+            outHtml.innerText = "Extracting DOM...";
+            outCss.innerText = "Finding and fetching stylesheets...";
+            outJs.innerText = "Finding and fetching scripts...";
+            statHtml.innerText = "0 KB"; statCss.innerText = "0 KB"; statJs.innerText = "0 KB";
+            ssImage.style.display = 'none';
+            ssError.style.display = 'none';
+            
+            // 1. Kick off Full-Page Screenshot (Using Microlink JSON API to avoid local redirect errors)
+            const ssApiUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&screenshot.fullPage=true`;
+            fetch(ssApiUrl)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.status === 'success' && data.data.screenshot) {
+                        const finalImageUrl = data.data.screenshot.url;
+                        ssImage.src = finalImageUrl;
+                        ssImage.onload = () => ssImage.style.display = 'block';
+                        ssDownload.href = finalImageUrl;
+                        ssDownload.style.display = 'inline-block';
+                    } else {
+                        throw new Error('Screenshot failed');
+                    }
+                })
+                .catch(err => {
+                    console.log("Screenshot error", err);
+                    document.getElementById('ss-error').style.display = 'block';
+                });
+
+            try {
+                // 2. Fetch HTML
+                const htmlContent = await fetchViaProxy(targetUrl);
+                outHtml.innerHTML = escapeHTML(htmlContent);
+                statHtml.innerText = formatBytes(new Blob([htmlContent]).size);
+
+                // Parse HTML to find CSS and JS
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlContent, 'text/html');
+
+                // 3. Extract CSS
+                let cssCombined = "/* --- INLINE STYLES --- */\n\n";
+                const styles = Array.from(doc.querySelectorAll('style'));
+                styles.forEach(s => cssCombined += s.innerHTML + "\n\n");
+
+                cssCombined += "/* --- EXTERNAL STYLESHEETS --- */\n\n";
+                const links = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'));
+                const cssPromises = links.map(async link => {
+                    const href = link.getAttribute('href');
+                    if(href) {
+                        try {
+                            const fullUrl = new URL(href, targetUrl).href;
+                            const cssText = await fetchViaProxy(fullUrl);
+                            return `/* Source: ${fullUrl} */\n${cssText}\n\n`;
+                        } catch(e) {
+                            return `/* Failed to fetch: ${href} */\n\n`;
+                        }
+                    }
+                    return '';
+                });
+
+                // 4. Extract JS
+                let jsCombined = "/* --- INLINE SCRIPTS --- */\n\n";
+                const scripts = Array.from(doc.querySelectorAll('script'));
+                
+                const jsPromises = [];
+                scripts.forEach(script => {
+                    if(!script.hasAttribute('src')) {
+                        if(script.innerHTML.trim().length > 0) {
+                            jsCombined += script.innerHTML + "\n\n";
+                        }
+                    } else {
+                        const src = script.getAttribute('src');
+                        if(src) {
+                            jsPromises.push((async () => {
+                                try {
+                                    const fullUrl = new URL(src, targetUrl).href;
+                                    const jsText = await fetchViaProxy(fullUrl);
+                                    return `/* Source: ${fullUrl} */\n${jsText}\n\n`;
+                                } catch(e) {
+                                    return `/* Failed to fetch: ${src} */\n\n`;
+                                }
+                            })());
+                        }
+                    }
+                });
+                jsCombined += "/* --- EXTERNAL SCRIPTS --- */\n\n";
+
+                // Wait for all CSS proxies to resolve
+                const cssResults = await Promise.all(cssPromises);
+                cssResults.forEach(res => cssCombined += res);
+                outCss.innerHTML = escapeHTML(cssCombined);
+                statCss.innerText = formatBytes(new Blob([cssCombined]).size);
+
+                // Wait for all JS proxies to resolve
+                const jsResults = await Promise.all(jsPromises);
+                jsResults.forEach(res => jsCombined += res);
+                outJs.innerHTML = escapeHTML(jsCombined);
+                statJs.innerText = formatBytes(new Blob([jsCombined]).size);
+
+                // 5. Extract Details for Design Tab
+                extractDesignDetails(cssCombined);
+
+                showStatus(`✅ Successfully extracted HTML, CSS, Javascript, Design Palette, and Screenshot!`, 'var(--emerald)');
+                document.getElementById('fetch-btn').querySelector('span').innerText = '🔄 Re-Extract Site';
+                switchTab('tab-ss'); // Focus screenshot first as requested "get website ss"
+
+            } catch (error) {
+                showStatus('❌ Extraction Failed: ' + error.message, 'var(--rose)');
+                outHtml.textContent = 'Error: Make sure the target allows proxy connections.';
+                outCss.textContent = 'Failed to fetch CSS.';
+                outJs.textContent = 'Failed to fetch JS.';
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function extractDesignDetails(cssText) {
+            // Colors
+            const colorRegex = /(?:color|background-color|border-color|background|fill|stroke)\s*:\s*(#[0-9a-fA-F]{3,6}|rgba?\([^)]+\)|hsla?\([^)]+\))/g;
+            const colors = new Set();
+            let match;
+            while ((match = colorRegex.exec(cssText)) !== null) {
+                // Ignore initial/inherit/transparent/none (just grabbing the capture group which is the color value)
+                colors.add(match[1].toLowerCase());
+            }
+
+            const colorsContainer = document.getElementById('out-colors');
+            colorsContainer.innerHTML = '';
+            if (colors.size === 0) {
+                colorsContainer.innerHTML = '<div style="color:var(--dim);font-size:0.85rem">No hardcoded colors detected.</div>';
+            } else {
+                // Limit to 50 colors so it doesn't crash the browser
+                let count = 0;
+                for (let color of colors) {
+                    if(count++ > 50) break;
+                    colorsContainer.innerHTML += `
+                        <div class="color-swatch">
+                            <div class="color-circle" style="background: ${color}"></div>
+                            <span>${color}</span>
+                        </div>
+                    `;
+                }
+            }
+
+            // Fonts
+            const fontRegex = /font-family\s*:\s*([^;\}]+)/g;
+            const fonts = new Set();
+            while ((match = fontRegex.exec(cssText)) !== null) {
+                const cleanedFont = match[1].replace(/['"]/g, '').trim();
+                fonts.add(cleanedFont);
+            }
+
+            const fontsContainer = document.getElementById('out-fonts');
+            fontsContainer.innerHTML = '';
+            if (fonts.size === 0) {
+                fontsContainer.innerHTML = '<div style="color:var(--dim);font-size:0.85rem">No standard font stacks detected.</div>';
+            } else {
+                let count = 0;
+                for (let font of fonts) {
+                    if(count++ > 20) break;
+                    // Splitting by comma to get the primary font visually nicer
+                    fontsContainer.innerHTML += `
+                        <div class="font-item" style="font-family: ${font}">
+                            ${font}
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function setLoading(isLoading) {
+            fetchBtn.disabled = isLoading;
+            const btnText = fetchBtn.querySelector('span');
+            if (isLoading) {
+                btnText.style.opacity = '0.5';
+                loader.style.display = 'inline-block';
+            } else {
+                btnText.style.opacity = '1';
+                loader.style.display = 'none';
+            }
+        }
+
+        function showStatus(message, color) {
+            statusBox.style.display = 'block';
+            statusBox.style.background = color + '20';
+            statusBox.style.border = `1px solid ${color}`;
+            statusBox.style.color = color;
+            statusBox.textContent = message;
+        }
+
+        function copyOut(elementId, btn) {
+            const outEl = document.getElementById(elementId);
+            const txt = outEl.textContent || outEl.innerText;
+            navigator.clipboard.writeText(txt).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = '📋 Copied!';
+                setTimeout(() => btn.innerText = originalText, 2000);
+            }).catch(err => {
+                showStatus('❌ Failed to copy to clipboard.', 'var(--rose)');
+            });
+        }
+
+        function downloadCode(elementId, ext) {
+            const outEl = document.getElementById(elementId);
+            const txt = outEl.textContent || outEl.innerText;
+            const blob = new Blob([txt], { type: 'text/plain' });
+            const urlObj = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            
+            let currentUrl = urlInput.value.trim() || 'website';
+            try {
+                const urlParsed = new URL(currentUrl);
+                currentUrl = urlParsed.hostname.replace('www.', '');
+            } catch(e) {}
+            
+            a.href = urlObj;
+            a.download = `${currentUrl}-extracted.${ext}`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(urlObj);
+        }
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About Full Website Extractor</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Free online website source code extractor. Fetch and view HTML, CSS, JavaScript, and take screenshots of any public webpage, including WordPress sites.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Tech Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../tech/api-request-builder/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Api Request Builder</a><a href='../../tech/base64-encoder/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Base64 Encoder</a><a href='../../tech/browser-storage-inspector/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Browser Storage Inspector</a><a href='../../tech/code-screenshot/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Code Screenshot</a><a href='../../tech/color-accessibility/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Color Accessibility</a><a href='../../tech/color-converter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Color Converter</a><a href='../../tech/color-palette-extractor/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Color Palette Extractor</a><a href='../../tech/css-clamp-generator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Css Clamp Generator</a><a href='../../tech/domain-readability/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Domain Readability</a><a href='../../tech/error-explainer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Error Explainer</a><a href='../../tech/image-compressor/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Image Compressor</a><a href='../../tech/json-formatter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Json Formatter</a><a href='../../tech/json-to-typescript/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Json To Typescript</a><a href='../../tech/markdown-table-generator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Markdown Table Generator</a><a href='../../tech/open-graph-preview/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Open Graph Preview</a><a href='../../tech/password-generator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Password Generator</a><a href='../../tech/password-strength/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Password Strength</a><a href='../../tech/privacy-scanner/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Privacy Scanner</a><a href='../../tech/prompt-analyzer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Prompt Analyzer</a><a href='../../tech/qr-code-generator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Qr Code Generator</a><a href='../../tech/readme-optimizer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Readme Optimizer</a><a href='../../tech/screenshot-tailwind/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Screenshot Tailwind</a><a href='../../tech/seo-analyzer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Seo Analyzer</a><a href='../../tech/serp-snippet-preview/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Serp Snippet Preview</a><a href='../../tech/source-code-viewer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Source Code Viewer</a><a href='../../tech/tech-stack-detector/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tech Stack Detector</a><a href='../../tech/ui-spacing-inspector/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Ui Spacing Inspector</a><a href='../../tech/unit-converter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Unit Converter</a><a href='../../tech/website-font-detector/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Website Font Detector</a><a href='../../tech/yt-thumbnail-text/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Yt Thumbnail Text</a></div></div>
+</div>
+</body>
+
+</html>

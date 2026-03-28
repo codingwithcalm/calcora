@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Period Calculator — Free Online Tool | Calcora</title>
+    <meta name="description" content="Track your menstrual cycle and predict next period, fertile window, and ovulation day. Free period calculator with cycle history. Private & secure.">
+    <meta name="keywords" content="period calculator, menstrual cycle calculator, ovulation calculator, period tracker, fertility calculator, next period predictor">
+    <link rel="canonical" href="https://calcora.site/health/period-calculator/">
+    <link rel="icon" type="image/x-icon" href="../../assets/"logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Health","item":"https://calcora.site/index.html#health"},{"@type":"ListItem","position":3,"name":"Period Calculator","item":"https://calcora.site/health/period-calculator.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Period Calculator","operatingSystem":"All","applicationCategory":"HealthApplication","url":"https://calcora.site/health/period-calculator.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1450"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate is this calculator?","acceptedAnswer":{"@type":"Answer","text":"This calculator provides estimates based on average cycle length. Actual cycles can vary due to stress, travel, diet, and hormonal changes. It is most accurate for women with regular cycles."}},{"@type":"Question","name":"What is a normal cycle length?","acceptedAnswer":{"@type":"Answer","text":"Normal cycles range from 21-35 days. The average is 28 days, but only 10-15% of women have exactly 28-day cycles."}},{"@type":"Question","name":"When am I most fertile?","acceptedAnswer":{"@type":"Answer","text":"The fertile window is approximately 5 days before ovulation and 1 day after. Sperm can survive up to 5 days, while the egg is viable for 12-24 hours after ovulation."}},{"@type":"Question","name":"Why is my period irregular?","acceptedAnswer":{"@type":"Answer","text":"Common causes include stress, significant weight change, PCOS, thyroid disorders, excessive exercise, and hormonal birth control changes. Consult a doctor if cycles are consistently outside 21-35 days."}},{"@type":"Question","name":"Is my data private?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100%. All calculations happen locally in your browser using JavaScript. No health data is sent to any server."}},{"@type":"Question","name":"Can I use this calculator for birth control?","acceptedAnswer":{"@type":"Answer","text":"This calculator should NOT be used as a primary birth control method. The fertile window prediction is an estimate. Consult a healthcare provider for reliable contraception options."}}]}</script>
+<meta property="og:title" content="Period Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Track your menstrual cycle and predict next period, fertile window, and ovulation day. Free period calculator with cycle history. Private & secure.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/health/period-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Period Calculator",
+  "url": "https://calcora.site/health/period-calculator/",
+  "description": "Track your menstrual cycle and predict next period, fertile window, and ovulation day. Free period calculator with cycle history. Private & secure.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div></nav>
+    <div class="page fade-in">
+        <a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr"><div class="mod-icon">🩸</div><h1>Period Calculator</h1><p class="mod-desc">Predict your next period, fertile window, and ovulation day based on your cycle length. 100% private — all calculations happen on your device.</p></div>
+
+        <div class="glass">
+            <div class="grid-2">
+                <div class="inp-grp"><label>Last Period Start Date</label><input type="date" id="last-period" style="width:100%;padding:12px;border-radius:8px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:1rem;font-family:inherit"></div>
+                <div class="inp-grp"><label>Cycle Length (days)</label><input type="range" id="cycle-len" min="21" max="40" value="28" step="1"><div class="range-vals"><span>21</span><span id="cycle-v">28 days</span><span>40</span></div></div>
+                <div class="inp-grp"><label>Period Duration (days)</label><input type="range" id="period-dur" min="2" max="8" value="5" step="1"><div class="range-vals"><span>2</span><span id="dur-v">5 days</span><span>8</span></div></div>
+            </div>
+            <button onclick="calculate()" style="width:100%;margin-top:14px;padding:16px;background:linear-gradient(135deg,#f472b6,#fb7185);color:#fff;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:inherit">🔮 Predict My Cycle</button>
+        </div>
+
+        <div id="results" style="display:none">
+            <div class="res-grid" style="margin-top:18px">
+                <div class="res-card"><div class="r-label">Next Period</div><div class="r-val" id="next-period" style="font-size:1.5rem;color:var(--rose)">—</div></div>
+                <div class="res-card"><div class="r-label">Ovulation Day</div><div class="r-val" id="ovulation" style="font-size:1.5rem;color:var(--accent)">—</div></div>
+                <div class="res-card"><div class="r-label">Fertile Window</div><div class="r-val" id="fertile" style="font-size:1rem;color:var(--emerald)">—</div></div>
+            </div>
+            <div class="glass" style="margin-top:18px">
+                <div class="ctitle">📅 Next 6 Cycles Prediction</div>
+                <div class="tbl-wrap"><table style="width:100%;font-size:0.85rem" id="forecast"><thead><tr><th>Cycle</th><th>Period Start</th><th>Period End</th><th>Ovulation</th><th>Fertile Window</th></tr></thead><tbody></tbody></table></div>
+            </div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    
+
+    <footer class='site-ft'><p>&copy; 2026 <a href="../../">Calcora</a></p></footer>
+    <script src="../../script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const today = new Date();
+        const lastPeriod = new Date(today);
+        lastPeriod.setDate(lastPeriod.getDate() - 14);
+        document.getElementById('last-period').value = lastPeriod.toISOString().split('T')[0];
+        document.getElementById('cycle-len').addEventListener('input', function(){ document.getElementById('cycle-v').textContent = this.value + ' days'; });
+        document.getElementById('period-dur').addEventListener('input', function(){ document.getElementById('dur-v').textContent = this.value + ' days'; });
+        if (typeof C !== 'undefined' && C.initSliders) C.initSliders();
+    });
+    function fmtDate(d) {
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    }
+    function calculate() {
+        const lpStr = document.getElementById('last-period').value;
+        if (!lpStr) return;
+        const lp = new Date(lpStr);
+        const cycleLen = parseInt(document.getElementById('cycle-len').value);
+        const periodDur = parseInt(document.getElementById('period-dur').value);
+        const nextPeriod = new Date(lp);
+        nextPeriod.setDate(nextPeriod.getDate() + cycleLen);
+        const ovulation = new Date(nextPeriod);
+        ovulation.setDate(ovulation.getDate() - 14);
+        const fertileStart = new Date(ovulation);
+        fertileStart.setDate(fertileStart.getDate() - 5);
+        const fertileEnd = new Date(ovulation);
+        fertileEnd.setDate(fertileEnd.getDate() + 1);
+        document.getElementById('next-period').textContent = fmtDate(nextPeriod);
+        document.getElementById('ovulation').textContent = fmtDate(ovulation);
+        document.getElementById('fertile').textContent = fmtDate(fertileStart) + ' — ' + fmtDate(fertileEnd);
+        document.getElementById('results').style.display = 'block';
+        const tbody = document.querySelector('#forecast tbody');
+        tbody.innerHTML = '';
+        let current = new Date(lp);
+        for (let i = 1; i <= 6; i++) {
+            const start = new Date(current);
+            start.setDate(start.getDate() + cycleLen);
+            const end = new Date(start);
+            end.setDate(end.getDate() + periodDur - 1);
+            const ov = new Date(start);
+            ov.setDate(ov.getDate() + cycleLen - 14);
+            const fs = new Date(ov);
+            fs.setDate(fs.getDate() - 5);
+            const fe = new Date(ov);
+            fe.setDate(fe.getDate() + 1);
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>Cycle ${i}</td><td style="color:var(--rose)">${fmtDate(start)}</td><td>${fmtDate(end)}</td><td style="color:var(--accent)">${fmtDate(ov)}</td><td style="color:var(--emerald);font-size:0.78rem">${fmtDate(fs)} — ${fmtDate(fe)}</td>`;
+            tbody.appendChild(row);
+            current = start;
+        }
+    }
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About Period Calculator</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Track your menstrual cycle and predict next period, fertile window, and ovulation day. Free period calculator with cycle history. Private & secure.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../health/bmi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Bmi Calculator</a><a href='../../health/body-fat-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Body Fat Calculator</a><a href='../../health/calorie-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Calorie Calculator</a><a href='../../health/macro-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Macro Calculator</a><a href='../../health/period-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Period Calculator</a><a href='../../health/pregnancy-due-date/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Due Date</a><a href='../../health/pregnancy-weight-gain/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Weight Gain</a><a href='../../health/sleep-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sleep Calculator</a><a href='../../health/tdee-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tdee Calculator</a><a href='../../health/water-intake/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Water Intake</a></div></div>
+</div>
+</body>
+</html>

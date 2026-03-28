@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Sleep Calculator — Free Online Tool | Calcora</title>
+    <meta name="description" content="Calculate the best time to sleep and wake up based on 90-minute sleep cycles. Get optimal bedtimes for better rest and energy. Free, instant results.">
+    <meta name="keywords" content="sleep calculator, bedtime calculator, sleep cycle calculator, best time to wake up, how much sleep do i need, sleep cycles">
+    <link rel="canonical" href="https://calcora.site/health/sleep-calculator/">
+    <link rel="icon" type="image/x-icon" href="../../assets/"logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Health","item":"https://calcora.site/index.html#health"},{"@type":"ListItem","position":3,"name":"Sleep Calculator","item":"https://calcora.site/health/sleep-calculator.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sleep Calculator","operatingSystem":"All","applicationCategory":"HealthApplication","url":"https://calcora.site/health/sleep-calculator.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"1340"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do I feel groggy even after 8 hours of sleep?","acceptedAnswer":{"@type":"Answer","text":"You likely woke up in the middle of a deep sleep cycle. Use this calculator to time your wake-up at the end of a complete 90-minute cycle for maximum alertness."}},{"@type":"Question","name":"How long does it take to fall asleep?","acceptedAnswer":{"@type":"Answer","text":"The average person takes 10-20 minutes to fall asleep (called sleep latency). This calculator adds 15 minutes to account for this."}},{"@type":"Question","name":"Is 6 hours of sleep enough?","acceptedAnswer":{"@type":"Answer","text":"For most adults, 6 hours is insufficient. The National Sleep Foundation recommends 7-9 hours. However, 6 hours (4 full cycles) is better than 7 hours where you wake mid-cycle."}},{"@type":"Question","name":"What is the best time to go to sleep?","acceptedAnswer":{"@type":"Answer","text":"For a 7 AM wake-up, ideal bedtimes are 9:30 PM (6 cycles), 11:00 PM (5 cycles), or 12:30 AM (4 cycles). Use this calculator with your wake-up time for personalized recommendations."}},{"@type":"Question","name":"Are naps good for you?","acceptedAnswer":{"@type":"Answer","text":"Short power naps (10-20 minutes) boost alertness without grogginess. Avoid naps longer than 30 minutes unless you can complete a full 90-minute cycle. Don't nap after 3 PM."}},{"@type":"Question","name":"How can I fall asleep faster?","acceptedAnswer":{"@type":"Answer","text":"Keep a consistent schedule, avoid screens 1 hour before bed, keep your room cool (65-68°F), limit caffeine after 2 PM, and try relaxation techniques like deep breathing or progressive muscle relaxation."}}]}</script>
+<meta property="og:title" content="Sleep Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Calculate the best time to sleep and wake up based on 90-minute sleep cycles. Get optimal bedtimes for better rest and energy. Free, instant results.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/health/sleep-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Sleep Calculator",
+  "url": "https://calcora.site/health/sleep-calculator/",
+  "description": "Calculate the best time to sleep and wake up based on 90-minute sleep cycles. Get optimal bedtimes for better rest and energy. Free, instant results.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div></nav>
+    <div class="page fade-in">
+        <a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr"><div class="mod-icon">😴</div><h1>Sleep Calculator</h1><p class="mod-desc">Find the best time to go to bed or wake up based on 90-minute sleep cycles. Wake up feeling refreshed, not groggy.</p></div>
+
+        <div class="glass">
+            <div style="display:flex;gap:8px;margin-bottom:16px">
+                <button id="btn-wake" onclick="setMode('wake')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--accent);background:var(--accent);color:#fff;font-weight:700;cursor:pointer;font-family:inherit;font-size:0.9rem">I need to wake up at...</button>
+                <button id="btn-sleep" onclick="setMode('sleep')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--border);background:transparent;color:var(--text);font-weight:700;cursor:pointer;font-family:inherit;font-size:0.9rem">I'm going to sleep at...</button>
+            </div>
+            <div class="inp-grp">
+                <label id="time-label">I need to wake up at</label>
+                <input type="time" id="target-time" value="07:00" style="width:100%;padding:14px;border-radius:10px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:1.2rem;font-family:inherit;text-align:center">
+            </div>
+            <button onclick="calculate()" style="width:100%;margin-top:14px;padding:16px;background:linear-gradient(135deg,#818cf8,#a78bfa);color:#fff;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:inherit">🌙 Calculate Sleep Times</button>
+        </div>
+
+        <div id="results" class="glass" style="margin-top:18px;display:none">
+            <div class="ctitle" id="res-title">Recommended Bedtimes</div>
+            <div id="cycles" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:12px"></div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    
+
+    <footer class='site-ft'><p>&copy; 2026 <a href="../../">Calcora</a></p></footer>
+    <script src="../../script.js"></script>
+    <script>
+    let mode = 'wake';
+    function setMode(m) {
+        mode = m;
+        document.getElementById('time-label').textContent = m === 'wake' ? 'I need to wake up at' : "I'm going to sleep at";
+        document.getElementById('btn-wake').style.background = m === 'wake' ? 'var(--accent)' : 'transparent';
+        document.getElementById('btn-wake').style.color = m === 'wake' ? '#fff' : 'var(--text)';
+        document.getElementById('btn-wake').style.borderColor = m === 'wake' ? 'var(--accent)' : 'var(--border)';
+        document.getElementById('btn-sleep').style.background = m === 'sleep' ? 'var(--accent)' : 'transparent';
+        document.getElementById('btn-sleep').style.color = m === 'sleep' ? '#fff' : 'var(--text)';
+        document.getElementById('btn-sleep').style.borderColor = m === 'sleep' ? 'var(--accent)' : 'var(--border)';
+    }
+    function calculate() {
+        const tv = document.getElementById('target-time').value.split(':');
+        const th = parseInt(tv[0]), tm = parseInt(tv[1]);
+        const sleepLatency = 15;
+        const cycleMin = 90;
+        const div = document.getElementById('cycles');
+        div.innerHTML = '';
+        document.getElementById('results').style.display = 'block';
+        const times = [];
+        if (mode === 'wake') {
+            document.getElementById('res-title').textContent = '🛏️ Go to bed at one of these times:';
+            for (let c = 6; c >= 3; c--) {
+                const totalMin = c * cycleMin + sleepLatency;
+                let bh = th - Math.floor(totalMin / 60);
+                let bm = tm - (totalMin % 60);
+                if (bm < 0) { bm += 60; bh--; }
+                if (bh < 0) bh += 24;
+                times.push({ h: bh, m: bm, cycles: c, hours: (c * 1.5) });
+            }
+        } else {
+            document.getElementById('res-title').textContent = '⏰ Set your alarm for one of these times:';
+            for (let c = 3; c <= 6; c++) {
+                const totalMin = c * cycleMin + sleepLatency;
+                let wh = th + Math.floor(totalMin / 60);
+                let wm = tm + (totalMin % 60);
+                if (wm >= 60) { wm -= 60; wh++; }
+                if (wh >= 24) wh -= 24;
+                times.push({ h: wh, m: wm, cycles: c, hours: (c * 1.5) });
+            }
+        }
+        times.forEach(t => {
+            const timeStr = (t.h % 12 || 12) + ':' + String(t.m).padStart(2,'0') + (t.h >= 12 ? ' PM' : ' AM');
+            const best = t.cycles >= 5;
+            const card = document.createElement('div');
+            card.style.cssText = `padding:16px;background:var(--badge);border-radius:12px;text-align:center;border:2px solid ${best ? 'var(--emerald)' : 'var(--border)'}`;
+            card.innerHTML = `<div style="font-size:1.4rem;font-weight:800;color:${best?'var(--emerald)':'var(--text)'}">${timeStr}</div><div style="font-size:0.8rem;color:var(--dim);margin-top:4px">${t.cycles} cycles · ${t.hours} hours</div>${best?'<div style="margin-top:6px;font-size:0.7rem;color:var(--emerald);font-weight:700">✓ RECOMMENDED</div>':''}`;
+            div.appendChild(card);
+        });
+    }
+    calculate();
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About Sleep Calculator</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Calculate the best time to sleep and wake up based on 90-minute sleep cycles. Get optimal bedtimes for better rest and energy. Free, instant results.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../health/bmi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Bmi Calculator</a><a href='../../health/body-fat-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Body Fat Calculator</a><a href='../../health/calorie-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Calorie Calculator</a><a href='../../health/macro-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Macro Calculator</a><a href='../../health/period-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Period Calculator</a><a href='../../health/pregnancy-due-date/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Due Date</a><a href='../../health/pregnancy-weight-gain/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Weight Gain</a><a href='../../health/sleep-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sleep Calculator</a><a href='../../health/tdee-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tdee Calculator</a><a href='../../health/water-intake/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Water Intake</a></div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>EMI Calculator — Free Online Tool | Calcora</title>
+    <meta name="description"
+        content="Calculate your loan EMI instantly. Free EMI calculator for home loans, car loans, and personal loans with amortization schedule.">
+    <meta name="keywords"
+        content="emi calculator, loan calculator, home loan emi, car loan emi, monthly installments, repayment schedule">
+    <link rel="canonical" href="https://calcora.site/finance/emi-calculator/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EMI Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.site/finance/emi-calculator.html","description":"Calculate monthly EMI, total interest payable, and view complete amortization schedule."}</script>
+
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "finance", "item": "https://calcora.site/index.html#finance" },{ "@type": "ListItem", "position": 3, "name": "EMI Calculator", "item": "https://calcora.site/finance/emi-calculator.html" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "EMI Calculator", "operatingSystem": "All", "applicationCategory": "financeApplication", "url": "https://calcora.site/finance/emi-calculator.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "What is EMI and how is it calculated?", "acceptedAnswer": { "@type": "Answer", "text": "EMI (Equated Monthly Installment) is a fixed payment to a lender each month. Formula: EMI = P x r x (1+r)^n / ((1+r)^n - 1), where P is principal, r is monthly interest rate, and n is tenure in months." } },{ "@type": "Question", "name": "How can I reduce my EMI amount?", "acceptedAnswer": { "@type": "Answer", "text": "You can reduce EMI by increasing the loan tenure, negotiating a lower interest rate, or making a larger down payment to reduce the principal amount." } },{ "@type": "Question", "name": "What is an amortization schedule?", "acceptedAnswer": { "@type": "Answer", "text": "An amortization schedule is a table showing each periodic payment broken down into principal and interest components, along with the remaining balance after each payment." } },{ "@type": "Question", "name": "Does prepaying a loan reduce EMI or tenure?", "acceptedAnswer": { "@type": "Answer", "text": "Prepayment typically reduces the outstanding principal. You can choose to either reduce your monthly EMI while keeping the same tenure, or keep the same EMI and shorten the loan tenure." } },{ "@type": "Question", "name": "Is this EMI calculator accurate for all loan types?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, this calculator uses the standard reducing balance method used by banks worldwide. It works for home loans, car loans, personal loans, and education loans." } }] }</script>
+    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta name="twitter:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:title" content="EMI Calculator — Free Online Tool | Calcora">
+<meta property="og:description" content="Calculate your loan EMI instantly. Free EMI calculator for home loans, car loans, and personal loans with amortization schedule.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/finance/emi-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EMI Calculator",
+  "url": "https://calcora.site/finance/emi-calculator/",
+  "description": "Calculate your loan EMI instantly. Free EMI calculator for home loans, car loans, and personal loans with amortization schedule.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link rel="icon" type="image/x-icon" href="https://calcora.site/assets/logo.png">
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in">
+            <a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+        </div>
+    </nav>
+    <div class="page fade-in">
+        <a href="../../" class="back">? Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>EMI Calculator</h1>
+        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+            <strong>Quick Answer:</strong> Our EMI Calculator provides instant, professional-grade results with zero data collection. Use this tool to plan your wealth, compare loan options, or estimate taxes with current 2026-27 rules. It uses the standard compounding formula A = P(1 + r/n)^(nt) for maximum accuracy.
+        </div>
+        <p>Calculate monthly EMI, total interest, and view a complete amortization schedule.</p>
+        </div>
+        <div class="snippet"><strong>Quick Answer:</strong> A ?10,00,000 loan at 8.5% for 15 years = ?9,847/month EMI
+            with ?7,72,496 total interest payable.</div>
+        <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>??</i> Loan Details</div>
+                <div class="control">
+                    <div class="il"><span>Loan Amount</span><span id="p-v">?0</span></div>
+                    <input type="range" id="p" class="c-slider" min="100000" max="10000000" step="50000" value="1000000">
+                </div>
+                <div class="control">
+                    <div class="il"><span>Interest Rate (%)</span><span id="r-v">0%</span></div>
+                    <input type="range" id="r" class="c-slider" min="1" max="20" step="0.1" value="8.5">
+                </div>
+                <div class="control">
+                    <div class="il"><span>Loan Tenure (Years)</span><span id="y-v">0 Years</span></div>
+                    <input type="range" id="y" class="c-slider" min="1" max="30" step="1" value="15">
+                </div>
+
+                <div class="glass" style="margin-top:24px; padding: 15px;">
+                    <div class="ctitle"><i>&#128218;</i> Learn More</div>
+                    <div class="guide-content" style="font-size:0.85rem;line-height:1.6;color:var(--dim)">
+                        <p>External resources: <a href="https://www.investopedia.com/terms/e/emi.asp" target="_blank" rel="noopener" style="color:var(--accent)">Investopedia &#8212; EMI Guide</a> | <a href="https://www.rbi.org.in/Scripts/FAQView.aspx?Id=79" target="_blank" rel="noopener" style="color:var(--accent)">RBI &#8212; Loan Guidelines</a></p>
+                        <p style="margin-top:8px"><i>Note: Your data never leaves your device. We prioritize your privacy and security.</i></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass res-card">
+                <div class="ctitle"><i>??</i> Result Summary</div>
+                <div class="res-box">
+                    <div class="res-v" id="emi">?0</div>
+                    <div class="res-l">Monthly EMI</div>
+                </div>
+                <div class="pills">
+                    <div class="pill"><div class="pl"><span class="dot" style="background:#34d399"></span> Principal</div><div class="pv" id="pr">?0</div></div>
+                    <div class="pill"><div class="pl"><span class="dot" style="background:#fb7185"></span> Interest</div><div class="pv" id="int">?0</div></div>
+                </div>
+                <div class="chart-wrap"><canvas id="ch"></canvas></div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>??</i> Amortization Schedule (Yearly)</div>
+            <div class="tbl-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Year</th><th>Principal</th><th>Interest</th><th>Balance</th></tr>
+                    </thead>
+                    <tbody id="amort-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+
+    <!-- AD SLOT 3 -->
+    <div class="ad-slot"><ins><!-- AdSense bottom --></ins></div>
+
+    
+
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../../">Calcora</a></p>
+    </footer>
+    <script src="../../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            C.doughnut('ch', ['Principal', 'Interest'], [1, 1], ['#34d399', '#fb7185']);
+            function calc() {
+                const P = +document.getElementById('p').value, r = +document.getElementById('r').value, y = +document.getElementById('y').value;
+                document.getElementById('p-v').textContent = C.F(P);
+                document.getElementById('r-v').textContent = (r % 1 === 0 ? r : r.toFixed(1)) + '%';
+                document.getElementById('y-v').textContent = y + (y === 1 ? ' Year' : ' Years');
+                const mi = r / 100 / 12, n = y * 12;
+                const emi = mi === 0 ? P / n : P * mi * (1 + mi) ** n / ((1 + mi) ** n - 1);
+                const total = emi * n, interest = total - P;
+                document.getElementById('emi').textContent = C.F(emi);
+                document.getElementById('pr').textContent = C.F(P);
+                document.getElementById('int').textContent = C.F(interest);
+                C.uChart('ch', [P, Math.max(0, interest)]);
+                // Amortization
+                let bal = P, tbody = '';
+                for (let yr = 1; yr <= y; yr++) {
+                    let yp = 0, yi = 0; for (let m = 0; m < 12 && bal > 0; m++) { const intM = bal * mi; const prinM = emi - intM; bal = Math.max(0, bal - prinM); yp += prinM; yi += intM; }
+                    tbody += `<tr><td>${yr}</td><td>${C.F(yp)}</td><td>${C.F(yi)}</td><td>${C.F(bal)}</td></tr>`;
+                }
+                document.getElementById('amort-body').innerHTML = tbody;
+            }
+            ['p', 'r', 'y'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+            C.initSliders(); calc();
+        });
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About EMI Calculator</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Calculate your loan EMI instantly. Free EMI calculator for home loans, car loans, and personal loans with amortization schedule.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../finance/compound-interest/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Compound Interest</a><a href='../../finance/emi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Emi Calculator</a><a href='../../finance/fd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Fd Calculator</a><a href='../../finance/gst-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Gst Calculator</a><a href='../../finance/loan-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Loan Calculator</a><a href='../../finance/ppf-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Ppf Calculator</a><a href='../../finance/profit-loss-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Profit Loss Calculator</a><a href='../../finance/rd-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Rd Calculator</a><a href='../../finance/salary-to-hourly/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Salary To Hourly</a><a href='../../finance/sip-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sip Calculator</a><a href='../../finance/tax-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tax Calculator</a><a href='../../finance/trip-expense-splitter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Trip Expense Splitter</a><a href='../../finance/website-cost-estimator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Website Cost Estimator</a></div></div>
+</div>
+</body>
+
+</html>

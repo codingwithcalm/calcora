@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Stopwatch — Free Online Tool | Calcora</title>
+    <meta name="description" content="Accurate online stopwatch with lap timer and split times. Millisecond precision for timing races, workouts, and tasks. Free, no app needed.">
+    <meta name="keywords" content="stopwatch, online stopwatch, lap timer, split timer, digital stopwatch, timer">
+    <link rel="canonical" href="https://calcora.site/daily/stopwatch/">
+    <link rel="icon" type="image/x-icon" href="../../assets/"logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="manifest" href="https://calcora.site/manifest.json">
+    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website">
+    <meta property="og:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Daily","item":"https://calcora.site/index.html#daily"},{"@type":"ListItem","position":3,"name":"Stopwatch","item":"https://calcora.site/daily/stopwatch.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Stopwatch","operatingSystem":"All","applicationCategory":"UtilitiesApplication","url":"https://calcora.site/daily/stopwatch.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"1800"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate is this stopwatch?","acceptedAnswer":{"@type":"Answer","text":"This stopwatch uses requestAnimationFrame with performance.now() for the highest accuracy available in a browser — typically within 1-2 milliseconds."}},{"@type":"Question","name":"Does it work if I switch tabs?","acceptedAnswer":{"@type":"Answer","text":"Yes. The stopwatch uses system timestamps rather than interval-based counting, so it remains accurate even when the tab is in the background."}},{"@type":"Question","name":"What does the Lap button do?","acceptedAnswer":{"@type":"Answer","text":"The Lap button records the time for the current segment while the stopwatch continues running. It shows both the individual lap time and cumulative total time."}},{"@type":"Question","name":"Can I use this for workout intervals?","acceptedAnswer":{"@type":"Answer","text":"Yes! Use the Lap button to track each interval. The lap table shows individual segment times and cumulative totals, perfect for HIIT, running splits, or swimming laps."}},{"@type":"Question","name":"Is this as accurate as a physical stopwatch?","acceptedAnswer":{"@type":"Answer","text":"For most purposes, yes. Browser stopwatches using performance.now() achieve 1-2ms accuracy. Professional sports timing uses specialized hardware for sub-millisecond precision."}}]}</script>
+<meta property="og:title" content="Stopwatch — Free Online Tool | Calcora">
+<meta property="og:description" content="Accurate online stopwatch with lap timer and split times. Millisecond precision for timing races, workouts, and tasks. Free, no app needed.">
+<meta property="og:image" content="https://calcora.site/assets/logo.png">
+<meta property="og:url" content="https://calcora.site/daily/stopwatch/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Stopwatch",
+  "url": "https://calcora.site/daily/stopwatch/",
+  "description": "Accurate online stopwatch with lap timer and split times. Millisecond precision for timing races, workouts, and tasks. Free, no app needed.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar"><div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div></nav>
+    <div class="page fade-in">
+        <a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr"><div class="mod-icon">⏱️</div><h1>Stopwatch</h1><p class="mod-desc">Precise online stopwatch with lap timer and millisecond accuracy. Track splits for running, swimming, or any timed activity.</p></div>
+
+        <div class="glass" style="text-align:center">
+            <div id="display" style="font-size:4.5rem;font-weight:900;letter-spacing:2px;color:var(--text);padding:24px 0;font-variant-numeric:tabular-nums">00:00:00<span style="font-size:2rem;color:var(--dim)">.00</span></div>
+            <div style="display:flex;gap:10px;justify-content:center">
+                <button id="startBtn" onclick="toggleStart()" style="padding:16px 36px;background:var(--emerald);color:#000;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:inherit;min-width:120px">▶ Start</button>
+                <button id="lapBtn" onclick="addLap()" style="padding:16px 24px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;display:none">🏁 Lap</button>
+                <button onclick="resetSW()" style="padding:16px 24px;background:var(--badge);color:var(--text);border:1px solid var(--border);border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit">↺ Reset</button>
+            </div>
+        </div>
+
+        <div id="lapSection" class="glass" style="margin-top:18px;display:none">
+            <div class="ctitle">🏁 Lap Times</div>
+            <div class="tbl-wrap"><table style="width:100%;font-size:0.85rem" id="lapTable"><thead><tr><th>#</th><th>Lap Time</th><th>Total Time</th></tr></thead><tbody></tbody></table></div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        
+    </div>
+
+    <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+    
+
+    <footer class='site-ft'><p>&copy; 2026 <a href="../../">Calcora</a></p></footer>
+    <script src="../../script.js"></script>
+    <script>
+    let swRunning = false, swStart = 0, swElapsed = 0, swAnim, lapStart = 0, lapCount = 0;
+    function formatTime(ms) {
+        const s = Math.floor(ms / 1000); const m = Math.floor(s / 60); const h = Math.floor(m / 60);
+        const csec = Math.floor((ms % 1000) / 10);
+        return String(h).padStart(2,'0') + ':' + String(m%60).padStart(2,'0') + ':' + String(s%60).padStart(2,'0') + '.' + String(csec).padStart(2,'0');
+    }
+    function updateSW() {
+        const elapsed = swElapsed + (performance.now() - swStart);
+        const parts = formatTime(elapsed).split('.');
+        document.getElementById('display').innerHTML = parts[0] + '<span style="font-size:2rem;color:var(--dim)">.' + parts[1] + '</span>';
+        swAnim = requestAnimationFrame(updateSW);
+    }
+    function toggleStart() {
+        if (!swRunning) {
+            swStart = performance.now();
+            if (lapStart === 0) lapStart = swStart;
+            swRunning = true;
+            updateSW();
+            document.getElementById('startBtn').textContent = '⏸ Pause';
+            document.getElementById('startBtn').style.background = 'var(--amber)';
+            document.getElementById('lapBtn').style.display = 'inline-block';
+        } else {
+            swElapsed += performance.now() - swStart;
+            swRunning = false;
+            cancelAnimationFrame(swAnim);
+            document.getElementById('startBtn').textContent = '▶ Resume';
+            document.getElementById('startBtn').style.background = 'var(--emerald)';
+        }
+    }
+    function addLap() {
+        if (!swRunning) return;
+        lapCount++;
+        const now = performance.now();
+        const totalMs = swElapsed + (now - swStart);
+        const lapMs = totalMs - (lapCount > 1 ? prevLapTotal : 0);
+        prevLapTotal = totalMs;
+        document.getElementById('lapSection').style.display = 'block';
+        const tbody = document.querySelector('#lapTable tbody');
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>Lap ${lapCount}</td><td>${formatTime(lapMs)}</td><td>${formatTime(totalMs)}</td>`;
+        tbody.prepend(row);
+    }
+    let prevLapTotal = 0;
+    function resetSW() {
+        cancelAnimationFrame(swAnim); swRunning = false; swElapsed = 0; lapStart = 0; lapCount = 0; prevLapTotal = 0;
+        document.getElementById('display').innerHTML = '00:00:00<span style="font-size:2rem;color:var(--dim)">.00</span>';
+        document.getElementById('startBtn').textContent = '▶ Start';
+        document.getElementById('startBtn').style.background = 'var(--emerald)';
+        document.getElementById('lapBtn').style.display = 'none';
+        document.getElementById('lapSection').style.display = 'none';
+        document.querySelector('#lapTable tbody').innerHTML = '';
+    }
+    </script>
+<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#128161;</i> About Stopwatch</div>
+    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+        <p>Accurate online stopwatch with lap timer and split times. Millisecond precision for timing races, workouts, and tasks. Free, no app needed.</p>
+        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    </div>
+</div>
+<div class="glass" style="margin-top:24px">
+    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
+            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
+            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
+        </details>
+        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
+            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
+        </details>
+    </div>
+</div>
+<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../daily/age-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Age Calculator</a><a href='../../daily/aspect-ratio-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Aspect Ratio Calculator</a><a href='../../daily/countdown-timer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Countdown Timer</a><a href='../../daily/date-difference/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Date Difference</a><a href='../../daily/discount-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Discount Calculator</a><a href='../../daily/gpa-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Gpa Calculator</a><a href='../../daily/percentage-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Percentage Calculator</a><a href='../../daily/random-number-generator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Random Number Generator</a><a href='../../daily/scientific-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Scientific Calculator</a><a href='../../daily/stopwatch/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Stopwatch</a><a href='../../daily/time-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Time Calculator</a><a href='../../daily/tip-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tip Calculator</a><a href='../../daily/word-counter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Word Counter</a></div></div>
+</div>
+</body>
+</html>

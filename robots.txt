@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /seo-batch-fix.ps1
-Disallow: /seo-faq-fix.ps1
 
 Sitemap: https://calcora.site/sitemap.xml
 
-# Calcora - 70+ Free Online Calculators & Tools
-# https://calcora.site
+# Calcora - 80+ Free Online Calculators & Professional Tools
+# Empowering productivity with private, instant, and high-performance utilities.
+# Visit us at: https://calcora.site
