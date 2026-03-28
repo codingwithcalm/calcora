@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Macro Calculator — Free Online Tool | Calcora</title>
+    <title>Free Macro Calculator — Daily Macronutrient Calculator Online | Calcora</title>
     <meta name="description" content="Calculate your daily protein, carbs, and fat needs based on your goals. Free macro calculator for weight loss, muscle gain, and maintenance. Instant results.">
     <meta name="keywords" content="macro calculator, macronutrient calculator, protein calculator, iifym, daily macros, diet calculator, bulking macros, cutting macros">
-    <link rel="canonical" href="https://calcora.site/health/macro-calculator/">
-    <link rel="icon" type="image/x-icon" href="../../assets/"logo.png">
+    <link rel="canonical" href="https://calcora.site/health/macro-calculator.html">
+    <link rel="icon" type="image/x-icon" href="../../assets/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
@@ -17,28 +17,10 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calcora.site/"},{"@type":"ListItem","position":2,"name":"Health","item":"https://calcora.site/index.html#health"},{"@type":"ListItem","position":3,"name":"Macro Calculator","item":"https://calcora.site/health/macro-calculator.html"}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Macro Calculator","operatingSystem":"All","applicationCategory":"HealthApplication","url":"https://calcora.site/health/macro-calculator.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"1100"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are macronutrients?","acceptedAnswer":{"@type":"Answer","text":"Macronutrients are the three main nutrients your body needs in large amounts: Protein (4 cal/g), Carbohydrates (4 cal/g), and Fat (9 cal/g). Together they make up your total calorie intake."}},{"@type":"Question","name":"How much protein do I need per day?","acceptedAnswer":{"@type":"Answer","text":"For active people: 1.6-2.2g per kg bodyweight. For sedentary adults: 0.8-1.0g per kg. A 70kg person who exercises should aim for 112-154g protein daily."}},{"@type":"Question","name":"Is counting macros better than counting calories?","acceptedAnswer":{"@type":"Answer","text":"Counting macros is more effective because it ensures you get the right balance of nutrients, not just total energy. Two 2000-calorie diets can have very different body composition results depending on macro split."}},{"@type":"Question","name":"Can I still eat my favorite foods?","acceptedAnswer":{"@type":"Answer","text":"Yes! The IIFYM approach allows any food as long as you hit your daily targets. Prioritize whole foods for micronutrients and fiber — the 80/20 rule works well."}},{"@type":"Question","name":"What is IIFYM?","acceptedAnswer":{"@type":"Answer","text":"IIFYM stands for If It Fits Your Macros. It is a flexible dieting approach where no food is off-limits as long as your daily protein, carb, and fat targets are met."}},{"@type":"Question","name":"Should I adjust macros on rest days?","acceptedAnswer":{"@type":"Answer","text":"Some people reduce carbs by 15-25% on rest days since glycogen demand is lower, while keeping protein the same. This is optional and depends on your goals."}}]}</script>
-<meta property="og:title" content="Macro Calculator — Free Online Tool | Calcora">
-<meta property="og:description" content="Calculate your daily protein, carbs, and fat needs based on your goals. Free macro calculator for weight loss, muscle gain, and maintenance. Instant results.">
-<meta property="og:image" content="https://calcora.site/assets/logo.png">
-<meta property="og:url" content="https://calcora.site/health/macro-calculator/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Macro Calculator",
-  "url": "https://calcora.site/health/macro-calculator/",
-  "description": "Calculate your daily protein, carbs, and fat needs based on your goals. Free macro calculator for weight loss, muscle gain, and maintenance. Instant results.",
-  "applicationCategory": "HealthApplication",
-  "operatingSystem": "All",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-}
-</script>
 </head>
 <body>
     <div class="bgfx"></div>
-    <nav class="navbar"><div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div></nav>
+    <nav class="navbar"><div class="nav-in"><a href="../../index.html" class="logo"><div class="logo-m">C</div></a></div><span class="t-icon ic-moon">🌙</span></div></div></nav>
     <div class="page fade-in">
         <a href="../../" class="back">← Back to all tools</a>
         <div class="mod-hdr"><div class="mod-icon">🥗</div><h1>Macro Calculator</h1><p class="mod-desc">Calculate your ideal daily protein, carbs, and fat intake based on your body stats, activity level, and fitness goals.</p></div>
@@ -46,9 +28,9 @@
         <div class="glass">
             <div class="grid-2">
                 <div class="inp-grp"><label>Gender</label><select id="gender" style="width:100%;padding:10px;border-radius:8px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:0.9rem"><option value="male">Male</option><option value="female">Female</option></select></div>
-                <div class="inp-grp"><label>Age</label><input type="range" id="age" min="15" max="80" value="28"><div class="range-vals"><span>15</span><span id="age-v">28</span><span>80</span></div></div>
-                <div class="inp-grp"><label>Weight (kg)</label><input type="range" id="wt" min="40" max="150" value="70" step="1"><div class="range-vals"><span>40</span><span id="wt-v">70 kg</span><span>150</span></div></div>
-                <div class="inp-grp"><label>Height (cm)</label><input type="range" id="ht" min="140" max="210" value="175"><div class="range-vals"><span>140</span><span id="ht-v">175 cm</span><span>210</span></div></div>
+                <div class="inp-grp"><label>Age</label><input type="range" class="c-slider" id="age" min="15" max="80" value="28"><div class="range-vals"><span>15</span><span id="age-v">28</span><span>80</span></div></div>
+                <div class="inp-grp"><label>Weight (kg)</label><input type="range" class="c-slider" id="wt" min="40" max="150" value="70" step="1"><div class="range-vals"><span>40</span><span id="wt-v">70 kg</span><span>150</span></div></div>
+                <div class="inp-grp"><label>Height (cm)</label><input type="range" class="c-slider" id="ht" min="140" max="210" value="175"><div class="range-vals"><span>140</span><span id="ht-v">175 cm</span><span>210</span></div></div>
                 <div class="inp-grp"><label>Activity Level</label><select id="activity" style="width:100%;padding:10px;border-radius:8px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:0.9rem"><option value="1.2">Sedentary (desk job)</option><option value="1.375">Light (1-3 days/week)</option><option value="1.55" selected>Moderate (3-5 days/week)</option><option value="1.725">Very Active (6-7 days/week)</option><option value="1.9">Extra Active (athlete)</option></select></div>
                 <div class="inp-grp"><label>Goal</label><select id="goal" style="width:100%;padding:10px;border-radius:8px;background:var(--badge);color:var(--text);border:1px solid var(--border);font-size:0.9rem"><option value="lose">Fat Loss (-500 cal)</option><option value="maintain" selected>Maintenance</option><option value="gain">Lean Bulk (+300 cal)</option><option value="aggressivegain">Muscle Gain (+500 cal)</option></select></div>
             </div>
@@ -65,14 +47,73 @@
 
         <div class="ad-slot"><ins><!-- AdSense --></ins></div>
 
-        
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128200;</i> Recommended Macro Ratios by Goal</div>
+            <div class="guide-content" style="font-size:0.85rem;line-height:1.5;color:var(--dim)">
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Goal</th><th>Protein</th><th>Carbs</th><th>Fat</th><th>Notes</th></tr></thead>
+                        <tbody>
+                            <tr><td style="font-weight:700">Fat Loss</td><td>40%</td><td>30%</td><td>30%</td><td>High protein preserves muscle</td></tr>
+                            <tr><td style="font-weight:700">Maintenance</td><td>30%</td><td>40%</td><td>30%</td><td>Balanced approach</td></tr>
+                            <tr><td style="font-weight:700">Lean Bulk</td><td>30%</td><td>45%</td><td>25%</td><td>Extra carbs fuel workouts</td></tr>
+                            <tr><td style="font-weight:700">Keto</td><td>20%</td><td>5%</td><td>75%</td><td>Very low carb, high fat</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 style="margin-top:24px;font-size:1.05rem;color:var(--text)">High-Protein Food Sources</h3>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.82rem">
+                        <thead><tr><th>Food</th><th>Serving</th><th>Protein</th><th>Calories</th><th>Protein/Cal Ratio</th></tr></thead>
+                        <tbody>
+                            <tr><td style="font-weight:700">Chicken Breast</td><td>100g</td><td style="color:var(--accent);font-weight:700">31g</td><td>165</td><td style="color:var(--emerald)">★★★★★</td></tr>
+                            <tr><td style="font-weight:700">Eggs (whole)</td><td>2 large</td><td style="color:var(--accent)">12g</td><td>140</td><td>★★★☆☆</td></tr>
+                            <tr><td style="font-weight:700">Greek Yogurt</td><td>200g</td><td style="color:var(--accent)">20g</td><td>130</td><td style="color:var(--emerald)">★★★★☆</td></tr>
+                            <tr><td style="font-weight:700">Whey Protein</td><td>1 scoop</td><td style="color:var(--accent);font-weight:700">25g</td><td>120</td><td style="color:var(--emerald)">★★★★★</td></tr>
+                            <tr><td style="font-weight:700">Paneer</td><td>100g</td><td style="color:var(--accent)">18g</td><td>265</td><td>★★★☆☆</td></tr>
+                            <tr><td style="font-weight:700">Lentils (dal)</td><td>1 cup cooked</td><td style="color:var(--accent)">18g</td><td>230</td><td>★★★☆☆</td></tr>
+                            <tr><td style="font-weight:700">Tofu</td><td>100g</td><td style="color:var(--accent)">8g</td><td>76</td><td style="color:var(--emerald)">★★★★☆</td></tr>
+                            <tr><td style="font-weight:700">Tuna (canned)</td><td>100g</td><td style="color:var(--accent);font-weight:700">26g</td><td>116</td><td style="color:var(--emerald)">★★★★★</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 style="margin-top:24px;font-size:1.05rem;color:var(--text)">Macro Counting vs Calorie Counting</h3>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.82rem">
+                        <thead><tr><th>Factor</th><th>Calorie Counting</th><th>Macro Counting</th></tr></thead>
+                        <tbody>
+                            <tr><td style="font-weight:700">Tracks</td><td>Total energy only</td><td style="color:var(--accent)">Protein + carbs + fat</td></tr>
+                            <tr><td style="font-weight:700">Body Composition</td><td style="color:var(--amber)">May lose muscle</td><td style="color:var(--emerald)">Preserves/builds muscle</td></tr>
+                            <tr><td style="font-weight:700">Flexibility</td><td>Very simple</td><td>Moderate complexity</td></tr>
+                            <tr><td style="font-weight:700">Best For</td><td>Simple weight loss</td><td style="color:var(--emerald)">Recomposition & athletic goals</td></tr>
+                            <tr><td style="font-weight:700">Sustainability</td><td>Easy to start</td><td>Better long-term results</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: Regardless of your goal, aim for 1.6–2.2g protein per kg bodyweight. This is the range supported by research for optimal muscle protein synthesis. Spread intake across 3–5 meals for best absorption.
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">What are macronutrients?</summary><p style="margin-top:8px">Macronutrients are the three main nutrients your body needs in large amounts: Protein (4 cal/g), Carbohydrates (4 cal/g), and Fat (9 cal/g). Together they make up your total calorie intake. Micronutrients (vitamins, minerals) are needed in smaller amounts.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">How much protein do I need per day?</summary><p style="margin-top:8px">For active people: 1.6–2.2g per kg bodyweight. For sedentary adults: 0.8–1.0g per kg. A 70kg person who exercises should aim for 112–154g protein daily. Endurance athletes may need the higher end.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Is counting macros better than counting calories?</summary><p style="margin-top:8px">Counting macros is more effective because it ensures you get the right balance of nutrients, not just total energy. Two 2000-calorie diets can have very different body composition results depending on macro split. Macros give you more control over whether you lose fat vs. muscle.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Can I still eat my favorite foods?</summary><p style="margin-top:8px">Yes! The IIFYM (If It Fits Your Macros) approach allows any food as long as you hit your daily targets. That said, prioritize whole foods for micronutrients and fiber — the 80/20 rule works well (80% whole foods, 20% flexible).</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">What is IIFYM?</summary><p style="margin-top:8px">IIFYM stands for "If It Fits Your Macros." It's a flexible dieting approach where no food is off-limits as long as your daily protein, carb, and fat targets are met. It avoids restrictive eating and promotes a healthier relationship with food.</p></details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Should I adjust macros on rest days?</summary><p style="margin-top:8px">Some people reduce carbs by 15–25% on rest days since glycogen demand is lower, while keeping protein the same. This is called "carb cycling" and is optional — it depends on your goals and how active your rest days are.</p></details>
+            </div>
+        </div>
     </div>
 
     <div class="ad-slot"><ins><!-- AdSense --></ins></div>
 
-    
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='calorie-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CALORIE CALCULATOR</a><a href='tdee-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TDEE CALCULATOR</a><a href='bmi-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BMI CALCULATOR</a><a href='body-fat-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BODY FAT CALC</a><a href='water-intake.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>WATER INTAKE</a><a href='sleep-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SLEEP CALCULATOR</a><a href='pregnancy-weight-gain.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PREGNANCY WEIGHT</a><a href='../daily/age-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a></div></div>
 
-    <footer class='site-ft'><p>&copy; 2026 <a href="../../">Calcora</a></p></footer>
+    <footer class='site-ft'><p>&copy; 2026 <a href="../../index.html">Calcora</a></p></footer>
     <script src="../../script.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -110,32 +151,27 @@
         C.initSliders(); calc();
     });
     </script>
-<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
-<div class="glass" style="margin-top:24px">
-    <div class="ctitle"><i>&#128161;</i> About Macro Calculator</div>
-    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
-        <p>Calculate your daily protein, carbs, and fat needs based on your goals. Free macro calculator for weight loss, muscle gain, and maintenance. Instant results.</p>
-        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    <div class="calcora-standard-seo" style="max-width:1100px; margin: 4rem auto; padding: 0 1.5rem; width:100%">
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>💡</i> About macro calculator</div>
+            <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+                <p>Professional-grade macro calculator tool designed for accuracy and privacy. Calcora provides expert-built utilities entirely free of charge with zero data collection.</p>
+                <p style="margin-top:8px">All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+            </div>
+        </div>
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>❓</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my data stored on your servers?</summary>
+                    <p style="margin-top:8px">No. Calcora tools run 100% client-side. No data is uploaded or stored on any external server.</p>
+                </details>
+                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service free?</summary>
+                    <p style="margin-top:8px">Yes, all tools on Calcora are completely free to use without any account or subscription.</p>
+                </details>
+            </div>
+        </div>
     </div>
-</div>
-<div class="glass" style="margin-top:24px">
-    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
-    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
-            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
-        </details>
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
-            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
-        </details>
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
-            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
-        </details>
-    </div>
-</div>
-<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../health/bmi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Bmi Calculator</a><a href='../../health/body-fat-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Body Fat Calculator</a><a href='../../health/calorie-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Calorie Calculator</a><a href='../../health/macro-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Macro Calculator</a><a href='../../health/period-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Period Calculator</a><a href='../../health/pregnancy-due-date/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Due Date</a><a href='../../health/pregnancy-weight-gain/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Weight Gain</a><a href='../../health/sleep-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sleep Calculator</a><a href='../../health/tdee-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tdee Calculator</a><a href='../../health/water-intake/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Water Intake</a></div></div>
-</div>
 </body>
 </html>

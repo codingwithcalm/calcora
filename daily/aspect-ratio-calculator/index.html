@@ -1,15 +1,15 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Image Aspect Ratio Calculator — Free Online Tool | Calcora</title>
-    <link rel="icon" type="image/x-icon" href="../../assets/"logo.png">
+    <title>Free Aspect Ratio Calculator — Resize 16:9 4:3 Custom | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/logo.png">
     <meta name="description"
         content="Free image aspect ratio calculator. Calculate dimensions for 16:9, 4:3, 1:1 and other ratios. Perfect for photographers and designers.">
     <meta name="keywords" content="aspect ratio calculator, image resize ratio, 16:9 calculator, 4:3 ratio, design tools">
-    <link rel="canonical" href="https://calcora.site/daily/aspect-ratio-calculator/">
+    <link rel="canonical" href="https://calcora.site/daily/aspect-ratio-calculator.html">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
@@ -33,30 +33,16 @@
 
     <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "Are these calculators free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, all 60+ Calcora calculators and tools are completely free with no sign-up required. No hidden fees or premium tiers." } },{ "@type": "Question", "name": "How do I save my results?", "acceptedAnswer": { "@type": "Answer", "text": "You can copy results to your clipboard using the copy button, take a screenshot, or bookmark the page for quick future access." } },{ "@type": "Question", "name": "Do these tools work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Most tools work offline once the page is loaded, since all calculations happen in your browser. Install via PWA for the best offline experience." } }] }</script>
     <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta name="twitter:image" content="https://calcora.site/assets/logo.png">
-<meta property="og:title" content="Image Aspect Ratio Calculator — Free Online Tool | Calcora">
-<meta property="og:description" content="Free image aspect ratio calculator. Calculate dimensions for 16:9, 4:3, 1:1 and other ratios. Perfect for photographers and designers.">
-<meta property="og:image" content="https://calcora.site/assets/logo.png">
-<meta property="og:url" content="https://calcora.site/daily/aspect-ratio-calculator/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Image Aspect Ratio Calculator",
-  "url": "https://calcora.site/daily/aspect-ratio-calculator/",
-  "description": "Free image aspect ratio calculator. Calculate dimensions for 16:9, 4:3, 1:1 and other ratios. Perfect for photographers and designers.",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "All",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-}
-</script>
 </head>
 
 <body>
     <div class="bgfx"></div>
     <nav class="navbar">
-        <div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        <div class="nav-in"><a href="../../index.html" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+            
+            
+                </div><span class="t-icon ic-moon">🌙</span>
+            </div>
         </div>
     </nav>
     <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
@@ -69,10 +55,83 @@
         </div>
         
         <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📏</i> Dimensions</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
+                    <div class="control">
+                        <div class="il"><span>Width (px)</span></div>
+                        <input type="number" class="ti" id="w" value="1920" oninput="calc('w')">
+                    </div>
+                    <div class="control">
+                        <div class="il"><span>Height (px)</span></div>
+                        <input type="number" class="ti" id="h" value="1080" oninput="calc('h')">
+                    </div>
+                </div>
+                
+                <div class="ctitle" style="margin-top:20px"><i>🔗</i> Common Ratios</div>
+                <div class="ratio-grid">
+                    <div class="ratio-card active" onclick="setRatio(16, 9, this)">
+                        <div class="r-val">16:9</div>
+                        <div class="r-name">HD Video</div>
+                    </div>
+                    <div class="ratio-card" onclick="setRatio(4, 3, this)">
+                        <div class="r-val">4:3</div>
+                        <div class="r-name">Standard</div>
+                    </div>
+                    <div class="ratio-card" onclick="setRatio(1, 1, this)">
+                        <div class="r-val">1:1</div>
+                        <div class="r-name">Square</div>
+                    </div>
+                    <div class="ratio-card" onclick="setRatio(9, 16, this)">
+                        <div class="r-val">9:16</div>
+                        <div class="r-name">TikTok / Reels</div>
+                    </div>
+                    <div class="ratio-card" onclick="setRatio(3, 2, this)">
+                        <div class="r-val">3:2</div>
+                        <div class="r-name">Photography</div>
+                    </div>
+                    <div class="ratio-card" onclick="setRatio(21, 9, this)">
+                        <div class="r-val">21:9</div>
+                        <div class="r-name">Ultrawide</div>
+                    </div>
+                </div>
+            </div>
             
-</div>
-<footer class='site-ft'>
-        <p>© 2026 <a href="../../">Calcora</a></p>
+            <div class="glass">
+                <div class="ctitle"><i>👁️</i> Visual Preview</div>
+                <div id="ratio-text" style="text-align:center;font-size:1.5rem;font-weight:900;color:var(--cyan);margin-bottom:15px">1.78 : 1</div>
+                
+                <div id="viz" class="viz-box" data-dim="1920 x 1080"></div>
+                
+                <div class="meth" style="margin-top:20px">
+                    <b>💡 Quick Reference:</b>
+                    - <b>YouTube:</b> 16:9 (1920x1080)<br>
+                    - <b>Instagram:</b> 1:1 (1080x1080) or 4:5 (1080x1350)<br>
+                    - <b>TikTok/Reels:</b> 9:16 (1080x1920)<br>
+                    - <b>Facebook:</b> 1.91:1 (1200x628)
+                </div>
+            </div>
+        </div>
+    
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128214;</i> How it Works & Guide</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>This tool is designed to be fast, private, and easy to use. All calculations and processing happen directly in your browser.</p>
+                <ol style="margin-top:10px;padding-left:20px">
+                    <li><b>Input:</b> Enter your data or upload the required file into the designated input area.</li>
+                    <li><b>Process:</b> Click the primary action button to trigger the instant calculation or conversion.</li>
+                    <li><b>Result:</b> Review the output and use the copy button to save your results to the clipboard.</li>
+                </ol>
+                <p style="margin-top:12px;font-size:0.78rem;color:var(--dim)">Learn more: <a href="https://en.wikipedia.org/wiki/Calculator" target="_blank" rel="noopener">Wikipedia - Calculators</a> | <a href="https://www.mathsisfun.com/" target="_blank" rel="noopener">Math is Fun</a></p>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: Bookmark this page on your mobile device for quick access to essential math and unit tools while on the go. It's built to be lightweight and fast on all mobile browsers.
+                </div>
+                <p style="margin-top:10px"><i>Note: Your data never leaves your device. We prioritize your privacy and security.</i></p>
+            </div>
+        </div></div>
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='age-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a><a href='date-difference.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DATE DIFFERENCE</a><a href='discount-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DISCOUNT CALCULATOR</a><a href='percentage-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PERCENTAGE CALCULATOR</a></div></div>
+    <footer class='site-ft'>
+        <p>© 2026 <a href="../../index.html">Calcora</a></p>
     </footer>
     <script src="../../script.js"></script>
     <script>
@@ -113,33 +172,28 @@
 
         updateViz();
     </script>
-<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
-<div class="glass" style="margin-top:24px">
-    <div class="ctitle"><i>&#128161;</i> About Image Aspect Ratio Calculator</div>
-    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
-        <p>Free image aspect ratio calculator. Calculate dimensions for 16:9, 4:3, 1:1 and other ratios. Perfect for photographers and designers.</p>
-        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    <div class="calcora-standard-seo" style="max-width:1100px; margin: 4rem auto; padding: 0 1.5rem; width:100%">
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>💡</i> About aspect ratio calculator</div>
+            <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+                <p>Professional-grade aspect ratio calculator tool designed for accuracy and privacy. Calcora provides expert-built utilities entirely free of charge with zero data collection.</p>
+                <p style="margin-top:8px">All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+            </div>
+        </div>
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>❓</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my data stored on your servers?</summary>
+                    <p style="margin-top:8px">No. Calcora tools run 100% client-side. No data is uploaded or stored on any external server.</p>
+                </details>
+                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service free?</summary>
+                    <p style="margin-top:8px">Yes, all tools on Calcora are completely free to use without any account or subscription.</p>
+                </details>
+            </div>
+        </div>
     </div>
-</div>
-<div class="glass" style="margin-top:24px">
-    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
-    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
-            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
-        </details>
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
-            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
-        </details>
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
-            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
-        </details>
-    </div>
-</div>
-<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../daily/age-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Age Calculator</a><a href='../../daily/aspect-ratio-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Aspect Ratio Calculator</a><a href='../../daily/countdown-timer/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Countdown Timer</a><a href='../../daily/date-difference/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Date Difference</a><a href='../../daily/discount-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Discount Calculator</a><a href='../../daily/gpa-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Gpa Calculator</a><a href='../../daily/percentage-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Percentage Calculator</a><a href='../../daily/random-number-generator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Random Number Generator</a><a href='../../daily/scientific-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Scientific Calculator</a><a href='../../daily/stopwatch/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Stopwatch</a><a href='../../daily/time-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Time Calculator</a><a href='../../daily/tip-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tip Calculator</a><a href='../../daily/word-counter/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Word Counter</a></div></div>
-</div>
 </body>
 
 </html>

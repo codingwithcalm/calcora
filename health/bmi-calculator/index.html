@@ -1,14 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>BMI Calculator — Free Online Tool | Calcora</title>
-<link rel="icon" type="image/png" href="../../assets/"logo.png">
+    <title>Free BMI Calculator — Body Mass Index with WHO Categories | Calcora</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
 <meta name="description" content="Calculate your BMI instantly. Our free BMI calculator provides WHO classifications, healthy weight ranges, and health insights.">
 <meta name="keywords" content="bmi calculator, body mass index, weight calculator, healthy weight, obesity chart, health tools">
-<link rel="canonical" href="https://calcora.site/health/bmi-calculator/">
+<link rel="canonical" href="https://calcora.site/health/bmi-calculator.html">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
@@ -25,29 +25,11 @@
 
     <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "How accurate are these health calculators?", "acceptedAnswer": { "@type": "Answer", "text": "Our health tools use evidence-based formulas from WHO, NIH, and US Navy standards. However, they provide estimates and should not replace professional medical advice." } },{ "@type": "Question", "name": "Is my health data stored anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run locally in your browser. We never collect, store, or transmit any personal health information." } },{ "@type": "Question", "name": "Can I use these tools on mobile?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, all health calculators are fully responsive and optimized for mobile devices, tablets, and desktops." } }] }</script>
     <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta name="twitter:image" content="https://calcora.site/assets/logo.png">
-<meta property="og:title" content="BMI Calculator — Free Online Tool | Calcora">
-<meta property="og:description" content="Calculate your BMI instantly. Our free BMI calculator provides WHO classifications, healthy weight ranges, and health insights.">
-<meta property="og:image" content="https://calcora.site/assets/logo.png">
-<meta property="og:url" content="https://calcora.site/health/bmi-calculator/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "BMI Calculator",
-  "url": "https://calcora.site/health/bmi-calculator/",
-  "description": "Calculate your BMI instantly. Our free BMI calculator provides WHO classifications, healthy weight ranges, and health insights.",
-  "applicationCategory": "HealthApplication",
-  "operatingSystem": "All",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-}
-</script>
 </head>
 
 <body>
     <div class="bgfx"></div>
-    <nav class="navbar"><div class="nav-in"><a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div></nav>
+    <nav class="navbar"><div class="nav-in"><a href="../../index.html" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div><span class="t-icon ic-moon">🌙</span></div></div></nav>
     <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
         <div class="mod-hdr">
             <h1>BMI Calculator</h1>
@@ -59,15 +41,160 @@
         <div class="snippet"><strong>Quick Answer:</strong> BMI = weight(kg) / height(m)². A BMI of 18.5–24.9 is
             considered "Normal weight" by the World Health Organization.</div>
         <div class="tool-grid">
+            <div class="glass">
+                <div class="ctitle"><i>📋</i> Your Measurements</div>
+                <div class="control">
+                    <div class="il"><span>Weight (kg)</span><span class="v" id="w-v">70 kg</span></div><input
+                        type="range" class="c-slider" id="w" min="30" max="200" step="0.5" value="70">
+                    <div class="rl"><span>30</span><span>200</span></div>
+                </div>
+                <div class="control">
+                    <div class="il"><span>Height (cm)</span><span class="v" id="h-v">170 cm</span></div><input
+                        type="range" class="c-slider" id="h" min="100" max="220" step="1" value="170">
+                    <div class="rl"><span>100</span><span>220</span></div>
+                </div>
+            </div>
+            <div class="glass res-card">
+                <div class="ctitle"><i>⚖️</i> Your BMI</div>
+                <div class="bn-l">Body Mass Index</div>
+                <div class="bn" id="bmi">—</div>
+                <div id="cat"
+                    style="text-align:center;margin-top:8px;font-size:.9rem;font-weight:700;padding:6px 16px;border-radius:8px;display:inline-block">
+                </div>
+                <div class="chart-box"><canvas id="ch"></canvas></div>
+                <div class="pills" style="margin-top:14px">
+                    <div class="pill" style="background:rgba(34,211,238,.06)">
+                        <div class="pl">Underweight</div>
+                        <div class="pv" style="font-size:.72rem;color:var(--cyan)">
+                            < 18.5</div>
+                        </div>
+                        <div class="pill" style="background:rgba(52,211,153,.06)">
+                            <div class="pl">Normal</div>
+                            <div class="pv" style="font-size:.72rem;color:var(--emerald)">18.5 – 24.9</div>
+                        </div>
+                    </div>
+                    <div class="pills">
+                        <div class="pill" style="background:rgba(251,191,36,.06)">
+                            <div class="pl">Overweight</div>
+                            <div class="pv" style="font-size:.72rem;color:var(--amber)">25 – 29.9</div>
+                        </div>
+                        <div class="pill" style="background:rgba(251,113,133,.06)">
+                            <div class="pl">Obese</div>
+                            <div class="pv" style="font-size:.72rem;color:var(--rose)">≥ 30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
+                <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128200;</i> What is BMI and How is it Calculated?</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <p>BMI (Body Mass Index) is a simple screening tool that estimates body fat based on your height and weight. It was developed by Belgian mathematician Adolphe Quetelet in the 1830s and is still used worldwide by doctors and health organizations.</p>
+                <div style="background:var(--badge);padding:16px 20px;border-radius:10px;margin:16px 0;font-size:1.1rem;text-align:center;color:var(--text);font-weight:600">
+                    BMI = Weight (kg) &#247; Height (m)<sup>2</sup>
+                </div>
+                <h3 style="margin-top:20px;font-size:1.05rem;color:var(--text)">Step-by-Step Example</h3>
+                <p>For a person weighing <strong>70 kg</strong> with a height of <strong>175 cm</strong>:</p>
+                <ol style="padding-left:20px;margin-top:8px">
+                    <li>Convert height to meters: 175 cm = <strong>1.75 m</strong></li>
+                    <li>Square the height: 1.75 &#215; 1.75 = <strong>3.0625</strong></li>
+                    <li>Divide weight by height squared: 70 &#247; 3.0625 = <strong>22.86</strong></li>
+                    <li>Result: BMI = <strong>22.9</strong> (Normal weight)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128202;</i> BMI Categories &#8212; WHO Classification</div>
+            <div class="guide-content" style="font-size:0.85rem;line-height:1.5;color:var(--dim)">
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>BMI Range</th><th>Category</th><th>Health Risk</th></tr></thead>
+                        <tbody>
+                            <tr><td>&lt; 16.0</td><td>Severe Thinness</td><td style="color:var(--rose)">Very High</td></tr>
+                            <tr><td>16.0 &#8211; 16.9</td><td>Moderate Thinness</td><td style="color:var(--rose)">High</td></tr>
+                            <tr><td>17.0 &#8211; 18.4</td><td>Mild Thinness</td><td style="color:var(--amber)">Moderate</td></tr>
+                            <tr><td style="color:var(--emerald);font-weight:700">18.5 &#8211; 24.9</td><td style="color:var(--emerald);font-weight:700">Normal Weight</td><td style="color:var(--emerald)">Low</td></tr>
+                            <tr><td>25.0 &#8211; 29.9</td><td>Overweight</td><td style="color:var(--amber)">Moderate</td></tr>
+                            <tr><td>30.0 &#8211; 34.9</td><td>Obese Class I</td><td style="color:var(--rose)">High</td></tr>
+                            <tr><td>35.0 &#8211; 39.9</td><td>Obese Class II</td><td style="color:var(--rose)">Very High</td></tr>
+                            <tr><td>&#8805; 40.0</td><td>Obese Class III</td><td style="color:var(--rose)">Extremely High</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top:10px;font-size:0.78rem;font-style:italic">* For Asian populations, overweight starts at BMI 23.0 and obese at 25.0 (WHO Asia-Pacific guidelines).</p>
+            </div>
+        </div>
+
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#9878;</i> BMI vs Body Fat Percentage</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <p>BMI is a useful screening tool, but it has limitations. It does not distinguish between muscle mass and fat mass.</p>
+                <div class="tbl-wrap" style="margin-top:12px">
+                    <table style="width:100%;font-size:0.85rem">
+                        <thead><tr><th>Factor</th><th>BMI</th><th>Body Fat %</th></tr></thead>
+                        <tbody>
+                            <tr><td>Measures</td><td>Weight relative to height</td><td>Actual fat tissue</td></tr>
+                            <tr><td>Accounts for muscle?</td><td>No</td><td style="color:var(--emerald)">Yes</td></tr>
+                            <tr><td>Equipment needed</td><td>None (scale + tape)</td><td>Calipers, DEXA, or BIA</td></tr>
+                            <tr><td>Accuracy for athletes</td><td>Poor (overestimates)</td><td style="color:var(--emerald)">Good</td></tr>
+                            <tr><td>Best for</td><td>General health screening</td><td>Detailed body composition</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: If you exercise regularly or have above-average muscle mass, combine BMI with our <a href="body-fat-calculator.html" style="color:var(--accent)">Body Fat Calculator</a> for a more complete picture of your health.
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">What is a healthy BMI for adults?</summary>
+                    <p style="margin-top:8px">A healthy BMI range is 18.5 to 24.9 according to the World Health Organization. For Asian populations, the healthy range is narrower: 18.5 to 22.9.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is BMI accurate for athletes and bodybuilders?</summary>
+                    <p style="margin-top:8px">No. BMI does not distinguish between muscle and fat. A muscular athlete with low body fat may have a high BMI and be classified as overweight despite being very healthy. Use body fat percentage instead.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Does BMI change with age?</summary>
+                    <p style="margin-top:8px">The BMI formula itself doesn't account for age. However, body composition changes with age &#8212; older adults tend to have more body fat and less muscle. Some experts suggest slightly higher BMI ranges (25-27) may be acceptable for people over 65.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is BMI different for men and women?</summary>
+                    <p style="margin-top:8px">The BMI formula and categories are the same for both genders. However, women naturally have a higher body fat percentage than men (20-25% vs 15-20% for healthy adults).</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Can children use this BMI calculator?</summary>
+                    <p style="margin-top:8px">Standard BMI categories apply to adults 20 and older. For children and teens (ages 2-19), BMI is interpreted using age-specific and sex-specific percentiles, which requires a different calculator.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">What should I do if my BMI is too high?</summary>
+                    <p style="margin-top:8px">Consult your doctor first. A combination of balanced diet, regular exercise (150+ min/week), adequate sleep, and stress management is recommended. Use our <a href="../health/calorie-calculator.html" style="color:var(--accent)">Calorie Calculator</a> and <a href="../health/tdee-calculator.html" style="color:var(--accent)">TDEE Calculator</a> to plan your approach.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Who invented BMI?</summary>
+                    <p style="margin-top:8px">BMI was developed by Belgian mathematician Adolphe Quetelet between 1830-1850. The term "Body Mass Index" was coined by Ancel Keys in 1972. Despite being nearly 200 years old, it remains the most widely used health screening metric.</p>
+                </details>
+                <details style="margin-bottom:16px;padding:12px;background:var(--badge);border-radius:8px">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my health data safe on this calculator?</summary>
+                    <p style="margin-top:8px">Absolutely. All calculations happen entirely in your browser using JavaScript. No data is sent to any server. Your health information stays 100% private on your device.</p>
+                </details>
+            </div>
+        </div>
     </div>
 
     <div class="ad-slot"><ins><!-- AdSense bottom --></ins></div>
 
-    
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='body-fat-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BODY FAT CALCULATOR</a><a href='calorie-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CALORIE CALCULATOR</a><a href='tdee-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TDEE CALCULATOR</a><a href='water-intake.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>WATER INTAKE</a><a href='pregnancy-due-date.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DUE DATE</a><a href='pregnancy-weight-gain.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PREGNANCY WEIGHT</a><a href='../daily/percentage-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PERCENTAGE CALC</a><a href='../daily/age-calculator.html' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a></div></div>
 
     <footer class='site-ft'>
-                <p>© 2026 <a href="../../">Calcora</a></p>
+                <p>© 2026 <a href="../../index.html">Calcora</a></p>
             </footer>
             <script src="../../script.js"></script>
             <script>
@@ -88,33 +215,28 @@
                     C.initSliders(); calc();
                 });
             </script>
-<div class="calcora-standard-seo" style="max-width:1100px; margin: 2rem auto; padding: 0 1rem; width:100%">
-<div class="glass" style="margin-top:24px">
-    <div class="ctitle"><i>&#128161;</i> About BMI Calculator</div>
-    <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
-        <p>Calculate your BMI instantly. Our free BMI calculator provides WHO classifications, healthy weight ranges, and health insights.</p>
-        <p style="margin-top:8px">Calcora provides this tool entirely free of charge with zero data collection. All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+    <div class="calcora-standard-seo" style="max-width:1100px; margin: 4rem auto; padding: 0 1.5rem; width:100%">
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>💡</i> About bmi calculator</div>
+            <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
+                <p>Professional-grade bmi calculator tool designed for accuracy and privacy. Calcora provides expert-built utilities entirely free of charge with zero data collection.</p>
+                <p style="margin-top:8px">All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
+            </div>
+        </div>
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>❓</i> Frequently Asked Questions</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my data stored on your servers?</summary>
+                    <p style="margin-top:8px">No. Calcora tools run 100% client-side. No data is uploaded or stored on any external server.</p>
+                </details>
+                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
+                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service free?</summary>
+                    <p style="margin-top:8px">Yes, all tools on Calcora are completely free to use without any account or subscription.</p>
+                </details>
+            </div>
+        </div>
     </div>
-</div>
-<div class="glass" style="margin-top:24px">
-    <div class="ctitle"><i>&#10067;</i> Frequently Asked Questions</div>
-    <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">How accurate are the results?</summary>
-            <p style="margin-top:8px">Our tools are engineered using industry-standard formulas to ensure extreme accuracy. However, results (especially financial ones) are for informational purposes.</p>
-        </details>
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my inputted data stored on your servers?</summary>
-            <p style="margin-top:8px">No. We don't use backend servers to process your inputs. Everything runs securely via client-side JavaScript right inside your own browser window.</p>
-        </details>
-        <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-            <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service completely free?</summary>
-            <p style="margin-top:8px">Yes, all 75+ tools on Calcora are expressly free to use with zero limitations and no account required.</p>
-        </details>
-    </div>
-</div>
-<div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Explore More Health Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px'><a href='../../health/bmi-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Bmi Calculator</a><a href='../../health/body-fat-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Body Fat Calculator</a><a href='../../health/calorie-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Calorie Calculator</a><a href='../../health/macro-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Macro Calculator</a><a href='../../health/period-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Period Calculator</a><a href='../../health/pregnancy-due-date/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Due Date</a><a href='../../health/pregnancy-weight-gain/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Pregnancy Weight Gain</a><a href='../../health/sleep-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Sleep Calculator</a><a href='../../health/tdee-calculator/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Tdee Calculator</a><a href='../../health/water-intake/' style='font-size:0.8rem;color:var(--accent);font-weight:700;padding:10px;background:var(--badge);border-radius:6px;text-align:center;text-decoration:none;transition:0.2s;border:1px solid var(--gbdr)'>Water Intake</a></div></div>
-</div>
 </body>
 
 </html>
