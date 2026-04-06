@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Trip Expense Splitter — Split Group Bills Instantly | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/logo.png">
     <!-- Add SEO and styling tags -->
     <meta name="description"
         content="A free, modern Trip Expense Splitter to split bills among friends with an intelligent settlement algorithm. Calculates who owes whom seamlessly.">
@@ -18,7 +19,7 @@
     <meta property="og:description"
         content="Split group expenses easily with a smart algorithm to minimize transactions.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://calcora.site/finance/trip-expense-splitter.html">
+    <meta property="og:url" content="https://calcora.site/finance/trip-expense-splitter/">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -47,14 +48,14 @@
             --primary: #4F46E5;
             --primary-hover: #4338CA;
             --success: #10B981;
-            --success-bg: #D1FAE5;
+            --success-bg: rgba(16, 185, 129, 0.1);
             --danger: #EF4444;
-            --danger-bg: #FEE2E2;
-            --background: #F8FAFC;
-            --surface: #FFFFFF;
-            --text-main: #0F172A;
-            --text-muted: #64748B;
-            --border: #E2E8F0;
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --background: var(--bg, #F8FAFC);
+            --surface: var(--glass, #ffffff);
+            --text-main: var(--text, #0F172A);
+            --text-muted: var(--dim, #64748B);
+            --border: var(--gbdr, #E2E8F0);
             --radius: 12px;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
@@ -63,14 +64,14 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: inherit;
         }
 
         body {
             background-color: var(--background);
             color: var(--text-main);
             line-height: 1.5;
-            padding: 2rem 1rem;
+            padding: 0;
         }
 
         .container {
@@ -132,13 +133,13 @@
         }
 
         .btn-outline {
-            background-color: white;
+            background-color: var(--glass);
             border: 1px solid var(--border);
             color: var(--text-main);
         }
 
         .btn-outline:hover {
-            background-color: var(--background);
+            background-color: var(--badge);
         }
 
         .btn-danger-outline {
@@ -370,7 +371,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 1rem 1.25rem;
-            background: white;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 8px;
             margin-bottom: 0.75rem;
@@ -572,8 +573,16 @@
 </head>
 
 <body>
+    <link rel="stylesheet" href="../../style.css">
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in">
+            <a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        </div>
+    </nav>
+    <div class="page fade-in" style="max-width: 1100px; margin: 0 auto; padding: 20px;">
+        <a href="../../" class="back" style="margin-bottom: 20px; display: inline-block;">← Back to all tools</a>
 
-    <div class="container">
         <header>
             <div class="logo-title">
                 <svg xmlns="http://www.w3.org/2000/width=" 24" height="24" viewBox="0 0 24 24" fill="none"
@@ -582,7 +591,7 @@
                     <line x1="12" y1="4" x2="12" y2="20"></line>
                     <line x1="2" y1="12" x2="22" y2="12"></line>
                 </svg>
-                Splitwise Simple
+                Trip Expense Splitter
             </div>
             <div class="header-actions no-print">
                 <button class="btn-outline" onclick="exportToCSV()" title="Export data to CSV for Excel/Numbers">
@@ -1301,27 +1310,10 @@
         updateUI();
     </script>
 
-    <div class="calcora-standard-seo" style="max-width:1100px; margin: 4rem auto; padding: 0 1.5rem; width:100%">
-        <div class="glass" style="margin-top:24px">
-            <div class="ctitle"><i>💡</i> About trip expense splitter</div>
-            <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
-                <p>Professional-grade trip expense splitter tool designed for accuracy and privacy. Calcora provides expert-built utilities entirely free of charge with zero data collection.</p>
-                <p style="margin-top:8px">All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
-            </div>
-        </div>
-        <div class="glass" style="margin-top:24px">
-            <div class="ctitle"><i>❓</i> Frequently Asked Questions</div>
-            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
-                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my data stored on your servers?</summary>
-                    <p style="margin-top:8px">No. Calcora tools run 100% client-side. No data is uploaded or stored on any external server.</p>
-                </details>
-                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service free?</summary>
-                    <p style="margin-top:8px">Yes, all tools on Calcora are completely free to use without any account or subscription.</p>
-                </details>
-            </div>
-        </div>
+        <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../gst-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>GST CALCULATOR</a><a href='../emi-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>EMI CALCULATOR</a><a href='../sip-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SIP CALCULATOR</a><a href='../salary-to-hourly/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SALARY CALC</a><a href='../loan-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>LOAN CALCULATOR</a><a href='../compound-interest/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>COMPOUND INTEREST</a><a href='../profit-loss-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PROFIT &amp; LOSS</a><a href='../tax-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TAX CALCULATOR</a></div></div>
+        <footer class='site-ft'>
+            <p>© 2026 <a href="../../">Calcora</a></p>
+        </footer>
     </div>
 </body>
 

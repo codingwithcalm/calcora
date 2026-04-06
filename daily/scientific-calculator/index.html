@@ -1,164 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Free Scientific Calculator — Advanced Math Functions Online | Calcora</title>
-<link rel="icon" type="image/png" href="../../assets/logo.png">
-<meta name="description" content="Full-featured scientific calculator. Performs trigonometry, logarithms, powers, and complex math functions in your browser.">
-<meta name="keywords" content="scientific calculator, math calculator, online calculator, sine cosine tangent, logarithms, advanced math">
-<link rel="canonical" href="https://calcora.site/daily/scientific-calculator/">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <meta name="description" content="Full-featured scientific calculator. Performs trigonometry, logarithms, powers, and complex math functions in your browser.">
+    <meta name="keywords" content="scientific calculator, math calculator, online calculator, sine cosine tangent, logarithms, advanced math">
+    <link rel="canonical" href="https://calcora.site/daily/scientific-calculator/">
+    <link rel="icon" type="image/x-icon" href="../../assets/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
-    <script
-        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Scientific Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://calcora.site/daily/scientific-calculator.html"}</script>
-    <style>
-        .calc-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            margin-top: 16px
-        }
-
-        .calc-btn {
-            padding: 14px 8px;
-            border-radius: 12px;
-            background: var(--surface2);
-            border: 1px solid var(--gbdr);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            font-size: .85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all .2s;
-            text-align: center
-        }
-
-        .calc-btn:hover {
-            background: var(--accent);
-            color: #fff;
-            transform: translateY(-1px)
-        }
-
-        .calc-btn.op {
-            color: var(--accent2)
-        }
-
-        .calc-btn.eq {
-            background: var(--accent);
-            color: #fff
-        }
-
-        .calc-btn.fn {
-            color: var(--cyan);
-            font-size: .75rem
-        }
-
-        .calc-display {
-            background: var(--inputBg);
-            border: 1px solid var(--inputBdr);
-            border-radius: 14px;
-            padding: 18px 16px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-align: right;
-            color: var(--heading);
-            font-family: 'Inter', monospace;
-            min-height: 70px;
-            word-break: break-all;
-            margin-bottom: 4px
-        }
-
-        .calc-expr {
-            font-size: .75rem;
-            color: var(--dim);
-            text-align: right;
-            min-height: 18px;
-            padding: 0 4px
-        }
-    </style>
-
     <link rel="manifest" href="https://calcora.site/manifest.json">
-    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
-    <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
-
-    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "daily", "item": "https://calcora.site/index.html#daily" },{ "@type": "ListItem", "position": 3, "name": "Scientific Calculator", "item": "https://calcora.site/daily/scientific-calculator.html" }] }</script>
-    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Scientific Calculator", "operatingSystem": "All", "applicationCategory": "dailyApplication", "url": "https://calcora.site/daily/scientific-calculator.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
-
-    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "Are these calculators free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, all 60+ Calcora calculators and tools are completely free with no sign-up required. No hidden fees or premium tiers." } },{ "@type": "Question", "name": "How do I save my results?", "acceptedAnswer": { "@type": "Answer", "text": "You can copy results to your clipboard using the copy button, take a screenshot, or bookmark the page for quick future access." } },{ "@type": "Question", "name": "Do these tools work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Most tools work offline once the page is loaded, since all calculations happen in your browser. Install via PWA for the best offline experience." } }] }</script>
-    <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta name="twitter:image" content="https://calcora.site/assets/logo.png">
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "daily", "item": "https://calcora.site/#daily" },{ "@type": "ListItem", "position": 3, "name": "Scientific Calculator", "item": "https://calcora.site/daily/scientific-calculator/" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Scientific Calculator", "operatingSystem": "All", "applicationCategory": "dailyApplication", "url": "https://calcora.site/daily/scientific-calculator/", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+    <style>
+        .calc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 16px }
+        .calc-btn { padding: 14px 8px; border-radius: 12px; background: var(--surface2); border: 1px solid var(--gbdr); color: var(--text); font-family: 'Inter', sans-serif; font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .2s; text-align: center }
+        .calc-btn:hover { background: var(--accent); color: #fff; transform: translateY(-1px) }
+        .calc-btn.op { color: var(--accent2) }
+        .calc-btn.eq { background: var(--accent); color: #fff }
+        .calc-btn.fn { color: var(--cyan); font-size: .75rem }
+        .calc-display { background: var(--inputBg); border: 1px solid var(--inputBdr); border-radius: 14px; padding: 18px 16px; font-size: 1.8rem; font-weight: 700; text-align: right; color: var(--heading); font-family: 'Inter', monospace; min-height: 70px; word-break: break-all; margin-bottom: 4px }
+        .calc-expr { font-size: .75rem; color: var(--dim); text-align: right; min-height: 18px; padding: 0 4px }
+    </style>
 </head>
-
 <body>
     <div class="bgfx"></div>
-    <nav class="navbar"><div class="nav-in"><a href="../../index/" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a></div><span class="t-icon ic-moon">🌙</span></div></div></nav>
-    <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
+    <nav class="navbar">
+        <div class="nav-in">
+            <a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        </div>
+    </nav>
+    <div class="page fade-in">
+        <a href="../../" class="back">← Back to all tools</a>
         <div class="mod-hdr">
             <h1>Scientific Calculator</h1>
-        <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
-            <strong>Quick Answer:</strong> Get quick, precise answers with the Calcora Scientific Calculator. Designed for everyday productivity, this tool handles complex math, date differences, and unit conversions with a minimalist interface that gets out of your way and provides results instantly.
-        </div>
-        <p>Full-featured calculator with trig, logs, powers, and memory.</p>
+            <p class="mod-desc">Full-featured calculator with trigonometry, logarithms, powers, and memory functions. All calculations are performed instantly in your browser.</p>
         </div>
         <div style="max-width:460px;margin:0 auto">
             <div class="glass">
                 <div class="calc-expr" id="expr"></div>
                 <div class="calc-display" id="display">0</div>
                 <div class="calc-grid">
-                    <button class="calc-btn fn" onclick="sciOp('sin')">sin</button><button class="calc-btn fn"
-                        onclick="sciOp('cos')">cos</button><button class="calc-btn fn"
-                        onclick="sciOp('tan')">tan</button><button class="calc-btn fn"
-                        onclick="sciOp('log')">log</button><button class="calc-btn fn" onclick="sciOp('ln')">ln</button>
-                    <button class="calc-btn fn" onclick="sciOp('sqrt')">√</button><button class="calc-btn fn"
-                        onclick="sciOp('pow2')">x²</button><button class="calc-btn fn"
-                        onclick="sciOp('pow3')">x³</button><button class="calc-btn fn"
-                        onclick="sciOp('inv')">1/x</button><button class="calc-btn fn"
-                        onclick="sciOp('fact')">n!</button>
-                    <button class="calc-btn fn" onclick="sciOp('pi')">π</button><button class="calc-btn fn"
-                        onclick="sciOp('e')">e</button><button class="calc-btn op"
-                        onclick="inputOp('(')">(</button><button class="calc-btn op"
-                        onclick="inputOp(')')">)</button><button class="calc-btn op" onclick="clearAll()">AC</button>
-                    <button class="calc-btn" onclick="inputNum('7')">7</button><button class="calc-btn"
-                        onclick="inputNum('8')">8</button><button class="calc-btn"
-                        onclick="inputNum('9')">9</button><button class="calc-btn op"
-                        onclick="inputOp('/')">÷</button><button class="calc-btn" onclick="backspace()">⌫</button>
-                    <button class="calc-btn" onclick="inputNum('4')">4</button><button class="calc-btn"
-                        onclick="inputNum('5')">5</button><button class="calc-btn"
-                        onclick="inputNum('6')">6</button><button class="calc-btn op"
-                        onclick="inputOp('*')">×</button><button class="calc-btn fn" onclick="memOp('MS')">MS</button>
-                    <button class="calc-btn" onclick="inputNum('1')">1</button><button class="calc-btn"
-                        onclick="inputNum('2')">2</button><button class="calc-btn"
-                        onclick="inputNum('3')">3</button><button class="calc-btn op"
-                        onclick="inputOp('-')">−</button><button class="calc-btn fn" onclick="memOp('MR')">MR</button>
-                    <button class="calc-btn" onclick="inputNum('0')">0</button><button class="calc-btn"
-                        onclick="inputNum('.')">.</button><button class="calc-btn fn"
-                        onclick="toggleSign()">±</button><button class="calc-btn op"
-                        onclick="inputOp('+')">+</button><button class="calc-btn eq" onclick="calculate()">=</button>
+                    <button class="calc-btn fn" onclick="sciOp('sin')">sin</button><button class="calc-btn fn" onclick="sciOp('cos')">cos</button><button class="calc-btn fn" onclick="sciOp('tan')">tan</button><button class="calc-btn fn" onclick="sciOp('log')">log</button><button class="calc-btn fn" onclick="sciOp('ln')">ln</button>
+                    <button class="calc-btn fn" onclick="sciOp('sqrt')">√</button><button class="calc-btn fn" onclick="sciOp('pow2')">x²</button><button class="calc-btn fn" onclick="sciOp('pow3')">x³</button><button class="calc-btn fn" onclick="sciOp('inv')">1/x</button><button class="calc-btn fn" onclick="sciOp('fact')">n!</button>
+                    <button class="calc-btn fn" onclick="sciOp('pi')">π</button><button class="calc-btn fn" onclick="sciOp('e')">e</button><button class="calc-btn op" onclick="inputOp('(')">(</button><button class="calc-btn op" onclick="inputOp(')')">)</button><button class="calc-btn op" onclick="clearAll()">AC</button>
+                    <button class="calc-btn" onclick="inputNum('7')">7</button><button class="calc-btn" onclick="inputNum('8')">8</button><button class="calc-btn" onclick="inputNum('9')">9</button><button class="calc-btn op" onclick="inputOp('/')">÷</button><button class="calc-btn" onclick="backspace()">⌫</button>
+                    <button class="calc-btn" onclick="inputNum('4')">4</button><button class="calc-btn" onclick="inputNum('5')">5</button><button class="calc-btn" onclick="inputNum('6')">6</button><button class="calc-btn op" onclick="inputOp('*')">×</button><button class="calc-btn fn" onclick="memOp('MS')">MS</button>
+                    <button class="calc-btn" onclick="inputNum('1')">1</button><button class="calc-btn" onclick="inputNum('2')">2</button><button class="calc-btn" onclick="inputNum('3')">3</button><button class="calc-btn op" onclick="inputOp('-')">−</button><button class="calc-btn fn" onclick="memOp('MR')">MR</button>
+                    <button class="calc-btn" onclick="inputNum('0')">0</button><button class="calc-btn" onclick="inputNum('.')">.</button><button class="calc-btn fn" onclick="toggleSign()">±</button><button class="calc-btn op" onclick="inputOp('+')">+</button><button class="calc-btn eq" onclick="calculate()">=</button>
                 </div>
             </div>
         </div>
-    
+        <div class="ad-slot"><ins><!-- AdSense --></ins></div>
         <div class="glass" style="margin-top:24px">
-            <div class="ctitle"><i>&#128214;</i> How it Works & Guide</div>
-            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
-                <p>This tool is designed to be fast, private, and easy to use. All calculations and processing happen directly in your browser.</p>
-                <ol style="margin-top:10px;padding-left:20px">
-                    <li><b>Input:</b> Enter your data or upload the required file into the designated input area.</li>
-                    <li><b>Process:</b> Click the primary action button to trigger the instant calculation or conversion.</li>
-                    <li><b>Result:</b> Review the output and use the copy button to save your results to the clipboard.</li>
-                </ol>
-                <p style="margin-top:12px;font-size:0.78rem;color:var(--dim)">Learn more: <a href="https://en.wikipedia.org/wiki/Calculator" target="_blank" rel="noopener">Wikipedia - Calculators</a> | <a href="https://www.mathsisfun.com/" target="_blank" rel="noopener">Math is Fun</a></p>
-                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
-                    Pro Tip: Bookmark this page on your mobile device for quick access to essential math and unit tools while on the go. It's built to be lightweight and fast on all mobile browsers.
-                </div>
-                <p style="margin-top:10px"><i>Note: Your data never leaves your device. We prioritize your privacy and security.</i></p>
+            <div class="ctitle"><i>📘</i> How to Use</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
+                <p>This scientific calculator supports standard arithmetic as well as advanced mathematical functions. All processing happens locally on your device for total privacy.</p>
+                <ul style="padding-left:20px;margin-top:12px">
+                    <li><strong>Basic Math:</strong> Use the number pad and operators (+, -, ×, ÷) for simple calculations.</li>
+                    <li><strong>Trigonometry:</strong> Use sin, cos, and tan (calculates in degrees).</li>
+                    <li><strong>Logarithms:</strong> 'log' for base 10 and 'ln' for natural logarithms.</li>
+                    <li><strong>Memory:</strong> 'MS' saves the current value, 'MR' recalls it into your expression.</li>
+                </ul>
             </div>
-        </div></div>
-    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='age-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a><a href='aspect-ratio-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>ASPECT RATIO CALCULATOR</a><a href='date-difference/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DATE DIFFERENCE</a><a href='discount-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DISCOUNT CALCULATOR</a></div></div>
+        </div>
+    </div>
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Daily Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../percentage-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PERCENTAGE CALC</a><a href='../age-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>AGE CALCULATOR</a><a href='../random-number-generator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>RANDOM NUMBER</a><a href='../discount-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>DISCOUNT CALC</a></div></div>
     <footer class='site-ft'>
-        <p>© 2026 <a href="../../index/">Calcora</a></p>
+        <p>&copy; 2026 <a href="../../">Calcora</a></p>
     </footer>
     <script src="../../script.js"></script>
     <script>
@@ -182,28 +92,5 @@
         }
         function memOp(op) { if (op === 'MS') mem = parseFloat(D().textContent) || 0; else if (op === 'MR') { expr += mem; D().textContent = expr; } }
     </script>
-    <div class="calcora-standard-seo" style="max-width:1100px; margin: 4rem auto; padding: 0 1.5rem; width:100%">
-        <div class="glass" style="margin-top:24px">
-            <div class="ctitle"><i>💡</i> About scientific calculator</div>
-            <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
-                <p>Professional-grade scientific calculator tool designed for accuracy and privacy. Calcora provides expert-built utilities entirely free of charge with zero data collection.</p>
-                <p style="margin-top:8px">All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
-            </div>
-        </div>
-        <div class="glass" style="margin-top:24px">
-            <div class="ctitle"><i>❓</i> Frequently Asked Questions</div>
-            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
-                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my data stored on your servers?</summary>
-                    <p style="margin-top:8px">No. Calcora tools run 100% client-side. No data is uploaded or stored on any external server.</p>
-                </details>
-                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service free?</summary>
-                    <p style="margin-top:8px">Yes, all tools on Calcora are completely free to use without any account or subscription.</p>
-                </details>
-            </div>
-        </div>
-    </div>
 </body>
-
 </html>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Free GST Calculator — Add or Remove GST Online (All Slabs) | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/logo.png">
     <meta name="description"
         content="Calculate GST (Add/Remove) instantly for 5%, 12%, 18%, and 28% slabs. Includes CGST and SGST breakdown.">
     <meta name="keywords" content="gst calculator, gst online, add gst, remove gst, tax calculator, igst, cgst, sgst">
@@ -14,14 +15,14 @@
     <link rel="stylesheet" href="../../style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script
-        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"GST Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.site/finance/gst-calculator.html"}</script>
+        type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"GST Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calcora.site/finance/gst-calculator/"}</script>
 
     <link rel="manifest" href="https://calcora.site/manifest.json">
     <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@calcora"><meta name="twitter:title" content="Calcora â€” Free Online Tools Hub">
     <meta property="og:site_name" content="Calcora"><meta property="og:type" content="website"><meta property="og:url" content="https://calcora.site/">
 
-    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "finance", "item": "https://calcora.site/index.html#finance" },{ "@type": "ListItem", "position": 3, "name": "GST Calculator", "item": "https://calcora.site/finance/gst-calculator.html" }] }</script>
-    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "GST Calculator", "operatingSystem": "All", "applicationCategory": "financeApplication", "url": "https://calcora.site/finance/gst-calculator.html", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://calcora.site/#finance" },{ "@type": "ListItem", "position": 3, "name": "GST Calculator", "item": "https://calcora.site/finance/gst-calculator/" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "GST Calculator", "operatingSystem": "All", "applicationCategory": "FinanceApplication", "url": "https://calcora.site/finance/gst-calculator/", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
 
     <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "What are the GST slab rates in India?", "acceptedAnswer": { "@type": "Answer", "text": "India has four main GST slabs: 5% (essential items), 12% (standard goods), 18% (most services and goods), and 28% (luxury and sin goods). Some items like unprocessed food are GST-exempt." } },{ "@type": "Question", "name": "How do I calculate GST from an inclusive price?", "acceptedAnswer": { "@type": "Answer", "text": "To find the base price from a GST-inclusive amount, divide by (1 + GST rate). For example, an item priced at 1180 with 18% GST: Base = 1180 / 1.18 = 1000. GST amount = 180." } },{ "@type": "Question", "name": "What is the difference between CGST and SGST?", "acceptedAnswer": { "@type": "Answer", "text": "CGST (Central GST) goes to the central government and SGST (State GST) goes to the state government. For intra-state sales, GST is split equally between CGST and SGST. For inter-state sales, IGST applies." } },{ "@type": "Question", "name": "Do I need to register for GST?", "acceptedAnswer": { "@type": "Answer", "text": "GST registration is mandatory if your annual turnover exceeds 40 lakhs (20 lakhs for special category states) for goods, or 20 lakhs (10 lakhs for special states) for services." } },{ "@type": "Question", "name": "Can I claim GST input tax credit?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, registered businesses can claim Input Tax Credit (ITC) on GST paid on purchases used for business purposes. This reduces your overall GST liability." } }] }</script>
     <meta property="og:image" content="https://calcora.site/assets/logo.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta name="twitter:image" content="https://calcora.site/assets/logo.png">
@@ -30,20 +31,15 @@
 <body>
     <div class="bgfx"></div>
     <nav class="navbar">
-        <div class="nav-in"><a href="../../index/" class="logo">
-                <div class="logo-m">C</div>
-            </a>
-            
-            
-                </div><span class="t-icon ic-moon">🌙</span>
-            </div>
+        <div class="nav-in">
+            <a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
         </div>
     </nav>
     <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
         <div class="mod-hdr">
             <h1>GST Calculator</h1>
         <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
-            <strong>Quick Answer:</strong> Our GST Calculator provides instant, professional-grade results with zero data collection. Use this tool to plan your wealth, compare loan options, or estimate taxes with current 2026-27 rules. It uses the standard compounding formula A = P(1 + r/n)^(nt) for maximum accuracy.
+            <strong>Quick Answer:</strong> Calculate GST effortlessly for all Indian slabs. Add GST to net prices or reverse-calculate to find pre-GST base prices. Includes instant CGST and SGST breakdown—all computed securely in your browser.
         </div>
         <p>Add or remove GST at standard Indian rates with CGST/SGST breakdown.</p>
         </div>
@@ -168,10 +164,10 @@
 
     <div class="ad-slot"><ins><!-- AdSense --></ins></div>
 
-    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='tax-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TAX CALCULATOR</a><a href='emi-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>EMI CALCULATOR</a><a href='profit-loss-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PROFIT &amp; LOSS</a><a href='sip-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SIP CALCULATOR</a><a href='loan-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>LOAN CALCULATOR</a><a href='salary-to-hourly/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SALARY CALC</a><a href='compound-interest/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>COMPOUND INTEREST</a><a href='currency-converter/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>CURRENCY CONVERTER</a></div></div>
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Finance Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../tax-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>TAX CALCULATOR</a><a href='../emi-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>EMI CALCULATOR</a><a href='../profit-loss-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>PROFIT &amp; LOSS</a><a href='../sip-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SIP CALCULATOR</a><a href='../loan-calculator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>LOAN CALCULATOR</a><a href='../salary-to-hourly/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>SALARY CALC</a><a href='../compound-interest/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>COMPOUND INTEREST</a></div></div>
 
     <footer class='site-ft'>
-        <p>© 2026 <a href="../../index/">Calcora</a></p>
+        <p>© 2026 <a href="../../">Calcora</a></p>
     </footer>
     <script src="../../script.js"></script>
     <script>
@@ -193,28 +189,6 @@
             calc();
         });
     </script>
-    <div class="calcora-standard-seo" style="max-width:1100px; margin: 4rem auto; padding: 0 1.5rem; width:100%">
-        <div class="glass" style="margin-top:24px">
-            <div class="ctitle"><i>💡</i> About gst calculator</div>
-            <div class="guide-content" style="font-size:0.95rem;line-height:1.7;color:var(--dim)">
-                <p>Professional-grade gst calculator tool designed for accuracy and privacy. Calcora provides expert-built utilities entirely free of charge with zero data collection.</p>
-                <p style="margin-top:8px">All calculations happen instantly and locally within your browser, ensuring your data remains absolutely private.</p>
-            </div>
-        </div>
-        <div class="glass" style="margin-top:24px">
-            <div class="ctitle"><i>❓</i> Frequently Asked Questions</div>
-            <div class="guide-content" style="font-size:0.9rem;line-height:1.7;color:var(--dim)">
-                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is my data stored on your servers?</summary>
-                    <p style="margin-top:8px">No. Calcora tools run 100% client-side. No data is uploaded or stored on any external server.</p>
-                </details>
-                <details style="margin-bottom:12px;padding:12px;background:var(--badge);border-radius:8px;border:1px solid var(--gbdr)">
-                    <summary style="cursor:pointer;font-weight:600;color:var(--text)">Is this service free?</summary>
-                    <p style="margin-top:8px">Yes, all tools on Calcora are completely free to use without any account or subscription.</p>
-                </details>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

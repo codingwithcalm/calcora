@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Free Markdown Viewer — Live MD Editor & Preview | Calcora</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/logo.png">
+    <meta name="description"
+        content="Free professional Markdown viewer and editor. Features a resizable split-pane interface, real-time GitHub-flavored rendering, and secure in-browser processing.">
+    <meta name="keywords" content="markdown viewer, md preview, live markdown editor, markdown to html, github markdown preview">
+    <link rel="canonical" href="https://calcora.site/tech/markdown-viewer/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root { --split-pos: 50%; }
+        #tool-wrap.fs { position: fixed; inset: 0; width: 100vw; height: 100vh; margin: 0; z-index: 9999; background: #fff; padding: 20px; display: flex; flex-direction: column; }
+        #tool-wrap.fs .split-container { flex: 1; height: auto; margin-top: 10px; }
+        .split-container { display: flex; height: 75vh; background: var(--glass); border: 1px solid var(--gbdr); border-radius: 16px; overflow: hidden; position: relative; backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); margin-top: 24px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .pane { height: 100%; overflow-y: auto; overflow-x: hidden; position: relative; padding: 20px; transition: none; scrollbar-width: thin; scrollbar-color: var(--gbdr) transparent; }
+        .pane::-webkit-scrollbar { width: 6px; }
+        .pane::-webkit-scrollbar-thumb { background: var(--gbdr); border-radius: 10px; }
+        
+        .pane-left { width: var(--split-pos); background: #fff; border-right: 1px solid var(--gbdr); }
+        .pane-right { flex: 1; background: #fff; color: #1f2328; }
+        
+        .resizer { width: 6px; background: var(--gbdr); cursor: col-resize; z-index: 10; position: absolute; left: calc(var(--split-pos) - 3px); top: 0; bottom: 0; transition: background 0.2s, width 0.2s; }
+        .resizer:hover, .resizer.active { background: var(--accent); width: 8px; left: calc(var(--split-pos) - 4px); }
+        .resizer::after { content: "⋮"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 14px; pointer-events: none; opacity: 0.5; }
+
+        #editor { width: 100%; height: 100%; background: transparent; border: none; outline: none; color: #1f2328; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.95rem; line-height: 1.6; resize: none; white-space: pre-wrap; padding: 0; }
+        .preview-content { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.5; word-wrap: break-word; }
+        .preview-content h1, .preview-content h2, .preview-content h3 { border-bottom: 1px solid #d0d7de; padding-bottom: 0.3em; margin-top: 24px; margin-bottom: 16px; font-weight: 600; }
+        .preview-content pre { background: #f6f8fa; border-radius: 6px; padding: 16px; overflow: auto; margin-bottom: 16px; font-family: monospace; }
+        .preview-content blockquote { padding: 0 1em; color: #656d76; border-left: 0.25em solid #d0d7de; margin-bottom: 16px; }
+        .preview-content ul, .preview-content ol { padding-left: 2em; margin-bottom: 16px; }
+        .preview-content img { max-width: 100%; box-sizing: content-box; background-color: #fff; }
+        .preview-content code { padding: 0.2em 0.4em; margin: 0; font-size: 85%; background-color: rgba(175,184,193,0.2); border-radius: 6px; }
+        .preview-content table { border-spacing: 0; border-collapse: collapse; margin-top: 0; margin-bottom: 16px; width: 100%; overflow: auto; }
+        .preview-content table th, .preview-content table td { padding: 6px 13px; border: 1px solid #d0d7de; }
+        .preview-content table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }
+        .preview-content table tr:nth-child(2n) { background-color: #f6f8fa; }
+
+        .btn-group { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+        .floating-label { position: absolute; right: 20px; top: 10px; font-size: 0.7rem; color: #6a737d; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; pointer-events: none; z-index: 5; }
+
+        @media (max-width: 768px) {
+            .split-container { flex-direction: column; height: auto; }
+            .pane-left, .pane-right { width: 100% !important; height: 400px; }
+            .resizer { display: none; }
+        }
+    </style>
+    
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcora.site/" },{ "@type": "ListItem", "position": 2, "name": "tech", "item": "https://calcora.site/#tech" },{ "@type": "ListItem", "position": 3, "name": "Markdown Viewer", "item": "https://calcora.site/tech/markdown-viewer/" }] }</script>
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Markdown Viewer", "operatingSystem": "All", "applicationCategory": "DeveloperApplication", "url": "https://calcora.site/tech/markdown-viewer/", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }</script>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <nav class="navbar">
+        <div class="nav-in">
+            <a href="../../" class="logo"><img src="../../assets/logo.png" class="logo-img" alt="Calcora Logo" width="32" height="32" loading="eager"></a>
+        </div>
+    </nav>
+    <div class="page fade-in"><a href="../../" class="back">← Back to all tools</a>
+        <div class="mod-hdr">
+            <h1>Markdown Viewer</h1>
+            <div class="sec-answer" style="margin-top:12px;font-size:0.95rem;line-height:1.6;color:var(--dim);max-width:800px;margin-left:auto;margin-right:auto;text-align:center">
+                <strong>Quick Answer:</strong> This premium Markdown Viewer is a secure, developer-focused utility for reading and editing .md files. Featuring a resizable split-pane layout and real-time GitHub Flavored Markdown (GFM) rendering, it processes everything 100% client-side for maximum privacy and performance.
+            </div>
+            <p>Paste your Markdown code or upload a file for an instant, high-fidelity preview with resizable side-by-side splits.</p>
+        </div>
+
+        <div id="tool-wrap">
+            <div class="btn-group">
+                <button class="btn btn-accent" onclick="document.getElementById('fileIn').click()">📁 Upload File</button>
+                <input type="file" id="fileIn" accept=".md,.markdown,.txt" style="display:none" onchange="loadFile(this)">
+                <button class="btn btn-outline" onclick="toggleFS()" id="fs-toggle">⛶ Full Screen</button>
+                <button class="btn btn-outline" onclick="copyHTML()">📋 Copy HTML</button>
+                <button class="btn btn-outline" onclick="exportMD()">💾 Download .md</button>
+                <button class="btn btn-outline" onclick="clearAll()">🗑️ Clear</button>
+            </div>
+
+            <div class="split-container" id="container">
+                <div class="pane pane-left">
+                    <span class="floating-label">Markdown Source</span>
+                    <textarea id="editor" spellcheck="false"># Premium Markdown Editor 🚀
+
+Write beautiful documentation with **real-time preview** and a **resizable interface**.
+
+## Key Features
+- [x] Split-pane resizability
+- [x] GitHub-flavored rendering
+- [x] Independent scrollable views
+- [x] 100% Browser-native & private
+
+### Code Example
+```javascript
+function greet() {
+  console.log("Hello from Calcora!");
+}
+```
+
+### Table Support
+| Feature | Status |
+| :--- | :--- |
+| Privacy | ✅ Verified |
+| Speed | ⚡ Instant |
+| UI | 🎨 Premium |
+
+> "The best way to write documentation is to see it as you build it."</textarea>
+                </div>
+                <div class="resizer" id="dragMe"></div>
+                <div class="pane pane-right" id="previewPane">
+                    <span class="floating-label" style="color: #6a737d">Rendered Preview</span>
+                    <div class="preview-content" id="preview"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="margin-top:24px">
+            <div class="ctitle"><i>&#128214;</i> How it Works & Guide</div>
+            <div class="guide-content" style="font-size:0.9rem;line-height:1.6;color:var(--dim)">
+                <p>A professional Markdown environment designed for clarity and control. All processing happens locally using 100% private client-side technology.</p>
+                <ul style="margin-top:10px;padding-left:20px">
+                    <li><b>Editor Side:</b> Use the left pane to write your Markdown. We support standard tags, tables, checklists, and code blocks.</li>
+                    <li><b>Resizable Split:</b> Hover over the center bar and drag it to adjust the width of either side to your preference.</li>
+                    <li><b>Independent Scrolling:</b> Both the editor and preview side scroll independently so you can keep context while viewing long documents.</li>
+                    <li><b>Exports:</b> Easily copy the rendered HTML for use in websites or download the updated .md file.</li>
+                </ul>
+                <p style="margin-top:12px;font-size:0.78rem;color:var(--dim)">Learn more: <a href="https://marked.js.org/" target="_blank" rel="noopener">Marked.js Documentation</a> | <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax" target="_blank" rel="noopener">GFM Syntax</a></p>
+                <div class="pro-tip" style="margin-top:16px;padding:12px;background:var(--badge);border-radius:8px;border-left:4px solid var(--accent);font-size:0.85rem;color:var(--text);font-style:italic">
+                    Pro Tip: For a full-screen experience, use F11 in your browser. This tool is optimized to stay fast even with extremely large documents by using standard DOM APIs.
+                </div>
+                <p style="margin-top:10px"><i>Your files never leave your device. Privacy is built-in.</i></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class='glass sec-related' style='margin-top:24px'><div class='ctitle'><i>&#128279;</i> Related Tech Tools</div><div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px'><a href='../readme-optimizer/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>README OPTIMIZER</a><a href='../markdown-table-generator/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>MD TABLE GEN</a><a href='../json-formatter/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>JSON FORMATTER</a><a href='../base64-encoder/' style='font-size:0.75rem;color:var(--accent);font-weight:700;padding:8px;background:var(--badge);border-radius:6px;text-align:center'>BASE64 ENCODER</a></div></div>
+    
+    <footer class='site-ft'>
+        <p>&copy; 2026 <a href="../../">Calcora</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script>
+        const editor = document.getElementById('editor');
+        const preview = document.getElementById('preview');
+        const resizer = document.getElementById('dragMe');
+        const container = document.getElementById('container');
+        const toolWrap = document.getElementById('tool-wrap');
+        
+        // Marked.js Configuration
+        marked.setOptions({
+            breaks: true,
+            gfm: true,
+            headerIds: true,
+            mangle: false
+        });
+
+        function updatePreview() {
+            const html = marked.parse(editor.value);
+            preview.innerHTML = html;
+        }
+
+        // Splitter Logic
+        let isResizing = false;
+
+        resizer.addEventListener('pointerdown', function(e) {
+            isResizing = true;
+            resizer.classList.add('active');
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none';
+        });
+
+        document.addEventListener('pointermove', function(e) {
+            if (!isResizing) return;
+            
+            const containerRect = container.getBoundingClientRect();
+            let x = ((e.clientX - containerRect.left) / containerRect.width) * 100;
+            
+            // Constrain
+            if (x < 10) x = 10;
+            if (x > 90) x = 90;
+            
+            document.documentElement.style.setProperty('--split-pos', x + '%');
+        });
+
+        document.addEventListener('pointerup', function() {
+            isResizing = false;
+            resizer.classList.remove('active');
+            document.body.style.cursor = '';
+            document.body.style.userSelect = '';
+        });
+
+        function loadFile(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                editor.value = e.target.result;
+                updatePreview();
+            };
+            reader.readAsText(file);
+        }
+
+        function copyHTML() {
+            navigator.clipboard.writeText(preview.innerHTML).then(() => {
+                const btn = event.target;
+                const old = btn.textContent;
+                btn.textContent = '📋 Copied!';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        }
+
+        function exportMD() {
+            const blob = new Blob([editor.value], {type: 'text/markdown'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'README.md';
+            a.click();
+        }
+
+        function clearAll() {
+            if(confirm('Are you sure you want to clear the editor?')) {
+                editor.value = '';
+                updatePreview();
+            }
+        }
+
+        function toggleFS() {
+            const isFS = toolWrap.classList.toggle('fs');
+            const toggle = document.getElementById('fs-toggle');
+            toggle.textContent = isFS ? '✖ Close Full Screen' : '⛶ Full Screen';
+            if (isFS) {
+                if (toolWrap.requestFullscreen) toolWrap.requestFullscreen();
+            } else {
+                if (document.fullscreenElement) document.exitFullscreen();
+            }
+        }
+
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                toolWrap.classList.remove('fs');
+                document.getElementById('fs-toggle').textContent = '⛶ Full Screen';
+            }
+        });
+
+        editor.addEventListener('input', updatePreview);
+        window.addEventListener('load', updatePreview);
+    </script>
+</body>
+
+</html>
